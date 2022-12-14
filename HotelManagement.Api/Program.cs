@@ -1,3 +1,10 @@
+using FluentValidation;
+using HotelManagement.Core.Domains;
+using HotelManagement.Infrastructure.Context;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using System.Reflection;
+
 namespace HotelManagement.Api
 {
     public class Program
@@ -6,12 +13,27 @@ namespace HotelManagement.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             // Add services to the container.
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
+            //For Entity Framework
+
+            builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
+            (builder.Configuration.GetConnectionString("ConnStr")));
+
+            //for identity
+
+            builder.Services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<HotelDbContext>()
+                .AddDefaultTokenProviders();
+
 
             var app = builder.Build();
 
