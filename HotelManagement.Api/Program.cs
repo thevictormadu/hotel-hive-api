@@ -1,6 +1,10 @@
 using FluentValidation;
 using HotelManagement.Core.Domains;
+using HotelManagement.Core.IRepositories;
+using HotelManagement.Core.IServices;
 using HotelManagement.Infrastructure.Context;
+using HotelManagement.Infrastructure.Repositories;
+using HotelManagement.Services.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +29,9 @@ namespace HotelManagement.Api
 
             builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
+
+            builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
             //For Entity Framework
 
             builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer

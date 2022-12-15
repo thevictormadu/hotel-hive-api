@@ -13,11 +13,8 @@ namespace HotelManagement.Core.Domains
         public Guid BookingId{ get; set; }
         public Booking Bookings { get; set; }
         public string Transaction { get; set; }
-
         public double Amount { get; set; }
-
         public string Status  { get; set; }
-
         public string MethodOfPayment { get; set; }
 
         public DateTime CreateAt { get; set; }
