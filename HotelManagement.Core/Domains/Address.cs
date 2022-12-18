@@ -8,13 +8,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.Domains
 {
-    public class Address
+    public class Address :BaseEntity 
     {
-        
-        public Guid Id { get; set; }
-        [Key]
-      // public Guid StateId { get; set; }
-
         public string  City { get; set; }
 
         public string Country { get; set; }
@@ -23,6 +18,7 @@ namespace HotelManagement.Core.Domains
 
         public  string Latitude { get; set; }
         public Customer Customer { get; set; }
+
         [ForeignKey("StateId")]
         public State State { get; set; }
     }

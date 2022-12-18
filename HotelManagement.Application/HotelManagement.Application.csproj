@@ -11,8 +11,4 @@
     <Folder Include="FluentValidation\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-  </ItemGroup>
-
 </Project>

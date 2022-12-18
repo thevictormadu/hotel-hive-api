@@ -1,30 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace HotelManagement.Core.Domains
 {
-    public class RoomType
+    public class RoomType : BaseEntity
     {
-        public Guid Id { get; set; }
-
+        public string HotelId { get; set; }
         public string Name { get; set; }
 
+        [DataType(DataType.Text)]
         public string Description { get; set; }
-
-        public double Price { get; set; }
-
-        public double Discount { get; set; }
-
+        public decimal Price { get; set; }
+        public decimal Discount { get; set; }
         public string Thumbnail { get; set; }
-
-        public string HotelId { get; set; }
         public Hotel Hotel { get; set; }
-        public ICollection<Room> Room { get; set; }
-        public DateTime CreateAt { get; set; }
-
-        public DateTime UpdateAt { get; set; }
+        public ICollection<Room> Rooms { get; set; }
     }
 }

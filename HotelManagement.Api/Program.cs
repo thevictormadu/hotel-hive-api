@@ -39,7 +39,7 @@ namespace HotelManagement.Api
 
             //for identity
 
-            builder.Services.AddIdentity<User, IdentityRole>()
+            builder.Services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<HotelDbContext>()
                 .AddDefaultTokenProviders();
 

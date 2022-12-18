@@ -1,20 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace HotelManagement.Core.Domains
 {
-    public class WishList
+    public class WishList : BaseEntity
     {
         [Key]
-        public int CustomerId { get; set; }
-
-        public int HotelId { get; set; }
-        public Customer Customers { get; set; }
+        public string CustomerId { get; set; }
+        public string HotelId { get; set; }
+        public Customer Customer { get; set; }
         public Hotel Hotel { get; set; }
     }
 }

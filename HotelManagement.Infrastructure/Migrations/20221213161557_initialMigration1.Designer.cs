@@ -496,7 +496,7 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.ToTable("States");
                 });
 
-            modelBuilder.Entity("HotelManagement.Core.Domains.User", b =>
+            modelBuilder.Entity("HotelManagement.Core.Domains.AppUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -813,13 +813,13 @@ namespace HotelManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Customer", b =>
                 {
-                    b.HasOne("HotelManagement.Core.Domains.User", "User")
+                    b.HasOne("HotelManagement.Core.Domains.AppUser", "AppUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Gallery", b =>
@@ -850,7 +850,7 @@ namespace HotelManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Manager", b =>
                 {
-                    b.HasOne("HotelManagement.Core.Domains.User", "Users")
+                    b.HasOne("HotelManagement.Core.Domains.AppUser", "Users")
                         .WithMany()
                         .HasForeignKey("UsersId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -960,7 +960,7 @@ namespace HotelManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("HotelManagement.Core.Domains.User", null)
+                    b.HasOne("HotelManagement.Core.Domains.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -969,7 +969,7 @@ namespace HotelManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("HotelManagement.Core.Domains.User", null)
+                    b.HasOne("HotelManagement.Core.Domains.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -984,7 +984,7 @@ namespace HotelManagement.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelManagement.Core.Domains.User", null)
+                    b.HasOne("HotelManagement.Core.Domains.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -993,7 +993,7 @@ namespace HotelManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("HotelManagement.Core.Domains.User", null)
+                    b.HasOne("HotelManagement.Core.Domains.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
