@@ -16,10 +16,10 @@ namespace HotelManagement.Infrastructure.Repositories
 {
     public class AuthRepository : IAuthRepository
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly IConfiguration _configuration;
 
-        public AuthRepository(UserManager<User> userManager, IConfiguration configuration)
+        public AuthRepository(UserManager<AppUser> userManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _configuration = configuration;
@@ -69,7 +69,7 @@ namespace HotelManagement.Infrastructure.Repositories
 
         public async Task<object> Register(RegisterDTO user)
         {
-            User newUser = new User()
+            AppUser newAppUser = new AppUser()
             {
                 UserName = user.UserName,
                 Email = user.Email,
@@ -84,7 +84,7 @@ namespace HotelManagement.Infrastructure.Repositories
                 UpdateAt = DateTime.Now,
                 Publicid = user.Publicid,
             };
-            var result = await _userManager.CreateAsync(newUser, user.Password);
+            var result = await _userManager.CreateAsync(newAppUser, user.Password);
             if (result.Succeeded) return "Successfully registered";
             return "Registration failed: " + result.Errors;
         }
