@@ -74,15 +74,11 @@ namespace HotelManagement.Infrastructure.Repositories
                 UserName = user.UserName,
                 Email = user.Email,
                 EmailConfirmed = false,
-                Phone = user.Phone,
                 Age = user.Age,
                 Avatar = "www.xyz.com",
                 Gender = user.Gender,
                 FirstName = user.FirstName,
-                LastName = user.LastName,
-                CreateAt = DateTime.Now,
-                UpdateAt = DateTime.Now,
-                Publicid = user.Publicid,
+                LastName = user.LastName
             };
             var result = await _userManager.CreateAsync(newAppUser, user.Password);
             if (result.Succeeded) return "Successfully registered";
