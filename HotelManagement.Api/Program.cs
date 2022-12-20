@@ -114,7 +114,7 @@ namespace HotelManagement.Api
 
             app.MapControllers();
 
-            app.Run();
+            app.Run(); 
         }
     }
 }
