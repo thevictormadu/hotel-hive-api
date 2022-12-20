@@ -4,7 +4,6 @@ namespace HotelManagement.Core.Domains
 {
     public class Hotel : BaseEntity
     {
-        public string ManagerId { get; set; }
         public string Name { get; set; }
 
         [DataType(DataType.Text)]
@@ -14,6 +13,7 @@ namespace HotelManagement.Core.Domains
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        public string ManagerId { get; set; }
         public Manager Manager { get; set; }
         public ICollection<WishList> WishLists { get; set; }
         public ICollection<Review> Reviews { get; set; }

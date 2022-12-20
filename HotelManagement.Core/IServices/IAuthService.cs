@@ -9,7 +9,7 @@ namespace HotelManagement.Core.IServices
 {
     public interface IAuthService
     {
-        public Task<object> Login(LoginDTO model);
-        public Task<object> Register(RegisterDTO user);
+        Task<object> Login(LoginDTO model);
+        Task<object> Register(RegisterDTO user);
     }
 }

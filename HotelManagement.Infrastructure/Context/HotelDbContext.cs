@@ -63,6 +63,11 @@ namespace HotelManagement.Infrastructure.Context
                 .HasOne(bc => bc.Hotel)
                 .WithMany(c => c.WishLists)
                 .HasForeignKey(bc => bc.HotelId);
+            //modelBuilder.Entity<Rating>()
+            //    .HasOne(bc =>bc.Hotel)
+            //    .WithMany(bc => bc.Ratings)
+            //    .HasForeignKey(bc => bc.HotelId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
 
         }

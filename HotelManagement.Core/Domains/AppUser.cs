@@ -14,8 +14,6 @@ namespace HotelManagement.Core.Domains
         public string Avatar { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public Manager Manager { get; set; }
-        public Customer Customer { get; set; }
         public Guid RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
     }
