@@ -51,13 +51,14 @@ namespace HotelManagement.Api
             // Configure Mailing Service
             builder.Services.ConfigureMailService(config);
 
+
             builder.Services.AddSingleton(Log.Logger);
 
             // Adds our Authorization Policies to the Dependecy Injection Container
             builder.Services.AddPolicyAuthorization();
 
             // Configure Identity
-            builder.Services.ConfigureIdentity();
+            builder.Services.ConfigureIdentity(); 
 
             builder.Services.AddAuthentication();
 
