@@ -13,6 +13,6 @@ namespace HotelManagement.Core.Domains
         public decimal Discount { get; set; }
         public string Thumbnail { get; set; }
         public Hotel Hotel { get; set; }
-        public ICollection<Room> Rooms { get; set; }
+        public int Available { get; set; }
     }
 }

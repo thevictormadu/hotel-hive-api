@@ -17,7 +17,6 @@ namespace HotelManagement.Infrastructure.Context
         public DbSet<Manager> Managers { get; set; }
         public DbSet<Rating> Ratings { get; set; }
         public DbSet<Review> Reviews { get; set; }
-        public DbSet<Room> Rooms { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<WishList> WishLists { get; set; }
@@ -51,6 +50,16 @@ namespace HotelManagement.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var decimalProps = modelBuilder.Model
+            .GetEntityTypes()
+            .SelectMany(t => t.GetProperties())
+            .Where(p => (Nullable.GetUnderlyingType(p.ClrType) ?? p.ClrType) == typeof(decimal));
+
+            foreach (var property in decimalProps)
+            {
+                property.SetPrecision(18);
+                property.SetScale(2);
+            }
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<WishList>()
@@ -63,13 +72,6 @@ namespace HotelManagement.Infrastructure.Context
                 .HasOne(bc => bc.Hotel)
                 .WithMany(c => c.WishLists)
                 .HasForeignKey(bc => bc.HotelId);
-            //modelBuilder.Entity<Rating>()
-            //    .HasOne(bc =>bc.Hotel)
-            //    .WithMany(bc => bc.Ratings)
-            //    .HasForeignKey(bc => bc.HotelId)
-            //    .OnDelete(DeleteBehavior.Restrict);
-
-
         }
 
     }

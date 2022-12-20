@@ -13,6 +13,10 @@ namespace HotelManagement.Core.Domains
         public string Address { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        public string AccountName { get; set; }
+        public string AccountNumber { get; set; }
+        public string BankName { get; set; }
+        public string? BankCode { get; set; }
         public string ManagerId { get; set; }
         public Manager Manager { get; set; }
         public ICollection<WishList> WishLists { get; set; }
