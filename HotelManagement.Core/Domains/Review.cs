@@ -9,6 +9,6 @@ namespace HotelManagement.Core.Domains
         public string HotelId { get; set; }
         public string CustomerId { get; set; }
         public Hotel Hotel { get; set; }
-        public Customer Customer { get; set; }
+        public Customer Customer { get; set; } 
     }
 }
