@@ -20,6 +20,7 @@ using HotelManagement.Api.Extensions;
 using Serilog;
 using HotelManagement.Api.Policies;
 using FluentValidation.AspNetCore;
+using HotelManagement.Infrastructure.Seeding;
 
 namespace HotelManagement.Api
 {
@@ -34,13 +35,17 @@ namespace HotelManagement.Api
 
             // Add services to the container.
             builder.Services.AddHttpClient();
-            builder.Services.AddDbContextAndConfigurations(builder.Environment, config);
+            //builder.Services.AddDbContextAndConfigurations(builder.Environment, config);
 
             builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>()
                 .AddScoped<IUrlHelper>(x =>
                     x.GetRequiredService<IUrlHelperFactory>()
                         .GetUrlHelper(x.GetRequiredService<IActionContextAccessor>().ActionContext));
 
+            //For Entity Framework
+
+            builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
+            (builder.Configuration.GetConnectionString("ConnStr")));
 
             //builder.Services.AddControllers();
             // Configure Mailing Service
@@ -89,12 +94,7 @@ namespace HotelManagement.Api
             // Register Dependency Injection Service Extension
             builder.Services.AddDependencyInjection();
 
-
             //For Entity Framework
-
-
-
-
 
             var app = builder.Build();
 
@@ -104,6 +104,8 @@ namespace HotelManagement.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            Seeder.SeedData(app).Wait();
 
             app.UseHttpsRedirection();
 

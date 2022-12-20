@@ -6,7 +6,6 @@ namespace HotelManagement.Infrastructure.Context
 {
     public class HotelDbContext : IdentityDbContext<AppUser>
     {
-
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Amenity> Amenities { get; set; }
         public DbSet<Booking> Bookings { get; set; }
@@ -20,7 +19,6 @@ namespace HotelManagement.Infrastructure.Context
         public DbSet<RoomType> RoomTypes { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<WishList> WishLists { get; set; }
-
 
         public HotelDbContext(DbContextOptions<HotelDbContext> Options) : base(Options)
         {
