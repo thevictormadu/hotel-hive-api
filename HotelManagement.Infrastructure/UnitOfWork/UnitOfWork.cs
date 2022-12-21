@@ -1,12 +1,5 @@
 ﻿using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
-using HotelManagement.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.UnitOfWork
 {
@@ -61,31 +54,3 @@ namespace HotelManagement.Infrastructure.UnitOfWork
         
 	}         
 }
-/*public class UserRepository : IUserRepository
-{
-    private readonly IUnitOfWork _unitOfWork;
-
-    public UserRepository(IUnitOfWork unitOfWork)
-    {
-        _unitOfWork = unitOfWork;
-    }
-
-    public void Insert(User user)
-    {
-        _unitOfWork.BeginTransaction();
-        try
-        {
-            // Insert user into the database
-            _unitOfWork.Commit();
-        }
-        catch
-        {
-            _unitOfWork.Rollback();
-            throw;
-        }
-    }
-
-    // Other repository methods not shown
-}
-
-*/
