@@ -38,7 +38,7 @@ namespace HotelManagement.Infrastructure.Repositories
         }
 
 
-        public virtual async Task<T> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
+        public virtual async Task<T> GetByIdAsync(string id) => await _dbSet.FindAsync(id);
 
         public async Task<T> GetByIdAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true)
         {

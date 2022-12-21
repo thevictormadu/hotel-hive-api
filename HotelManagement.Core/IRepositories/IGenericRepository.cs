@@ -11,7 +11,7 @@ namespace HotelManagement.Core.IRepositories
     {
         Task<IEnumerable<T>> GetAllAsync();
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null);
-        Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(string id);
         Task<T> GetByIdAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true);
         Task AddAsync(T entity);
         Task UpdateAsync(int id, T entity);
