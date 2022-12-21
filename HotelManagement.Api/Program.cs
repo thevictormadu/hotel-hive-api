@@ -1,26 +1,13 @@
-using FluentValidation;
-using HotelManagement.Core.Domains;
-using HotelManagement.Core.IRepositories;
-using HotelManagement.Core.IServices;
+using FluentValidation.AspNetCore;
+using HotelManagement.Api.Extensions;
+using HotelManagement.Api.Policies;
 using HotelManagement.Infrastructure.Context;
-using HotelManagement.Infrastructure.Repositories;
-using HotelManagement.Services.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
+using HotelManagement.Infrastructure.Seeding;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System.Configuration;
-using System.Reflection;
-using System.Text;
-using HotelManagement.Api.Extensions;
 using Serilog;
-using HotelManagement.Api.Policies;
-using FluentValidation.AspNetCore;
-using HotelManagement.Infrastructure.Seeding;
 
 namespace HotelManagement.Api
 {
@@ -44,7 +31,7 @@ namespace HotelManagement.Api
 
             //For Entity Framework
 
-            builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
+            object value = builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
             (builder.Configuration.GetConnectionString("ConnStr")));
 
             //builder.Services.AddControllers();
@@ -58,7 +45,7 @@ namespace HotelManagement.Api
             builder.Services.AddPolicyAuthorization();
 
             // Configure Identity
-            builder.Services.ConfigureIdentity(); 
+            builder.Services.ConfigureIdentity();
 
             builder.Services.AddAuthentication();
 
@@ -115,7 +102,7 @@ namespace HotelManagement.Api
 
             app.MapControllers();
 
-            app.Run(); 
+            app.Run();
         }
     }
 }
