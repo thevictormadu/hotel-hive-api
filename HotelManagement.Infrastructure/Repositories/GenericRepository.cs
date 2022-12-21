@@ -14,7 +14,7 @@ namespace HotelManagement.Infrastructure.Repositories
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly HotelDbContext _hotelDbContext;
-        protected DbSet<T> _dbSet
+        protected DbSet<T> _dbSet;
 
         public GenericRepository (HotelDbContext hotelDbContext)
 	    {
@@ -46,7 +46,7 @@ namespace HotelManagement.Infrastructure.Repositories
         }
 
 
-        public async Task<T> GetByIdAsync<T>(T Value) => await _dbSet.FindAsync(Value);
+        public async Task<T> GetByIdAsync(T Value) => await _dbSet.FindAsync(Value);
 
         public async Task<T> GetByIdAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true)
         {
