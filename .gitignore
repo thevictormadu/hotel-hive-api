@@ -12,6 +12,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
+*
 
 # Mono auto generated files
 mono_crash.*
@@ -453,3 +454,4 @@ $RECYCLE.BIN/
 !.vscode/launch.json
 !.vscode/extensions.json
 appsettings.json
+appsettings.[Dd]evelopment.json
