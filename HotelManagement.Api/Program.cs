@@ -1,10 +1,8 @@
 using FluentValidation;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.IRepositories;
-using HotelManagement.Core.IServices;
 using HotelManagement.Infrastructure.Context;
 using HotelManagement.Infrastructure.Repositories;
-using HotelManagement.Services.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -21,6 +19,7 @@ using Serilog;
 using HotelManagement.Api.Policies;
 using FluentValidation.AspNetCore;
 using HotelManagement.Infrastructure.Seeding;
+using HotelManagement.Core.Utilities;
 
 namespace HotelManagement.Api
 {
@@ -41,6 +40,12 @@ namespace HotelManagement.Api
                 .AddScoped<IUrlHelper>(x =>
                     x.GetRequiredService<IUrlHelperFactory>()
                         .GetUrlHelper(x.GetRequiredService<IActionContextAccessor>().ActionContext));
+
+            //Service Injection
+
+            builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            builder.Services.AddScoped<IToken, Token>();
+            builder.Services.AddScoped<ITokenDetails, TokenDetails>();
 
             //For Entity Framework
 
