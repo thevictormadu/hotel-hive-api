@@ -43,9 +43,6 @@ namespace HotelManagement.Api
 
             //Service Injection
 
-            builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
-            builder.Services.AddScoped<IToken, Token>();
-            builder.Services.AddScoped<ITokenDetails, TokenDetails>();
 
             //For Entity Framework
 

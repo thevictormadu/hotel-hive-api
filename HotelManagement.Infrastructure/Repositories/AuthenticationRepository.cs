@@ -17,6 +17,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
+using HotelManagement.Application.Utilities;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
@@ -85,10 +86,10 @@ namespace HotelManagement.Infrastructure.Repositories
             var response = new APIResponse<object>();
             response.IsSuccess = false;
             response.StatusCode = System.Net.HttpStatusCode.BadRequest;
-            if (user == null)
+            if (user == null || user.RefreshToken.ToString() != currentToken)
             {
-                response.Result = "Invalid token to refresh";
-            }else if(user.RefreshToken.ToString() != currentToken || user.RefreshTokenExpiryTime < DateTime.Now)
+                response.Result = "Invalid refresh token";
+            }else if(user.RefreshTokenExpiryTime < DateTime.Now)
             {
                 response.Result = "Token Expired";
             }else
@@ -111,18 +112,10 @@ namespace HotelManagement.Infrastructure.Repositories
         }
         public async Task<APIResponse<object>> Register(RegisterDTO user)
         {
-            AppUser newAppUser = new AppUser()
-            {
-                UserName = user.UserName,
-                Email = user.Email,
-                EmailConfirmed = false,
-                Age = user.Age,
-                Avatar = "www.xyz.com",
-                Gender = user.Gender,
-                FirstName = user.FirstName,
-                LastName = user.LastName
-            };
-            var result = await _userManager.CreateAsync(newAppUser, user.Password);
+            var mapInitializer = new MapInitializer();
+            var newUser = mapInitializer.regMapper.Map<RegisterDTO, AppUser>(user);
+            
+            var result = await _userManager.CreateAsync(newUser, user.Password);
             var response = new APIResponse<object>();
             if (result.Succeeded) { 
                 response.IsSuccess = true;
