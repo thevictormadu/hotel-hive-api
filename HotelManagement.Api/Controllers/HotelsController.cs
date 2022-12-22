@@ -9,27 +9,27 @@ namespace HotelManagement.Api.Controllers
     [ApiController]
     public class HotelsController : ControllerBase
     {
-        private readonly IHotelRepository _hotelRepo;
-        public HotelsController(HotelDbContext context, IHotelRepository hotelRepo) { _hotelRepo = hotelRepo; }
+        private readonly IHotelServices _hotelRepo;
+        public HotelsController(HotelDbContext context, IHotelServices hotelRepo) { _hotelRepo = hotelRepo; }
 
-        [HttpGet("getAll")]
+        [HttpGet("get-all-hotels")]//get-all-hotels
         public async Task<IActionResult> GetAllHotels()
         {
             var hotels = await _hotelRepo.GetHotelsAsync();
             return Ok(hotels);
         }
-        [HttpGet("getHotelById")]
-        public async Task<IActionResult> GetAnHotelById([FromBody] int Id)
+        [HttpGet("get-Hotel-By-Id")]//get-hotel-by-Id
+        public async Task<IActionResult> GetAnHotelById([FromRoute] int Id)
         {
             var hotel = await _hotelRepo.GetHotelByIdAsync(Id);
             if (hotel == null) { return BadRequest("Hotel does not exist"); }
             return Ok(hotel);
         }
 
-        [HttpPut]
+        [HttpPut("update-hotel-by-Id")]//update-hotel-by-Id
         public async Task<IActionResult> UpdateHotelById([FromQuery] UpdateHotelDto updateHotell, int Id)
         {
-            var hotel = _hotelRepo.UpdateHotelAsync(Id);
+            var hotel = await _hotelRepo.UpdateHotelAsync(Id);
             if (hotel == null) { return BadRequest("Hotel does noe exist"); }
             return Ok("Hotel information updated successfully");
         }

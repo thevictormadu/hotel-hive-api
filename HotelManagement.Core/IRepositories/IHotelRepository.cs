@@ -2,7 +2,7 @@
 
 namespace HotelManagement.Core.IRepositories
 {
-    public interface IHotelRepository
+    public interface IHotelServices
     {
         Task<List<Hotel>> GetHotelsAsync();
         Task<Hotel> GetHotelByIdAsync(int Id);

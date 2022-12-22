@@ -1,7 +1,9 @@
 using FluentValidation.AspNetCore;
 using HotelManagement.Api.Extensions;
 using HotelManagement.Api.Policies;
+using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
+using HotelManagement.Infrastructure.Repositories;
 using HotelManagement.Infrastructure.Seeding;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -23,6 +25,7 @@ namespace HotelManagement.Api
             // Add services to the container.
             builder.Services.AddHttpClient();
             //builder.Services.AddDbContextAndConfigurations(builder.Environment, config);
+            builder.Services.AddScoped<IHotelServices, HotelRepository>();
 
             builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>()
                 .AddScoped<IUrlHelper>(x =>
@@ -31,8 +34,8 @@ namespace HotelManagement.Api
 
             //For Entity Framework
 
-            object value = builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
-            (builder.Configuration.GetConnectionString("ConnStr")));
+            builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
+            (builder.Configuration.GetConnectionString("HMSConnection")));
 
             //builder.Services.AddControllers();
             // Configure Mailing Service

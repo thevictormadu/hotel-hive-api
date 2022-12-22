@@ -4,10 +4,10 @@ using HotelManagement.Infrastructure.Context;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
-    public class HotelRepository : GenericRepository<Hotel>, IHotelRepository
+    public class HotelRepository : GenericRepository<Hotel>, IHotelServices
     {
-        private readonly IHotelRepository hotelRepository;
-        public HotelRepository(HotelDbContext context, IHotelRepository _hotelRepository)
+        private readonly IHotelServices hotelRepository;
+        public HotelRepository(HotelDbContext context, IHotelServices _hotelRepository)
         {
             hotelRepository = _hotelRepository;
         }
