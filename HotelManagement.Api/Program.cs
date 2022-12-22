@@ -37,6 +37,7 @@ namespace HotelManagement.Api
             builder.Services.AddHttpClient();
             //builder.Services.AddDbContextAndConfigurations(builder.Environment, config);
 
+            builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
             builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>()
                 .AddScoped<IUrlHelper>(x =>
                     x.GetRequiredService<IUrlHelperFactory>()
