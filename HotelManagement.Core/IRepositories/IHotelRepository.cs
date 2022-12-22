@@ -11,7 +11,7 @@ namespace HotelManagement.Core.IRepositories
     public interface IHotelRepository: IGenericRepository<Hotel>
     {
         Task<List<ICollection<Rating>>> GetHotelsRating(string HotelName);
-        Task<IEnumerable<IEnumerable<Room>>> GetRoomsByAvailability(string HotelNmae);
-        Task<Room> GetHotelRoomByRoomId(string HotelName, int RoomId);
+        Task<IEnumerable<Room>> GetRoomsByAvailability(string HotelNmae, string RoomType);
+        Task<Room> GetHotelRoomByRoomId(string RoomId);
     }
 }

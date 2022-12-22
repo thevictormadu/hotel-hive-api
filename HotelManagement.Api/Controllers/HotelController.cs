@@ -46,9 +46,9 @@ namespace HotelManagement.Api.Controllers
             });
         }
         [HttpGet("Hotel-Room-By-Availability")] 
-        public async Task<IActionResult> GetRoomByAvailability([FromQuery] string HotelName)
+        public async Task<IActionResult> GetRoomByAvailability([FromQuery] string HotelName, String roomType)
         {
-            var result = await _unitOfWork.hotel.GetRoomsByAvailability(HotelName);
+            var result = await _unitOfWork.hotel.GetRoomsByAvailability(HotelName, roomType);
             if (result == null)
                 return StatusCode(400, new APIResponse<object>
                 {
@@ -57,8 +57,8 @@ namespace HotelManagement.Api.Controllers
                     Result = result
                 });
             _unitOfWork.Save();
-            var mappedResult = _mapper.Map<IEnumerable<IEnumerable<GetRoomDto>>>(result);
-            return StatusCode(200, new APIResponse<IEnumerable<IEnumerable<GetRoomDto>>>
+            var mappedResult = _mapper.Map<IEnumerable<GetRoomDto>>(result);
+            return StatusCode(200, new APIResponse<IEnumerable<GetRoomDto>>
             {
                 StatusCode = HttpStatusCode.OK,
                 IsSuccess= true,
@@ -68,9 +68,9 @@ namespace HotelManagement.Api.Controllers
         }
 
         [HttpGet("Room-By-Id")]
-        public async Task<IActionResult> GetRoomById(string HotelNmae, int Id)
+        public async Task<IActionResult> GetRoomById( string Id)
         {
-            var result = await _unitOfWork.hotel.GetHotelRoomByRoomId(HotelNmae, Id);
+            var result = await _unitOfWork.hotel.GetHotelRoomByRoomId( Id);
             if (result == null)
                 return StatusCode(400,new APIResponse<Room>
                 {

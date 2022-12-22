@@ -25,14 +25,12 @@ namespace HotelManagement.Infrastructure.Repositories
 
 
 
-        public async Task<Room> GetHotelRoomByRoomId(string HotelName, int RoomId)
+        public async Task<Room> GetHotelRoomByRoomId( string RoomId)
         {
             try
             {
-                var ListOfHotel = await _context.Hotels.Where(x => x.Name.ToLower().Trim() == HotelName.ToLower().Trim()).Select(x => x).ToListAsync();
-                var roomtype = ListOfHotel.Select(x => x.RoomTypes).FirstOrDefault();
-                var ListOfRooms = roomtype.Select(x => x.Room).FirstOrDefault();
-                var room = ListOfRooms.Where(x => x.Id == RoomId).FirstOrDefault();
+
+                var room = await _context.Rooms.FirstOrDefaultAsync(x => x.Id.ToLower().Trim() == RoomId.ToLower().Trim());
                 return room;
             }
             catch (Exception ex)
@@ -58,17 +56,26 @@ namespace HotelManagement.Infrastructure.Repositories
             }
             
         }
-        public async Task<IEnumerable<IEnumerable<Room>>> GetRoomsByAvailability(string HotelNmae)
+        public async Task<IEnumerable<Room>> GetRoomsByAvailability(string HotelNmae, string RoomType)
         {
             try
             {
-                var ListOfRoomType = await _context.Hotels.Where(x => x.Name == HotelNmae).Select(x => x.RoomTypes).ToListAsync();
-                var ListOfRooms = ListOfRoomType.Select(x => x.Select(X => X.Room));
-                var ListOfRoomsAvailable = ListOfRooms.Select(x => x.Select(x => x.Where(x => x.IsBooked == false))).SelectMany(x => x);
-
-                if (ListOfRoomsAvailable != null)
+                var hotel = await _context.Hotels.FirstOrDefaultAsync(x => x.Name.ToLower().Trim() == HotelNmae.ToLower().Trim());
+                var ListOfRoomTypes = await _context.RoomTypes.Where(x => x.HotelId.ToLower().Trim() == hotel.Id.ToLower().Trim()).ToListAsync();
+                List<Room> rooms = new List<Room>();
+                var ListOfAllrooms = await _context.Rooms.ToListAsync();
+                foreach (var item in ListOfRoomTypes)
                 {
-                    return ListOfRoomsAvailable;
+                    var room = ListOfAllrooms.Where(x=>x.RoomTypeId == item.Id).FirstOrDefault();
+                    if (room != null && room.IsBooked==false)
+                    {
+                        rooms.Add(room);
+                    }
+                }
+
+                if (rooms != null)
+                {
+                    return rooms;
                 }
             }
             catch (Exception ex)
