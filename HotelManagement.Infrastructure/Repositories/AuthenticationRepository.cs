@@ -118,6 +118,7 @@ namespace HotelManagement.Infrastructure.Repositories
             var result = await _userManager.CreateAsync(newUser, user.Password);
             var response = new APIResponse<object>();
             if (result.Succeeded) { 
+                await _userManager.AddToRoleAsync(newUser, "Customer");
                 response.IsSuccess = true;
                 response.StatusCode = System.Net.HttpStatusCode.Created;
                 response.Result = "Successfully registered";

@@ -13,6 +13,7 @@ namespace HotelManagement.Api.Extensions
 
             // Add Repository Injections Here
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddScoped<IToken, Token>();
             services.AddScoped<ITokenDetails, TokenDetails>();
             // Add Model Services Injection Here
