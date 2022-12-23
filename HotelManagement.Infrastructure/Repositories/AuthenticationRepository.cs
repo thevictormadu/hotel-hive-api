@@ -38,10 +38,10 @@ namespace HotelManagement.Infrastructure.Repositories
             _configuration = configuration;
         }
 
-        public async Task<APIResponse<object>> Login(LoginDTO model)
+        public async Task<Response<object>> Login(LoginDTO model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
-            var response = new APIResponse<object>();
+            var response = new Response<object>();
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
@@ -56,16 +56,17 @@ namespace HotelManagement.Infrastructure.Repositories
                 var refreshToken = _token.SetRefreshToken();
                 //var refreshToken = SetRefreshToken();
                 await SaveRefreshToken(user, refreshToken);
-                response.IsSuccess = true;
-                response.Result = _token.CreateToken(UserModel);
-                response.StatusCode = System.Net.HttpStatusCode.Accepted;
+                response.Succeeded = true;
+                response.Data = _token.CreateToken(UserModel);
+                response.StatusCode = (int)System.Net.HttpStatusCode.Accepted;
+                response.Message = "Logged in successfully";
             }
             else
             {
-                response.IsSuccess = false;
-                response.Result = "Wrong Credential";
+                response.Succeeded = false;
+                response.Message = "Wrong Credential";
                 
-                response.StatusCode = System.Net.HttpStatusCode.Unauthorized;
+                response.StatusCode = (int)System.Net.HttpStatusCode.Unauthorized;
             }
             return response;
         }
@@ -78,20 +79,20 @@ namespace HotelManagement.Infrastructure.Repositories
             await _userManager.UpdateAsync(user);
         }
 
-        public async Task<APIResponse<object>> RefreshToken()
+        public async Task<Response<object>> RefreshToken()
         {
             var currentToken = _httpContext.HttpContext.Request.Cookies["refresh-token"];
             var user = await _userManager.FindByIdAsync(_tokenDetails.GetId());
              
-            var response = new APIResponse<object>();
-            response.IsSuccess = false;
-            response.StatusCode = System.Net.HttpStatusCode.BadRequest;
+            var response = new Response<object>();
+            response.Succeeded = false;
+            response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
             if (user == null || user.RefreshToken.ToString() != currentToken)
             {
-                response.Result = "Invalid refresh token";
+                response.Data = "Invalid refresh token";
             }else if(user.RefreshTokenExpiryTime < DateTime.Now)
             {
-                response.Result = "Token Expired";
+                response.Message = "Token Expired";
             }else
             {
                 var UserModel = new UserModel
@@ -101,33 +102,33 @@ namespace HotelManagement.Infrastructure.Repositories
                     Role = _tokenDetails.GetRoles()
                 };
 
-                response.IsSuccess = true;
-                response.Result = _token.CreateToken(UserModel);
-                response.StatusCode = System.Net.HttpStatusCode.Accepted;
+                response.Succeeded = true;
+                response.Data = _token.CreateToken(UserModel);
+                response.Message = "Successful refreshed token";
+                response.StatusCode = (int)System.Net.HttpStatusCode.Accepted;
 
                 var refreshToken = _token.SetRefreshToken();
                 await SaveRefreshToken(user, refreshToken);
             }
             return response;
         }
-        public async Task<APIResponse<object>> Register(RegisterDTO user)
+        public async Task<Response<object>> Register(RegisterDTO user)
         {
             var mapInitializer = new MapInitializer();
             var newUser = mapInitializer.regMapper.Map<RegisterDTO, AppUser>(user);
             
             var result = await _userManager.CreateAsync(newUser, user.Password);
-            var response = new APIResponse<object>();
+            var response = new Response<object>();
             if (result.Succeeded) { 
                 await _userManager.AddToRoleAsync(newUser, "Customer");
-                response.IsSuccess = true;
-                response.StatusCode = System.Net.HttpStatusCode.Created;
-                response.Result = "Successfully registered";
+                response.Succeeded = true;
+                response.StatusCode = (int)System.Net.HttpStatusCode.Created;
+                response.Message = "Successfully registered";
             } else
             {
-                response.IsSuccess = true;
-                response.StatusCode = System.Net.HttpStatusCode.Created;
-                response.Result = "Failed to register";
-                response.ErrorMessages = result.Errors.Select(e => e.Description).ToList();
+                response.Succeeded = true;
+                response.StatusCode = (int)System.Net.HttpStatusCode.Created;
+                response.Message = "Failed to register";
             }
             return response;
         }

@@ -11,8 +11,8 @@ namespace HotelManagement.Core.IRepositories
 {
     public interface IAdminRepository
     {
-        Task<APIResponse<string>> CreateRole(RoleDTO role);
-        Task<APIResponse<string>> AddUserRole(string userId, Roles role);
-        Task<APIResponse<string>> RemoveUserRole(string userId, Roles role);
+        Task<Response<string>> CreateRole(RoleDTO role);
+        Task<Response<string>> AddUserRole(string userId, Roles role);
+        Task<Response<string>> RemoveUserRole(string userId, Roles role);
     }
 }

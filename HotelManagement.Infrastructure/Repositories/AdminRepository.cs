@@ -23,64 +23,64 @@ namespace HotelManagement.Infrastructure.Repositories
             _userManager = userManager;
         }
 
-        public async Task<APIResponse<string>> CreateRole(RoleDTO role)
+        public async Task<Response<string>> CreateRole(RoleDTO role)
         {
             IdentityRole identityRole = new IdentityRole
             {
                 Name = ((Roles)role.RoleName).ToString(),
             };
             var result = await _roleManager.CreateAsync(identityRole);
-            var response = new APIResponse<string>();
+            var response = new Response<string>();
             if (result.Succeeded)
             {
-                response.IsSuccess = true;
-                response.StatusCode = System.Net.HttpStatusCode.OK;
-                response.Result = "Role created successfully";
+                response.Succeeded = true;
+                response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+                response.Message = "Role created successfully";
             }
             else
             {
-                response.IsSuccess = false;
-                response.StatusCode = System.Net.HttpStatusCode.BadRequest;
-                response.Result = "Unable to Create Role";
-                response.ErrorMessages = response.ErrorMessages.Select(x => x.ToString()).ToList();
+                response.Succeeded = false;
+                response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
+                response.Message = "Unable to Create Role";
+                
             }
 
             return response;
         }
 
-        public async Task<APIResponse<string>> AddUserRole(string userId, Roles role)
+        public async Task<Response<string>> AddUserRole(string userId, Roles role)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            var response = new APIResponse<string>
+            var response = new Response<string>
             {
-                IsSuccess = false,
-                StatusCode = System.Net.HttpStatusCode.NotFound,
-                Result = "User not found"
+                Succeeded = false,
+                StatusCode = (int)System.Net.HttpStatusCode.NotFound,
+                Message = "User not found"
             };
             if(user == null) return response;
             
             var result = await _userManager.AddToRoleAsync(user, role.ToString());
-            response.IsSuccess = true;
-            response.StatusCode = System.Net.HttpStatusCode.OK;
-            response.Result = "Role added successfully";
+            response.Succeeded = true;
+            response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            response.Message = "Role added successfully";
             return response;
         }
 
-        public async Task<APIResponse<string>> RemoveUserRole(string userId, Roles role)
+        public async Task<Response<string>> RemoveUserRole(string userId, Roles role)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            var response = new APIResponse<string>
+            var response = new Response<string>
             {
-                IsSuccess = false,
-                StatusCode = System.Net.HttpStatusCode.NotFound,
-                Result = "User not found"
+                Succeeded = false,
+                StatusCode = (int)System.Net.HttpStatusCode.NotFound,
+                Message = "User not found"
             };
             if (user == null) return response;
 
             var result = await _userManager.RemoveFromRoleAsync(user, role.ToString());
-            response.IsSuccess = true;
-            response.StatusCode = System.Net.HttpStatusCode.OK;
-            response.Result = "Role removed successfully";
+            response.Succeeded = true;
+            response.StatusCode = (int)System.Net.HttpStatusCode.OK;
+            response.Message = "Role removed successfully";
             return response;
         }
     }

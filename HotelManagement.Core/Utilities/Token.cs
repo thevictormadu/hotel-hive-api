@@ -37,7 +37,7 @@ namespace HotelManagement.Core.Utilities
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:Secret"]));
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
 
             token = new JwtSecurityToken(
             issuer: _configuration["JwtSettings:ValidIssuer"],

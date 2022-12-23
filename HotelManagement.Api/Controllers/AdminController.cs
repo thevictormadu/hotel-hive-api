@@ -23,7 +23,7 @@ namespace HotelManagement.Api.Controllers
         public async Task<IActionResult> CreateRole(RoleDTO role)
         {
             var response = await _adminRepository.CreateRole(role);
-            if (response.IsSuccess) return Ok(response);
+            if (response.Succeeded) return Ok(response);
             return BadRequest(response);
         }
 
@@ -31,7 +31,7 @@ namespace HotelManagement.Api.Controllers
         public async Task<IActionResult> AddUserRole(string userId, Roles roles)
         {
             var response = await _adminRepository.AddUserRole(userId, roles);
-            if(response.IsSuccess) return Ok(response);
+            if(response.Succeeded) return Ok(response);
             return BadRequest(response);
         }
 
@@ -39,7 +39,7 @@ namespace HotelManagement.Api.Controllers
         public async Task<IActionResult> RemoveUserRole(string userId, Roles roles)
         {
             var response = await _adminRepository.RemoveUserRole(userId, roles);
-            if (response.IsSuccess) return Ok(response);
+            if (response.Succeeded) return Ok(response);
             return BadRequest(response);
         }
     }
