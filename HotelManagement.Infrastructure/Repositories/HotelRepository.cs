@@ -7,9 +7,9 @@ namespace HotelManagement.Infrastructure.Repositories
     public class HotelRepository : GenericRepository<Hotel>, IHotelServices
     {
         private readonly IHotelServices hotelRepository;
-        public HotelRepository(HotelDbContext context, IHotelServices _hotelRepository)
+        public HotelRepository(HotelDbContext context, IHotelServices HotelRepository)
         {
-            hotelRepository = _hotelRepository;
+            hotelRepository = HotelRepository;
         }
 
         public async Task<Hotel> GetHotelByIdAsync(int Id)

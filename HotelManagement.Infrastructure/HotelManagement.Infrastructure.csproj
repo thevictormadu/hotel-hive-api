@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repositories\HotelRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="UnitOfWork\" />
   </ItemGroup>
 
