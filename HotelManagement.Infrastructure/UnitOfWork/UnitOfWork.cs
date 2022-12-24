@@ -1,5 +1,12 @@
 ﻿using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
+using HotelManagement.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.UnitOfWork
 {
@@ -27,30 +34,30 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
     public void Rollback()
     {
-        _hotelDbContext.Database.RollbackTransaction();
-    }
-      
+        private readonly HotelDbContext _context;
 
-    protected virtual void Dispose(bool disposing)
-    {
+        public UnitOfWork(HotelDbContext context)
+        {
+            _context = context;
+            hotel = new HotelRepository(_context);
+        }
+        public IHotelRepository hotel { get; private set; }
 
-          if (!_disposed)
-          {
-              if (disposing)
-              {
-                _hotelDbContext.Dispose();
-              }
-          }
 
-            _disposed = true;
-    }
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
 
-    public void Dispose()
-    {
-       Dispose(true);
-       GC.SuppressFinalize(this);
-    }
+        public int Save()
+        {
+            return _context.SaveChanges();
+        }
 
+        public async Task CompleteAsync()
+        {
+            
+        }
         
-	}         
+    }
 }
