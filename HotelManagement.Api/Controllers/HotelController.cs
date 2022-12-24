@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using HotelManagement.Core;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -21,20 +19,20 @@ namespace HotelManagement.Api.Controllers
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        
+
         [HttpGet("Hotel-Rating")]
-        public async Task<IActionResult> GetHotelRating([FromQuery]string HotelName)
+        public async Task<IActionResult> GetHotelRating([FromQuery] string HotelName)
         {
-            
-             var result = await _unitOfWork.hotel.GetHotelsRating(HotelName);
+
+            var result = await _unitOfWork.hotel.GetHotelsRating(HotelName);
             if (result == null)
                 return StatusCode(400, new APIResponse<List<ICollection<Rating>>>
                 {
                     StatusCode = HttpStatusCode.NoContent,
                     IsSuccess = false,
                     Result = result,
-                }) ;
-             _unitOfWork.Save();
+                });
+            _unitOfWork.Save();
 
             var mappedResult = _mapper.Map<List<ICollection<GetHotelByRatingsDto>>>(result);
             return StatusCode(200, new APIResponse<List<ICollection<GetHotelByRatingsDto>>>
@@ -45,7 +43,7 @@ namespace HotelManagement.Api.Controllers
                 ErrorMessages = null
             });
         }
-        [HttpGet("Hotel-Room-By-Availability")] 
+        [HttpGet("Hotel-Room-By-Availability")]
         public async Task<IActionResult> GetRoomByAvailability([FromQuery] string HotelName, String roomType)
         {
             var result = await _unitOfWork.hotel.GetRoomsByAvailability(HotelName, roomType);
@@ -61,18 +59,18 @@ namespace HotelManagement.Api.Controllers
             return StatusCode(200, new APIResponse<IEnumerable<GetRoomDto>>
             {
                 StatusCode = HttpStatusCode.OK,
-                IsSuccess= true,
+                IsSuccess = true,
                 Result = mappedResult,
                 ErrorMessages = null
             });
         }
 
         [HttpGet("Room-By-Id")]
-        public async Task<IActionResult> GetRoomById( string Id)
+        public async Task<IActionResult> GetRoomById(string Id)
         {
-            var result = await _unitOfWork.hotel.GetHotelRoomByRoomId( Id);
+            var result = await _unitOfWork.hotel.GetHotelRoomByRoomId(Id);
             if (result == null)
-                return StatusCode(400,new APIResponse<Room>
+                return StatusCode(400, new APIResponse<Room>
                 {
                     StatusCode = HttpStatusCode.BadRequest,
                     IsSuccess = false,
@@ -82,8 +80,8 @@ namespace HotelManagement.Api.Controllers
             var mappedResult = _mapper.Map<GetRoomDto>(result);
             return StatusCode(201, new APIResponse<GetRoomDto>
             {
-                StatusCode= HttpStatusCode.OK,
-                IsSuccess=false, 
+                StatusCode = HttpStatusCode.OK,
+                IsSuccess = false,
                 Result = mappedResult,
                 ErrorMessages = null
             });
