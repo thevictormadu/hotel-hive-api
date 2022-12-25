@@ -2,12 +2,7 @@
 using HotelManagement.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
@@ -15,16 +10,18 @@ namespace HotelManagement.Infrastructure.Repositories
     {
         private readonly HotelDbContext _hotelDbContext;
         protected DbSet<T> _dbSet;
+        public IQueryable<T> Table => _dbSet;
+        public IQueryable<T> TableNoTracking => _dbSet.AsNoTracking();
 
-        public GenericRepository (HotelDbContext hotelDbContext)
-	    {
+        public GenericRepository(HotelDbContext hotelDbContext)
+        {
             _hotelDbContext = hotelDbContext;
             _dbSet = hotelDbContext.Set<T>();
-	    }
+        }
 
         public async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
 
-        public  async Task DeleteAsync<T>(T Value)
+        public async Task DeleteAsync<T>(T Value)
         {
             var entity = await _dbSet.FindAsync(Value);
             EntityEntry entityEntry = _dbSet.Remove(entity);
@@ -46,7 +43,7 @@ namespace HotelManagement.Infrastructure.Repositories
         }
 
 
-        public async Task<T> GetByIdAsync(T Value) => await _dbSet.FindAsync(Value);
+        public async Task<T> GetByIdAsync(string id, T Value) => await _dbSet.FindAsync(Value);
 
         public async Task<T> GetByIdAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true)
         {
@@ -68,6 +65,6 @@ namespace HotelManagement.Infrastructure.Repositories
             var entityUpdate = await _dbSet.FindAsync(Value);
             EntityEntry entityEntry = _dbSet.Update(entityUpdate);
             entityEntry.State = EntityState.Modified;
-        } 
+        }
     }
 }
