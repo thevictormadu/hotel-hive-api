@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HotelManagement.Core.IRepositories
-{ 
+﻿namespace HotelManagement.Core.IRepositories
+{
     public interface IUnitOfWork : IDisposable
     {
+        IHotelRepository hotelRepository { get; }
 
-     void SaveChanges();
+        void SaveChanges();
 
-     void BeginTransaction();
+        void BeginTransaction();
 
-     void Rollback();
+        void Rollback();
 
-            
+
     }
 }

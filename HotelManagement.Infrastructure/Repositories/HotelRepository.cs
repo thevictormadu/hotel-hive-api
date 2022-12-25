@@ -4,32 +4,10 @@ using HotelManagement.Infrastructure.Context;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
-    public class HotelRepository : GenericRepository<Hotel>, IHotelServices
+    public class HotelRepository : GenericRepository<Hotel>, IHotelRepository
     {
-        private readonly IHotelServices hotelRepository;
-        public HotelRepository(HotelDbContext context, IHotelServices HotelRepository)
+        public HotelRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
         {
-            hotelRepository = HotelRepository;
-        }
-
-        public async Task<Hotel> GetHotelByIdAsync(int Id)
-        {
-            var hotel = await GetByIdAsync(Id);
-            if (hotel == null) { return null; }
-            return hotel;
-        }
-
-        public async Task<List<Hotel>> GetHotelsAsync()
-        {
-            var hotels = await GetAllAsync();
-            return hotels.ToList();
-        }
-
-        public async Task<Hotel> UpdateHotelAsync(int Id)
-        {
-            var hotel = await GetByIdAsync(Id);
-            if (hotel == null) { return null; }
-            return hotel;
         }
     }
 }
