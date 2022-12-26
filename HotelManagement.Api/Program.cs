@@ -69,7 +69,6 @@ namespace HotelManagement.Api
             services.ConfigureAutoMappers();
 
             // Configure Cloudinary
-
             builder.Services.AddCloudinary(CloudinaryServiceExtension.GetAccount(config));
 
             builder.Services.AddControllers().AddNewtonsoftJson(op => op.SerializerSettings.ReferenceLoopHandling
