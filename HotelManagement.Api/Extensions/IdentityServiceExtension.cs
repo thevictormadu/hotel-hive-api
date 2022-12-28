@@ -1,7 +1,6 @@
 ﻿using HotelManagement.Core.Domains;
 using HotelManagement.Infrastructure.Context;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace HotelManagement.Api.Extensions
 {
