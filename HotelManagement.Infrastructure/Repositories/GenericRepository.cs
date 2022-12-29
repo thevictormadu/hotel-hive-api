@@ -1,4 +1,5 @@
 ﻿using HotelManagement.Core.IRepositories;
+using HotelManagement.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
@@ -12,18 +13,25 @@ namespace HotelManagement.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+        private readonly HotelDbContext _hotelDbContext;
         protected DbSet<T> _dbSet;
 
-        public virtual async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
+        public GenericRepository (HotelDbContext hotelDbContext)
+	    {
+            _hotelDbContext = hotelDbContext;
+            _dbSet = hotelDbContext.Set<T>();
+	    }
 
-        public virtual async Task DeleteAsync(int id)
+        public async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
+
+        public  async Task DeleteAsync<T>(T Value)
         {
-            var entity = await _dbSet.FindAsync(id);
+            var entity = await _dbSet.FindAsync(Value);
             EntityEntry entityEntry = _dbSet.Remove(entity);
             entityEntry.State = EntityState.Deleted;
         }
 
-        public virtual async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
 
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null)
         {
@@ -38,7 +46,7 @@ namespace HotelManagement.Infrastructure.Repositories
         }
 
 
-        public virtual async Task<T> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
+        public async Task<T> GetByIdAsync(T Value) => await _dbSet.FindAsync(Value);
 
         public async Task<T> GetByIdAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true)
         {
@@ -55,9 +63,9 @@ namespace HotelManagement.Infrastructure.Repositories
         }
 
 
-        public async Task UpdateAsync(int id, T entity)
+        public async Task UpdateAsync<T>(T Value, T entity)
         {
-            var entityUpdate = await _dbSet.FindAsync(id);
+            var entityUpdate = await _dbSet.FindAsync(Value);
             EntityEntry entityEntry = _dbSet.Update(entityUpdate);
             entityEntry.State = EntityState.Modified;
         } 
