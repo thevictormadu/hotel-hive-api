@@ -20,7 +20,7 @@ namespace HotelManagement.Application.Utilities
 
             // Hotel Maps
             CreateMap<Hotel, UpdateHotelDto>().ReverseMap();
-            CreateMap<Hotel, GetHotelsDto>().ReverseMap();
+           // CreateMap<Hotel, GetHotelsDto>().ReverseMap();
 
 
             // Room Maps
