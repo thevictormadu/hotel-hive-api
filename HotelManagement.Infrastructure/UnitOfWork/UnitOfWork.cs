@@ -10,38 +10,60 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork, IDisposable
-    {
-        private readonly HotelDbContext context;
+	public class UnitOfWork : IUnitOfWork
+	{
+		private readonly HotelDbContext _hotelDbContext;
+		private bool _disposed;
+		private IHotelRepository _hotelRepository;
         private IAmenityRepository _amenityRepository;
-        public UnitOfWork(HotelDbContext context)
-        {
-            this.context = context;
-        }
-        //create an instance, if it has not been created before
+        public UnitOfWork(HotelDbContext hotelDbContext)
+		{
+			_hotelDbContext = hotelDbContext;
+		}
+		public IHotelRepository hotelRepository =>
+			_hotelRepository ??= new HotelRepository(_hotelDbContext);
 
-        public IAmenityRepository AmenityRepository 
-        {
-            get
-            {
-                if(_amenityRepository == null)
-                {
-                    //lazy initialize the Amenity if requested
-                    _amenityRepository = new AmenityRepository(context);
-    }
-                return _amenityRepository;
-            }
-        }
 
-        //=>
-        // _amenityRepository ??= new AmenityRepository(context);
-        public async Task CompleteAsync()
-        {
-            context.SaveChangesAsync();
-        }
-        public void Dispose()
-        {
-            
-        }
-    }
+        public IAmenityRepository AmenityRepository =>
+         _amenityRepository ??= new AmenityRepository(context);
+        public void BeginTransaction()
+		{
+			_disposed = false;
+		}
+
+
+		public void SaveChanges()
+		{
+			_hotelDbContext.SaveChangesAsync();
+		}
+
+		public void Rollback()
+		{
+			_hotelDbContext.Database.RollbackTransaction();
+		}
+
+
+		protected virtual void Dispose(bool disposing)
+		{
+
+			if (!_disposed)
+			{
+				if (disposing)
+				{
+					_hotelDbContext.Dispose();
+				}
+			}
+
+			_disposed = true;
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+
+	}
 }
+  

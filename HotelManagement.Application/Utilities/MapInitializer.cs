@@ -2,18 +2,21 @@
 using AutoMapper;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
+using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 using System.Linq;
 
 namespace HotelManagement.Application.Utilities
 {
     public class MapInitializer : Profile
     {
-        public MapInitializer ()
+        public MapInitializer()
         {
             // Authentication Maps
 
 
             // Amenity Maps
+
             CreateMap<Amenity, AmenityDTO>().ReverseMap();
             CreateMap<Amenity, CreateAmenitiesDTO>().ReverseMap();
             CreateMap<Amenity, UpdateAmenityDTO>().ReverseMap();
@@ -22,6 +25,8 @@ namespace HotelManagement.Application.Utilities
 
 
             // Hotel Maps
+            CreateMap<Hotel, UpdateHotelDto>().ReverseMap();
+           // CreateMap<Hotel, GetHotelsDto>().ReverseMap();
 
 
 

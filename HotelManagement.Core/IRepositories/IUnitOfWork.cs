@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HotelManagement.Core.IRepositories
+﻿namespace HotelManagement.Core.IRepositories
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
+        IHotelRepository hotelRepository { get; }
         IAmenityRepository AmenityRepository { get; }
-        public interface IUnitOfWork
-        { 
-            //A method that is responsible for communicating our changes to the database
-            Task CompleteAsync();
-        }
+
+        void SaveChanges();
+
+        void BeginTransaction();
+
+        void Rollback();
+
+
+     
+       
     }
 }
