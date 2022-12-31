@@ -1,5 +1,6 @@
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
+using HotelManagement.Infrastructure.Repositories;
 using HotelManagement.Infrastructure.UnitOfWork;
 using HotelManagement.Services.Services;
 
@@ -13,7 +14,7 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<IHotelService, HotelService>();
 
             // Add Repository Injections Here
-            //services.AddScoped<IHotelRepository, HotelRepository>();
+            services.AddScoped<IHotelRepository, HotelRepository>();
             // Add Model Services Injection Here
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
