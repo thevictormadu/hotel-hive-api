@@ -7,9 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
     <PackageReference Include="CloudinaryDotNet" Version="1.20.0" />
     <PackageReference Include="MimeKit" Version="3.4.3" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
+=======
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+>>>>>>> 36c34a8fc06bb68e9e8090b43b33a8a590bf1f7b
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
   </ItemGroup>
 
