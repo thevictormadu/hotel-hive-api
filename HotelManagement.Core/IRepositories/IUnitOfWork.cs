@@ -8,6 +8,7 @@ namespace HotelManagement.Core.IRepositories
 {
     public interface IUnitOfWork
     {
+        IAmenityRepository AmenityRepository { get; }
         public interface IUnitOfWork
         { 
             //A method that is responsible for communicating our changes to the database
