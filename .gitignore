@@ -455,3 +455,4 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 appsettings.json
 appsettings.[Dd]evelopment.json
+/HotelManagement.Api/appsettings.json
