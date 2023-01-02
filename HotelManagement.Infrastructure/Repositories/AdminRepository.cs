@@ -4,7 +4,7 @@ using HotelManagement.Core.DTOs;
 using HotelManagement.Core.Enums;
 using HotelManagement.Core.IRepositories;
 using Microsoft.AspNetCore.Identity;
-using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,65 +23,38 @@ namespace HotelManagement.Infrastructure.Repositories
             _userManager = userManager;
         }
 
-        public async Task<Response<string>> CreateRole(RoleDTO role)
+        public async Task<bool> CreateRole(RoleDTO role)
         {
             IdentityRole identityRole = new IdentityRole
             {
                 Name = ((Roles)role.RoleName).ToString(),
             };
             var result = await _roleManager.CreateAsync(identityRole);
-            var response = new Response<string>();
-            if (result.Succeeded)
-            {
-                response.Succeeded = true;
-                response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-                response.Message = "Role created successfully";
-            }
-            else
-            {
-                response.Succeeded = false;
-                response.StatusCode = (int)System.Net.HttpStatusCode.BadRequest;
-                response.Message = "Unable to Create Role";
-                
-            }
+            
 
-            return response;
+            return result.Succeeded;
         }
 
-        public async Task<Response<string>> AddUserRole(string userId, Roles role)
+        public async Task<bool> AddUserRole(string userId, Roles role)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            var response = new Response<string>
-            {
-                Succeeded = false,
-                StatusCode = (int)System.Net.HttpStatusCode.NotFound,
-                Message = "User not found"
-            };
-            if(user == null) return response;
+            
+            if(user == null) return false;
             
             var result = await _userManager.AddToRoleAsync(user, role.ToString());
-            response.Succeeded = true;
-            response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-            response.Message = "Role added successfully";
-            return response;
+            
+            return result.Succeeded;
         }
 
-        public async Task<Response<string>> RemoveUserRole(string userId, Roles role)
+        public async Task<bool> RemoveUserRole(string userId, Roles role)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            var response = new Response<string>
-            {
-                Succeeded = false,
-                StatusCode = (int)System.Net.HttpStatusCode.NotFound,
-                Message = "User not found"
-            };
-            if (user == null) return response;
+            
+            if (user == null) return false;
 
             var result = await _userManager.RemoveFromRoleAsync(user, role.ToString());
-            response.Succeeded = true;
-            response.StatusCode = (int)System.Net.HttpStatusCode.OK;
-            response.Message = "Role removed successfully";
-            return response;
+         
+            return result.Succeeded;
         }
     }
 }

@@ -10,8 +10,8 @@ namespace HotelManagement.Core.Enums
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Roles
     {
-        Admin,
-        Manager,
-        Customer,
+        Admin=0,
+        Manager=1,
+        Customer=2,
     }
 }

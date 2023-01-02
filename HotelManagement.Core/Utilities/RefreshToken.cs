@@ -8,7 +8,7 @@ namespace HotelManagement.Core.Utilities
 {
     public class RefreshToken
     {
-        public Guid Refreshtoken { get; set; }
+        public string Refreshtoken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
     }
 }

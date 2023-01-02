@@ -1,7 +1,9 @@
 using FluentValidation;
 using HotelManagement.Core.IRepositories;
+using HotelManagement.Core.IServices;
 using HotelManagement.Core.Utilities;
 using HotelManagement.Infrastructure.Repositories;
+using HotelManagement.Services.Services;
 
 namespace HotelManagement.Api.Extensions
 {
@@ -14,7 +16,8 @@ namespace HotelManagement.Api.Extensions
             // Add Repository Injections Here
             services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
-            services.AddScoped<IToken, Token>();
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ITokenDetails, TokenDetails>();
             // Add Model Services Injection Here
 
