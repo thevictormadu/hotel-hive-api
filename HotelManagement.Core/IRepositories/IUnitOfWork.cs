@@ -4,6 +4,7 @@
     {
         IHotelRepository hotelRepository { get; }
         IRoomRepository roomRepository { get; }
+        IAmenityRepository AmenityRepository { get; }
 
         void SaveChanges();
 
@@ -12,5 +13,7 @@
         void Rollback();
 
 
+     
+       
     }
 }

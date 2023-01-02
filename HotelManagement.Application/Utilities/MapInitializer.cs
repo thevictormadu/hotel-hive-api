@@ -2,6 +2,8 @@
 using AutoMapper;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
+using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 using System.Linq;
 
 namespace HotelManagement.Application.Utilities
@@ -15,6 +17,9 @@ namespace HotelManagement.Application.Utilities
 
             // Amenity Maps
 
+            CreateMap<Amenity, AmenityDTO>().ReverseMap();
+            CreateMap<Amenity, CreateAmenitiesDTO>().ReverseMap();
+            CreateMap<Amenity, UpdateAmenityDTO>().ReverseMap();
 
             // Booking Maps
 
@@ -23,6 +28,7 @@ namespace HotelManagement.Application.Utilities
             CreateMap<Hotel, UpdateHotelDto>().ReverseMap();
            // CreateMap<Hotel, GetHotelsDto>().ReverseMap();
            CreateMap<Rating,GetHotelByRatingsDto>().ReverseMap();
+
 
 
             // Room Maps

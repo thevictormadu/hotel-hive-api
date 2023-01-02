@@ -1,6 +1,12 @@
 ﻿using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
 using HotelManagement.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.UnitOfWork
 {
@@ -11,6 +17,8 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private IHotelRepository _hotelRepository;
 		private IRoomRepository _roomRepository;
 		public UnitOfWork(HotelDbContext hotelDbContext)
+        private IAmenityRepository _amenityRepository;
+        public UnitOfWork(HotelDbContext hotelDbContext)
 		{
 			_hotelDbContext = hotelDbContext;
 		}
@@ -20,7 +28,10 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
 
 
-		public void BeginTransaction()
+
+        public IAmenityRepository AmenityRepository =>
+         _amenityRepository ??= new AmenityRepository(_hotelDbContext);
+        public void BeginTransaction()
 		{
 			_disposed = false;
 		}
@@ -60,3 +71,4 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
 	}
 }
+  

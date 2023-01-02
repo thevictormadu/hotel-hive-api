@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.IRepositories;
+﻿
+using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -8,10 +9,12 @@ namespace HotelManagement.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly HotelDbContext _hotelDbContext;
         protected DbSet<T> _dbSet;
         public IQueryable<T> Table => _dbSet;
         public IQueryable<T> TableNoTracking => _dbSet.AsNoTracking();
+        private readonly HotelDbContext _hotelDbContext;
+
+
 
         public GenericRepository(HotelDbContext hotelDbContext)
         {
