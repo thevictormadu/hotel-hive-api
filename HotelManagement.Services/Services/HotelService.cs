@@ -4,6 +4,7 @@ using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
+using System.Collections.Generic;
 
 namespace HotelManagement.Services.Services
 {
@@ -88,13 +89,14 @@ namespace HotelManagement.Services.Services
             {
                 var hotelRatings = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name == HotelName).Result.Ratings;
                 var mappedHotelRating = _mapper.Map<List<GetHotelByRatingsDto>>(hotelRatings);
+
                 if (mappedHotelRating == null) return Response<List<GetHotelByRatingsDto>>.Fail($"Hotel with {HotelName} Not Found");
                 return Response<List<GetHotelByRatingsDto>>.Success(HotelName, mappedHotelRating);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return null;
+                return Response<List<GetHotelByRatingsDto>>.Fail(ex.Message);
             }
         }
 
@@ -104,16 +106,15 @@ namespace HotelManagement.Services.Services
             {
                 var roomsByAvailability = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name == HotelNmae)
                 .Result.RoomTypes.Where(x => x.Name == RoomType).SelectMany(x => x.Rooms);
-                if (roomsByAvailability == null) return null;
                 var rooms = roomsByAvailability.Where(x => x.IsBooked == false).Select(x => x);
                 var data = _mapper.Map<List<GetRoomDto>>(rooms);
                 if (data == null) return Response<List<GetRoomDto>>.Fail($"{HotelNmae} Has No Room Available For {RoomType} RoomType");
                 return Response<List<GetRoomDto>>.Success(HotelNmae, data);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return null;
+                return Response<List<GetRoomDto>>.Fail(ex.Message);
             }
            
         }

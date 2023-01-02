@@ -31,10 +31,10 @@ namespace HotelManagement.Services.Services
                 if (data == null) return Response<GetRoomDto>.Fail("No Room Found");
                 return Response<GetRoomDto>.Success(Id, data);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return null;
+                return Response<GetRoomDto>.Fail(ex.Message);
             }
         }
     }

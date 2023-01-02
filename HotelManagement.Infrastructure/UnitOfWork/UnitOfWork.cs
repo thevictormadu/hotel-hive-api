@@ -16,7 +16,6 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private bool _disposed;
 		private IHotelRepository _hotelRepository;
 		private IRoomRepository _roomRepository;
-		public UnitOfWork(HotelDbContext hotelDbContext)
         private IAmenityRepository _amenityRepository;
         public UnitOfWork(HotelDbContext hotelDbContext)
 		{
