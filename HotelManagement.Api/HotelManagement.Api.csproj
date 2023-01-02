@@ -40,6 +40,7 @@
     <ProjectReference Include="..\HotelManagement.Application\HotelManagement.Application.csproj" />
     <ProjectReference Include="..\HotelManagement.Core\HotelManagement.Core.csproj" />
     <ProjectReference Include="..\HotelManagement.Infrastructure\HotelManagement.Infrastructure.csproj" />
+    <ProjectReference Include="..\HotelManagement.Services\HotelManagement.Services.csproj" />
   </ItemGroup>
 
 </Project>

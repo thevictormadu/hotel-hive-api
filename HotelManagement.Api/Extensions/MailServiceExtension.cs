@@ -12,12 +12,12 @@ namespace HotelManagement.Api.Extensions
     {
         public static void ConfigureMailService(this IServiceCollection services, IConfiguration Configuration)
         {
-             //EmailService registration
+            //EmailService registration
             var emailConfig = Configuration
                .GetSection("EmailConfiguration")
                .Get<EmailConfiguration>();
             services.AddSingleton(emailConfig);
-           
+
         }
 
     }

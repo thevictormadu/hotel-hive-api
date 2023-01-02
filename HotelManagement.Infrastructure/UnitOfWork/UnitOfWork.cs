@@ -25,7 +25,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
 
         public IAmenityRepository AmenityRepository =>
-         _amenityRepository ??= new AmenityRepository(context);
+         _amenityRepository ??= new AmenityRepository(_hotelDbContext);
         public void BeginTransaction()
 		{
 			_disposed = false;

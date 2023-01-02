@@ -37,7 +37,7 @@ namespace HotelManagement.Api
 
             //builder.Services.AddControllers();
             // Configure Mailing Service
-            builder.Services.ConfigureMailService(config);
+           builder.Services.ConfigureMailService(config);
 
 
             builder.Services.AddSingleton(Log.Logger);
