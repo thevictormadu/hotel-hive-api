@@ -1,5 +1,7 @@
 ﻿
 using AutoMapper;
+using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 using System.Linq;
 
 namespace HotelManagement.Application.Utilities
@@ -18,12 +20,12 @@ namespace HotelManagement.Application.Utilities
            
 
             // Hotel Maps
-           
+           CreateMap<Rating,GetHotelByRatingsDto>().ReverseMap();
 
 
             // Room Maps
-           
 
+            CreateMap<Room, GetRoomDto>().ReverseMap();
             // RoomType Maps
             
 
