@@ -3,6 +3,7 @@
     public interface IUnitOfWork : IDisposable
     {
         IHotelRepository hotelRepository { get; }
+        IAmenityRepository AmenityRepository { get; }
 
         void SaveChanges();
 
@@ -11,5 +12,7 @@
         void Rollback();
 
 
+     
+       
     }
 }
