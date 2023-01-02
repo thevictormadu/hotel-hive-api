@@ -1,4 +1,6 @@
 using FluentValidation;
+using HotelManagement.Core.IRepositories;
+using HotelManagement.Infrastructure.UnitOfWork;
 
 namespace HotelManagement.Api.Extensions
 {
