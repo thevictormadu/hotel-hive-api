@@ -15,6 +15,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private readonly HotelDbContext _hotelDbContext;
 		private bool _disposed;
 		private IHotelRepository _hotelRepository;
+		private IRoomRepository _roomRepository;
         private IAmenityRepository _amenityRepository;
         public UnitOfWork(HotelDbContext hotelDbContext)
 		{
@@ -22,6 +23,9 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		}
 		public IHotelRepository hotelRepository =>
 			_hotelRepository ??= new HotelRepository(_hotelDbContext);
+		public IRoomRepository roomRepository =>
+			_roomRepository ??= new RoomRespository(_hotelDbContext);
+
 
 
         public IAmenityRepository AmenityRepository =>
