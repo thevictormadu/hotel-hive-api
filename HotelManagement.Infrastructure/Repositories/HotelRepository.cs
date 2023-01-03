@@ -10,5 +10,9 @@ namespace HotelManagement.Infrastructure.Repositories
         {
         }
 
+        public void AddHotel(string Manager_ID, Hotel hotel)
+        {
+            hotel.ManagerId = Manager_ID;   
+        }
     }
 }

@@ -118,6 +118,11 @@ namespace HotelManagement.Services.Services
             }
            
         }
+
+        public Task<Response<string>> AddHotel(string Manager_Name, AddHotelDto addHotelDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

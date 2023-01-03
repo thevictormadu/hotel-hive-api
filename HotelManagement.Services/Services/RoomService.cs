@@ -22,6 +22,11 @@ namespace HotelManagement.Services.Services
             _mapper = mapper;
         }
 
+        public Task<Response<string>> AddRoom(string Hotel_ID, AddRoomDto addRoomDto)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Response<GetRoomDto>> GetRoombyId(string Id)
         {
             try

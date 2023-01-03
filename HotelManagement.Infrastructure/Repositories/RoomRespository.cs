@@ -15,5 +15,10 @@ namespace HotelManagement.Infrastructure.Repositories
         {
 
         }
+
+        public void Add(string Hotel_ID, Room room)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
