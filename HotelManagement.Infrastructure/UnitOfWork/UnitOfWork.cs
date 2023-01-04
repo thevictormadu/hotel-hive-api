@@ -1,4 +1,4 @@
-﻿using HotelManagement.Core.IRepositories;
+﻿ using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
 
 namespace HotelManagement.Infrastructure.UnitOfWork
