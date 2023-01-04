@@ -1,29 +1,37 @@
-﻿using HotelManagement.Core.IRepositories;
+﻿
+using HotelManagement.Core.IRepositories;
+using HotelManagement.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         protected DbSet<T> _dbSet;
+        public IQueryable<T> Table => _dbSet;
+        public IQueryable<T> TableNoTracking => _dbSet.AsNoTracking();
+        private readonly HotelDbContext _hotelDbContext;
 
-        public virtual async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
 
-        public virtual async Task DeleteAsync(int id)
+
+        public GenericRepository(HotelDbContext hotelDbContext)
         {
-            var entity = await _dbSet.FindAsync(id);
+            _hotelDbContext = hotelDbContext;
+            _dbSet = hotelDbContext.Set<T>();
+        }
+
+        public async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
+
+        public async Task DeleteAsync<T>(T Value)
+        {
+            var entity = await _dbSet.FindAsync(Value);
             EntityEntry entityEntry = _dbSet.Remove(entity);
             entityEntry.State = EntityState.Deleted;
         }
 
-        public virtual async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
+        public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
 
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null)
         {
@@ -38,7 +46,7 @@ namespace HotelManagement.Infrastructure.Repositories
         }
 
 
-        public virtual async Task<T> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
+        public async Task<T> GetByIdAsync(string id, T Value) => await _dbSet.FindAsync(Value);
 
         public async Task<T> GetByIdAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true)
         {
@@ -55,11 +63,11 @@ namespace HotelManagement.Infrastructure.Repositories
         }
 
 
-        public async Task UpdateAsync(int id, T entity)
+        public async Task UpdateAsync<T>(T Value, T entity)
         {
-            var entityUpdate = await _dbSet.FindAsync(id);
+            var entityUpdate = await _dbSet.FindAsync(Value);
             EntityEntry entityEntry = _dbSet.Update(entityUpdate);
             entityEntry.State = EntityState.Modified;
-        } 
+        }
     }
 }
