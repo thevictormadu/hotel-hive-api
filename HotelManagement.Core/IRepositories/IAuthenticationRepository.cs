@@ -10,7 +10,7 @@ namespace HotelManagement.Core.IRepositories
     public interface IAuthenticationRepository
     {
         Task<Response<string>> Login(LoginDTO model);
-        Task<Response<string>> Register(RegisterDTO user);
+        Task<bool> Register(RegisterDTO user);
         Task<Response<string>> RefreshToken();
     }
 }

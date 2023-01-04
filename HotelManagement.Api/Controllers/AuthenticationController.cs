@@ -1,5 +1,6 @@
 ﻿using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
+using HotelManagement.Core.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,23 +11,23 @@ namespace HotelManagement.Api.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationRepository _authenticationRepository;
+        private readonly IAuthenticationService _authenticationService;
 
-        public AuthenticationController(IAuthenticationRepository authenticationRepository)
+        public AuthenticationController(IAuthenticationService authenticationRepository)
         {
-            _authenticationRepository = authenticationRepository;
+            _authenticationService = authenticationRepository;
         }
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterDTO user)
         {
-            var register = await _authenticationRepository.Register(user);
+            var register = await _authenticationService.Register(user);
             if(register.Succeeded == true) return Ok(register);
             return BadRequest(register);
         }
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
-            var login = await _authenticationRepository.Login(model);
+            var login = await _authenticationService.Login(model);
             if (login.Succeeded == false) return Unauthorized(login);
             return Ok(login);
         }
@@ -34,7 +35,7 @@ namespace HotelManagement.Api.Controllers
         [HttpGet("Refresh-Token")]
         public async Task<IActionResult> RefreshToken()
         {
-            var token = await _authenticationRepository.RefreshToken();
+            var token = await _authenticationService.RefreshToken();
             if(token.Succeeded == false) return BadRequest(token);
             return Ok(token);
         }

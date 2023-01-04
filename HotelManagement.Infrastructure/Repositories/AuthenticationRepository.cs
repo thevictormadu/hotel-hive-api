@@ -110,25 +110,16 @@ namespace HotelManagement.Infrastructure.Repositories
             }
             return response;
         }
-        public async Task<Response<string>> Register(RegisterDTO user)
+        public async Task<bool> Register(RegisterDTO user)
         {
             var mapInitializer = new MapInitializer();
             var newUser = mapInitializer.regMapper.Map<RegisterDTO, AppUser>(user);
             
             var result = await _userManager.CreateAsync(newUser, user.Password);
-            var response = new Response<string>();
-            if (result.Succeeded) { 
-                await _userManager.AddToRoleAsync(newUser, "Customer");
-                response.Succeeded = true;
-                response.StatusCode = (int)HttpStatusCode.Created;
-                response.Message = "Successfully registered";
-            } else
-            {
-                response.Succeeded = false;
-                response.StatusCode = (int)HttpStatusCode.UnprocessableEntity;
-                response.Message = "Failed to register";
-            }
-            return response;
+            
+            if (result.Succeeded) await _userManager.AddToRoleAsync(newUser, "Customer");
+            
+            return result.Succeeded;
         }
     }
 }
