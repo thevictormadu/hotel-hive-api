@@ -48,6 +48,12 @@ namespace HotelManagement.Api.Controllers
             if (!result.Succeeded) return BadRequest(result);
             return Ok(result);
         }
-
+        [HttpDelete ("Id")]
+        public async Task<IActionResult> DeleteHotelById(string id)
+        {
+            var result = await _hotelService.DeleteHotelById(id);
+            if(!result.Succeeded) return BadRequest ();
+            return Ok(result);
+        }
     }
 }
