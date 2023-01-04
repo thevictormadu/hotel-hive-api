@@ -5,6 +5,7 @@ using HotelManagement.Core.DTOs;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using System.Linq;
+using HotelManagement.Core.DTOs.ReviewDTOs;
 
 namespace HotelManagement.Application.Utilities
 {
@@ -63,7 +64,7 @@ namespace HotelManagement.Application.Utilities
 
 
             // reviewdto
-
+            
 
             //Review Maps
 
