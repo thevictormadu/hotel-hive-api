@@ -1,3 +1,11 @@
+
+using FluentValidation;
+using HotelManagement.Core.Domains;
+using HotelManagement.Core.IRepositories;
+using HotelManagement.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+
 using FluentValidation.AspNetCore;
 using HotelManagement.Api.Extensions;
 using HotelManagement.Api.Policies;
@@ -8,6 +16,10 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
+using HotelManagement.Api.Policies;
+using FluentValidation.AspNetCore;
+using HotelManagement.Infrastructure.Seeding;
+using HotelManagement.Core.Utilities;
 
 namespace HotelManagement.Api
 {
@@ -29,6 +41,9 @@ namespace HotelManagement.Api
                 .AddScoped<IUrlHelper>(x =>
                     x.GetRequiredService<IUrlHelperFactory>()
                         .GetUrlHelper(x.GetRequiredService<IActionContextAccessor>().ActionContext));
+
+            //Service Injection
+
 
             //For Entity Framework
 
@@ -73,6 +88,8 @@ namespace HotelManagement.Api
             });
 
             builder.Services.AddSwagger();
+
+            //Swagger Authorization setup
 
             builder.Services.AddCors(c =>
             {

@@ -43,4 +43,6 @@
     <ProjectReference Include="..\HotelManagement.Services\HotelManagement.Services.csproj" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+
 </Project>

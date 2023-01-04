@@ -8,12 +8,14 @@ using System.Linq;
 
 namespace HotelManagement.Application.Utilities
 {
-    public class MapInitializer : Profile
+    public class MapInitializer : Profile 
     {
-        public MapInitializer()
+        public Mapper regMapper { get; set; }
+        public MapInitializer ()
         {
             // Authentication Maps
-
+           var regConfig = new MapperConfiguration(conf => conf.CreateMap<RegisterDTO, AppUser>());
+            regMapper = new Mapper(regConfig);
 
             // Amenity Maps
 
@@ -25,6 +27,7 @@ namespace HotelManagement.Application.Utilities
 
 
             // Hotel Maps
+
             CreateMap<Hotel, UpdateHotelDto>().ReverseMap();
            // CreateMap<Hotel, GetHotelsDto>().ReverseMap();
            CreateMap<Rating,GetHotelByRatingsDto>().ReverseMap();
@@ -33,14 +36,8 @@ namespace HotelManagement.Application.Utilities
 
             // Room Maps
 
-
-
             CreateMap<Room, GetRoomDto>().ReverseMap();
             // RoomType Maps
-
-
-
-
 
 
             // Rating Maps
