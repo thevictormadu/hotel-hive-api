@@ -64,7 +64,7 @@ namespace HotelManagement.Infrastructure.Repositories
                 response.Succeeded = false;
                 response.Message = "Wrong Credential";
                 
-                response.StatusCode = (int)System.Net.HttpStatusCode.Unauthorized;
+                response.StatusCode = (int)HttpStatusCode.Unauthorized;
             }
             return response;
         }
