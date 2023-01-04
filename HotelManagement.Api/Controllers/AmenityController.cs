@@ -27,6 +27,31 @@ namespace HotelManagement.Api.Controllers
         //HttpGet("GetAmenities")]
 
 
+       [HttpGet("GetAmenities")]
+        public async Task<ActionResult<Response<List<AmenityDTO>>>> GetAmenities()
+        {
+
+
+            try
+            {
+                //log information
+                var result = await _amenityService.GetAmenities();
+                if (result == null)
+                {
+                    return Ok(result);
+                }
+                return Ok(result);
+            }
+
+            catch (Exception ex)
+            {
+                //log error
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+
         // [Authorize(Roles = "Manager")]
         [HttpPost("CreateAmenity")]
 
@@ -65,6 +90,9 @@ namespace HotelManagement.Api.Controllers
             }
 
         }
+
+
+        //HttpPost("CreateAmenity")]
 
 
         //[Authorize(Roles = "Admin")]
