@@ -9,7 +9,7 @@ namespace HotelManagement.Core.IRepositories
 {
     public interface IRoomRepository: IGenericRepository<Room>
     {
-        void Add(string Hotel_ID, Room room);
+        void Add(string Roomtype_ID,string Hotel_Name, Room room);
 
     }
 }

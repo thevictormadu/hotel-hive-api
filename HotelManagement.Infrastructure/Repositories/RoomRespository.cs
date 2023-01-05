@@ -11,14 +11,17 @@ namespace HotelManagement.Infrastructure.Repositories
 {
     public class RoomRespository: GenericRepository<Room>,IRoomRepository
     {
+        
+
         public RoomRespository(HotelDbContext hotelDbContext):base(hotelDbContext)
         {
-
+            
         }
 
-        public void Add(string Hotel_ID, Room room)
+        public async void Add(string Roomtype_ID, string Hotel_Name, Room room)
         {
-            throw new NotImplementedException();
+            room.RoomTypeId = Roomtype_ID;
+            await AddAsync(room);
         }
     }
 }

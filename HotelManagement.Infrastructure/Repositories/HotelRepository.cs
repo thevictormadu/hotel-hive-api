@@ -6,13 +6,18 @@ namespace HotelManagement.Infrastructure.Repositories
 {
     public class HotelRepository : GenericRepository<Hotel>, IHotelRepository
     {
+        
+
         public HotelRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
         {
+           
         }
 
-        public void AddHotel(string Manager_ID, Hotel hotel)
+        public async void AddHotel(string Manager_ID, Hotel hotel)
         {
-            hotel.ManagerId = Manager_ID;   
+            hotel.ManagerId = Manager_ID;
+            
+           await AddAsync(hotel);    
         }
     }
 }

@@ -4,6 +4,8 @@ using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
+using HotelManagement.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace HotelManagement.Services.Services
@@ -12,11 +14,13 @@ namespace HotelManagement.Services.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly HotelDbContext _hotelDbContext;
 
-        public HotelService(IUnitOfWork unitOfWork, IMapper mapper)
+        public HotelService(IUnitOfWork unitOfWork, IMapper mapper, HotelDbContext hotelDbContext)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _hotelDbContext = hotelDbContext;
         }
 
         public async Task<Response<GetHotelsDto>> GetHotelById(string Id)
@@ -119,9 +123,22 @@ namespace HotelManagement.Services.Services
            
         }
 
-        public Task<Response<string>> AddHotel(string Manager_Name, AddHotelDto addHotelDto)
+        public async Task<Response<string>> AddHotel(string Manager_ID, AddHotelDto addHotelDto)
         {
-            throw new NotImplementedException();
+            var manger = await _hotelDbContext.Managers.FirstOrDefaultAsync(x => x.Id == Manager_ID);
+            if (manger == null)
+                return new Response<string>
+                {
+                    Data = Manager_ID,
+                    Succeeded = false,
+                    StatusCode = 404,
+                    Message = "Manager Not found"
+                };
+            var newhotel = _mapper.Map<Hotel>(addHotelDto); 
+            _unitOfWork.hotelRepository.AddHotel(Manager_ID, newhotel);
+            _unitOfWork.SaveChanges();
+
+            return Response<string>.Success("Created Sucessfuly", addHotelDto.Name);
         }
     }
 }

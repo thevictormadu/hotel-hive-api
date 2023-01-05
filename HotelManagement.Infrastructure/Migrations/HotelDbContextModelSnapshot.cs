@@ -554,7 +554,7 @@ namespace HotelManagement.Infrastructure.Migrations
 
                     b.HasIndex("RoomTypeId");
 
-                    b.ToTable("Room");
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("HotelManagement.Core.Domains.RoomType", b =>
