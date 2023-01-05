@@ -10,11 +10,13 @@ namespace HotelManagement.Application.Utilities
 {
     public class MapInitializer : Profile
     {
+        public Mapper regMapper { get; set; }
         public MapInitializer()
         {
             // Authentication Maps
 
-
+            var regConfig = new MapperConfiguration(conf => conf.CreateMap<RegisterDTO, AppUser>());
+            regMapper = new Mapper(regConfig);
             // Amenity Maps
 
             CreateMap<Amenity, AmenityDTO>().ReverseMap();
