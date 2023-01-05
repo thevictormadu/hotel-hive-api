@@ -1,9 +1,9 @@
+using FluentValidation;
 using HotelManagement.Core.IRepositories;
-using HotelManagement.Core.IServices;
-using HotelManagement.Infrastructure.Repositories;
 using HotelManagement.Infrastructure.UnitOfWork;
 using HotelManagement.Services.Services;
 using HotelManagement.Infrastructure.Repositories;
+using HotelManagement.Core.IServices;
 
 namespace HotelManagement.Api.Extensions
 {
@@ -15,6 +15,7 @@ namespace HotelManagement.Api.Extensions
              services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IHotelService, HotelService>();
+            services.AddScoped<IRoomService, RoomService>();
 
             // Add Repository Injections Here
             services.AddScoped<IHotelRepository, HotelRepository>();

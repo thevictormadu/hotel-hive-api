@@ -3,6 +3,7 @@
     public interface IUnitOfWork : IDisposable
     {
         IHotelRepository hotelRepository { get; }
+        IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
 
         void SaveChanges();

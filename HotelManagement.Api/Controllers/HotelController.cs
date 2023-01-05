@@ -34,6 +34,20 @@ namespace HotelManagement.Api.Controllers
             var hotel = await _hotelService.UpdateHotel(update, Id);
             return Ok(hotel);
         }
+        [HttpGet("Rooms-By-Availability")]
+        public async Task<IActionResult> GetRoomsByAvailability(string HotelName,string RoomType)
+        {
+            var result = await _hotelService.GetRoomsByAvailability(HotelName,RoomType);
+            if(!result.Succeeded) return BadRequest(result);
+            return Ok(result);
+        }
+        [HttpGet("Ratings")]
+        public async Task<IActionResult> GetHotelRatings(string HotelName)
+        {
+            var result = await _hotelService.GetHotelRating(HotelName);
+            if (!result.Succeeded) return BadRequest(result);
+            return Ok(result);
+        }
 
     }
 }

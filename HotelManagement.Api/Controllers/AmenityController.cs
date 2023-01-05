@@ -24,6 +24,9 @@ namespace HotelManagement.Api.Controllers
         }
 
         // [Authorize(Roles = "Admin")]
+        //HttpGet("GetAmenities")]
+
+
        [HttpGet("GetAmenities")]
         public async Task<ActionResult<Response<List<AmenityDTO>>>> GetAmenities()
         {
@@ -50,6 +53,45 @@ namespace HotelManagement.Api.Controllers
 
 
         // [Authorize(Roles = "Manager")]
+        [HttpPost("CreateAmenity")]
+
+        public async Task<ActionResult<Response<CreateAmenitiesDTO>>> CreateAmenity([FromBody] CreateAmenitiesDTO createDto)
+        {
+
+
+            try
+            {
+
+                //Check if this  amenity has been created for the hotel
+                if (await _amenityService.GetAsync(x => x.Name.ToLower() ==
+                createDto.Name.ToLower()) != null)
+                {
+                    //log error
+                    ModelState.AddModelError("ErrorMessage", "This Amenity has been created for this hotel!");
+                    return BadRequest(ModelState);
+                }
+                //check if the record exist for the id
+                if (await _amenityService.GetAsync(u => u.HotelId == createDto.HotelId) == null)
+                {   //log error
+                    ModelState.AddModelError("errormessage", "hotel id is invalid");
+                    return BadRequest(ModelState);
+                }
+
+
+                var result = await _amenityService.CreateAmenity(createDto);
+                return CreatedAtAction("GetAmenities", new { id = createDto.HotelId }, result);
+
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return StatusCode(500, ex.Message);
+
+            }
+
+        }
+
+
         //HttpPost("CreateAmenity")]
 
 

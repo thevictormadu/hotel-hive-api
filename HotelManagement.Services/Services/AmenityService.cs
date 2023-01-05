@@ -70,10 +70,37 @@ namespace HotelManagement.Services.Services
         /// </summary>
         /// <param name="createDto"></param>
         /// <returns></returns>
-        public Task<Response<object>> CreateAmenity(CreateAmenitiesDTO createDto)
+
+        public async Task<Response<object>> CreateAmenity(CreateAmenitiesDTO createDto)
         {
-            throw new NotImplementedException();
+            var response = new Response<object>();
+
+            try
+            {
+                //    //Map amenity to CreateAmenitiesDTO
+                Amenity amenity = _mapper.Map<Amenity>(createDto);
+                await _unitOfWork.AmenityRepository.AddAsync(amenity);
+                await _unitOfWork.AmenityRepository.SaveChangesAsync();
+                var result = _mapper.Map<Amenity>(amenity);
+                response.Data = result;
+                response.StatusCode = (int)HttpStatusCode.OK;
+                response.Succeeded = true;
+                response.Message = $"Successful";
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                response.Succeeded = false;
+                response.Message = $"Failed";
+                response.Data = default;
+                return response;
+            }
+
         }
+
 
 
         public async Task<Response<Amenity>> UpdateAmenity(string id, UpdateAmenityDTO updateDto)

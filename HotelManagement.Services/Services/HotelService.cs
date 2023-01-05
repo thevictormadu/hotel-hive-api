@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using HotelManagement.Core;
+using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
+using System.Collections.Generic;
 
 namespace HotelManagement.Services.Services
 {
@@ -81,5 +83,42 @@ namespace HotelManagement.Services.Services
             _unitOfWork.SaveChanges();
             return Response<UpdateHotelDto>.Success("Updated Successfully", update);
         }
+        public async Task<Response<List<GetHotelByRatingsDto>>> GetHotelRating(string HotelName)
+        {
+            try
+            {
+                var hotelRatings = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name == HotelName).Result.Ratings;
+                var mappedHotelRating = _mapper.Map<List<GetHotelByRatingsDto>>(hotelRatings);
+
+                if (mappedHotelRating == null) return Response<List<GetHotelByRatingsDto>>.Fail($"Hotel with {HotelName} Not Found");
+                return Response<List<GetHotelByRatingsDto>>.Success(HotelName, mappedHotelRating);
+            }
+            catch (Exception ex)
+            {
+
+                return Response<List<GetHotelByRatingsDto>>.Fail(ex.Message);
+            }
+        }
+
+        public async Task<Response<List<GetRoomDto>>> GetRoomsByAvailability(string HotelNmae, string RoomType)
+        {
+            try
+            {
+                var roomsByAvailability = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name == HotelNmae)
+                .Result.RoomTypes.Where(x => x.Name == RoomType).SelectMany(x => x.Rooms);
+                var rooms = roomsByAvailability.Where(x => x.IsBooked == false).Select(x => x);
+                var data = _mapper.Map<List<GetRoomDto>>(rooms);
+                if (data == null) return Response<List<GetRoomDto>>.Fail($"{HotelNmae} Has No Room Available For {RoomType} RoomType");
+                return Response<List<GetRoomDto>>.Success(HotelNmae, data);
+            }
+            catch (Exception ex)
+            {
+
+                return Response<List<GetRoomDto>>.Fail(ex.Message);
+            }
+           
+        }
     }
 }
+
+       
