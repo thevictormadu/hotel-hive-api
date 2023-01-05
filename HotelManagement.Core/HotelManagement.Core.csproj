@@ -9,6 +9,7 @@
   <ItemGroup>
     <Folder Include="Enums\" />
     <Folder Include="Handlers\" />
+    <Folder Include="Utilities\" />
   </ItemGroup>
 
   <ItemGroup>
