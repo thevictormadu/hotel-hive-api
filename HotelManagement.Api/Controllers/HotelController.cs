@@ -1,6 +1,7 @@
 ﻿using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IServices;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
 namespace HotelManagement.Api.Controllers
 {
@@ -48,6 +49,20 @@ namespace HotelManagement.Api.Controllers
             if (!result.Succeeded) return BadRequest(result);
             return Ok(result);
         }
+
+        [HttpPost("add-hotel")]
+        public async Task<IActionResult> AddHotel (string Manager_Id, [FromBody] AddHotelDto addHotelDto)
+        {
+            if (addHotelDto== null)
+            {
+                return BadRequest("Invalid Input");
+            }
+            var result =await _hotelService.AddHotel(Manager_Id, addHotelDto);
+            return Ok(result);
+
+        }
+
+
         [HttpDelete ("Id")]
         public async Task<IActionResult> DeleteHotelById(string id)
         {
@@ -55,5 +70,6 @@ namespace HotelManagement.Api.Controllers
             if(!result.Succeeded) return BadRequest ();
             return Ok(result);
         }
+
     }
 }
