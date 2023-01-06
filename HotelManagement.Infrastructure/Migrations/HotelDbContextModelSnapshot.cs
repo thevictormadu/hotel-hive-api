@@ -17,7 +17,7 @@ namespace HotelManagement.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.0")
+                .HasAnnotation("ProductVersion", "6.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -39,9 +39,11 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CustomerAppUserId")
-                        .IsRequired()
+                    b.Property<string>("CustomerId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Latitude")
                         .IsRequired()
@@ -60,7 +62,7 @@ namespace HotelManagement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerAppUserId");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("StateId")
                         .IsUnique();
@@ -78,17 +80,22 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Discount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("HotelId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -169,7 +176,6 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PublicId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("RefreshToken")
@@ -228,8 +234,10 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("HotelId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("NoOfPeople")
                         .HasColumnType("int");
@@ -241,7 +249,7 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<bool>("PaymentStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("RoomId")
+                    b.Property<string>("RoomTypeId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -258,35 +266,44 @@ namespace HotelManagement.Infrastructure.Migrations
 
                     b.HasIndex("HotelId");
 
-                    b.HasIndex("RoomId");
+                    b.HasIndex("RoomTypeId");
 
                     b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Customer", b =>
                 {
-                    b.Property<string>("AppUserId")
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AppUserId1")
-                        .IsRequired()
+                    b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("CreditCard")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AppUserId");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("AppUserId1");
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Customers");
                 });
@@ -308,6 +325,9 @@ namespace HotelManagement.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsFeature")
                         .HasColumnType("bit");
 
@@ -327,7 +347,22 @@ namespace HotelManagement.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("AccountName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BankCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BankName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -345,6 +380,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ManagerId")
                         .IsRequired()
@@ -374,19 +412,15 @@ namespace HotelManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Manager", b =>
                 {
-                    b.Property<string>("AppUserId")
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("AccountName")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("AccountNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AppUserId1")
-                        .IsRequired()
+                    b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BusinessEmail")
@@ -397,21 +431,22 @@ namespace HotelManagement.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CompanyAddress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("AppUserId");
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("AppUserId1");
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Managers");
                 });
@@ -422,6 +457,7 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("CreatedAt")
@@ -456,11 +492,16 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CustomerAppUserId")
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("HotelId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<int>("Ratings")
                         .HasColumnType("int");
@@ -470,7 +511,7 @@ namespace HotelManagement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerAppUserId");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("HotelId");
 
@@ -498,6 +539,9 @@ namespace HotelManagement.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -520,6 +564,9 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsBooked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("RoomNo")
@@ -546,6 +593,9 @@ namespace HotelManagement.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Available")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -554,17 +604,22 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Discount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("HotelId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Thumbnail")
@@ -589,6 +644,9 @@ namespace HotelManagement.Infrastructure.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -618,9 +676,11 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Id")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -769,9 +829,7 @@ namespace HotelManagement.Infrastructure.Migrations
                 {
                     b.HasOne("HotelManagement.Core.Domains.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerAppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("HotelManagement.Core.Domains.State", "State")
                         .WithOne("Address")
@@ -803,32 +861,26 @@ namespace HotelManagement.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelManagement.Core.Domains.Hotel", "Hotel")
+                    b.HasOne("HotelManagement.Core.Domains.Hotel", null)
                         .WithMany("Bookings")
-                        .HasForeignKey("HotelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HotelId");
 
-                    b.HasOne("HotelManagement.Core.Domains.Room", "Room")
+                    b.HasOne("HotelManagement.Core.Domains.RoomType", "RoomType")
                         .WithMany()
-                        .HasForeignKey("RoomId")
+                        .HasForeignKey("RoomTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Hotel");
-
-                    b.Navigation("Room");
+                    b.Navigation("RoomType");
                 });
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Customer", b =>
                 {
                     b.HasOne("HotelManagement.Core.Domains.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
                 });
@@ -859,9 +911,7 @@ namespace HotelManagement.Infrastructure.Migrations
                 {
                     b.HasOne("HotelManagement.Core.Domains.AppUser", "AppUser")
                         .WithMany()
-                        .HasForeignKey("AppUserId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserId");
 
                     b.Navigation("AppUser");
                 });
@@ -879,13 +929,21 @@ namespace HotelManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Rating", b =>
                 {
-                    b.HasOne("HotelManagement.Core.Domains.Customer", null)
+                    b.HasOne("HotelManagement.Core.Domains.Customer", "Customer")
                         .WithMany("Ratings")
-                        .HasForeignKey("CustomerAppUserId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("HotelManagement.Core.Domains.Hotel", null)
+                    b.HasOne("HotelManagement.Core.Domains.Hotel", "Hotel")
                         .WithMany("Ratings")
-                        .HasForeignKey("HotelId");
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Hotel");
                 });
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Review", b =>
