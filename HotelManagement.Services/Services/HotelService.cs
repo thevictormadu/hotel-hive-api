@@ -123,6 +123,7 @@ namespace HotelManagement.Services.Services
            
         }
 
+<<<<<<< HEAD
         public async Task<Response<string>> AddHotel(string Manager_ID, AddHotelDto addHotelDto)
         {
             var manger = await _hotelDbContext.Managers.FirstOrDefaultAsync(x => x.Id == Manager_ID);
@@ -139,6 +140,25 @@ namespace HotelManagement.Services.Services
             _unitOfWork.SaveChanges();
 
             return Response<string>.Success("Created Sucessfuly", addHotelDto.Name);
+=======
+        public async Task<Response<string>> DeleteHotelById(string id)
+        {
+            try
+            {
+                var hotelTodelete = _unitOfWork.hotelRepository.DeleteAsync<string>(id);
+                if (hotelTodelete == null)
+                    return Response<string>.Fail($"Hotel with {id} doesnot exist");
+                _unitOfWork.SaveChanges();
+                return Response<string>.Success($"Hotel with {id} Sucessful Deleted", id);
+ 
+    }
+            catch (Exception ex)
+            {
+
+                return Response<string>.Fail(ex.Message);
+            };
+           
+>>>>>>> refs/remotes/origin/develop
         }
     }
 }

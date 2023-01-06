@@ -49,6 +49,7 @@ namespace HotelManagement.Api.Controllers
             if (!result.Succeeded) return BadRequest(result);
             return Ok(result);
         }
+<<<<<<< HEAD
         [HttpPost("add-hotel")]
         public async Task<IActionResult> AddHotel (string Manager_Id, [FromBody] AddHotelDto addHotelDto)
         {
@@ -61,5 +62,14 @@ namespace HotelManagement.Api.Controllers
 
         }
 
+=======
+        [HttpDelete ("Id")]
+        public async Task<IActionResult> DeleteHotelById(string id)
+        {
+            var result = await _hotelService.DeleteHotelById(id);
+            if(!result.Succeeded) return BadRequest ();
+            return Ok(result);
+        }
+>>>>>>> refs/remotes/origin/develop
     }
 }
