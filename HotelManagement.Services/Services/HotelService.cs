@@ -123,7 +123,7 @@ namespace HotelManagement.Services.Services
            
         }
 
-<<<<<<< HEAD
+
         public async Task<Response<string>> AddHotel(string Manager_ID, AddHotelDto addHotelDto)
         {
             var manger = await _hotelDbContext.Managers.FirstOrDefaultAsync(x => x.Id == Manager_ID);
@@ -135,12 +135,13 @@ namespace HotelManagement.Services.Services
                     StatusCode = 404,
                     Message = "Manager Not found"
                 };
-            var newhotel = _mapper.Map<Hotel>(addHotelDto); 
+            var newhotel = _mapper.Map<Hotel>(addHotelDto);
             _unitOfWork.hotelRepository.AddHotel(Manager_ID, newhotel);
             _unitOfWork.SaveChanges();
 
             return Response<string>.Success("Created Sucessfuly", addHotelDto.Name);
-=======
+        }
+
         public async Task<Response<string>> DeleteHotelById(string id)
         {
             try
@@ -158,7 +159,6 @@ namespace HotelManagement.Services.Services
                 return Response<string>.Fail(ex.Message);
             };
            
->>>>>>> refs/remotes/origin/develop
         }
     }
 }
