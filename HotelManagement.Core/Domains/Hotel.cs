@@ -26,5 +26,7 @@ namespace HotelManagement.Core.Domains
         public ICollection<Amenity> Amenities { get; set; }
         public ICollection<Booking> Bookings { get; set; }
         public ICollection<Gallery> Galleries { get; set; }
+        public object Location { get; set; }
+        public object Rating { get; set; }
     }
 }
