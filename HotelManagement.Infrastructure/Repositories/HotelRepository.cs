@@ -19,5 +19,10 @@ namespace HotelManagement.Infrastructure.Repositories
             
            await AddAsync(hotel);    
         }
+
+        public void UpdateAsync(Hotel hotel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
