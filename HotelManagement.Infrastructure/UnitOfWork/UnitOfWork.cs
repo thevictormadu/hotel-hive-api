@@ -18,8 +18,8 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private IHotelRepository _hotelRepository;
 		private IRoomRepository _roomRepository;
 		private IAmenityRepository _amenityRepository;
-		public UnitOfWork(HotelDbContext hotelDbContext)
-        private IAmenityRepository _amenityRepository;
+		//public UnitOfWork(HotelDbContext hotelDbContext)
+       // private IAmenityRepository _amenityRepository;
 		private IBookingRepository _bookingRepository;
         public UnitOfWork(HotelDbContext hotelDbContext)
 		{
