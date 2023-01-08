@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HotelManagement.Core.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IServices
 {
-    internal interface IHotelRatingService
+    public interface IHotelRatingService
     {
+        Task<Response<string>> RateHotelAsync(string hotelId, string customerId, RateHotelDTO rateHotelDto);
     }
 }

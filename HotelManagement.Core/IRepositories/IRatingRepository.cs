@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IRepositories
 {
-    internal interface IRatingRepository
+    public interface IRatingRepository : IGenericRepository<Rating>
     {
+        void RateHotelAsync(string customerId, string hotelId, Rating rating);
     }
 }

@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.Domains;
+﻿using HotelManagement.Core;
+using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
@@ -11,31 +12,30 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
-    public class RatingRepository : IRatingRepository
+    public class RatingRepository : GenericRepository<Rating>, IRatingRepository
     {
-        private readonly HotelDbContext context;
-        public RatingRepository(HotelDbContext context)
+        private readonly HotelDbContext hotelDbContext;
+        public RatingRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
         {
-            this.context = context;
+            
         }
 
-        public async Task<bool> RateHotel(RateHotelDTO request)
+
+
+        public async void RateHotelAsync(string customerId, string hotelId, Rating rating)
         {
-            var hotel = await context.Hotels.FirstOrDefaultAsync(h => h.Id == request.HotelId);
-            if (hotel == null)
-            {
-                return false;
-            }
-            var rating = new Rating();
-            rating.Id = new Guid();
-            rating.CreatedAt = DateTime.Now;
-            rating.UpdatedAt = DateTime.Now;
-            rating.Ratings = request.Rating;
-            rating.HotelId = hotel.Id;
+            var hotel = await hotelDbContext.Hotels.FirstOrDefaultAsync(h => h.Id == hotelId);
+            var customer = await hotelDbContext.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
             rating.Hotel = hotel;
-            await context.SaveChangesAsync();
+            rating.HotelId = hotelId;
+            rating.Customer = customer;
+            rating.CustomerId = customerId;
 
-            return true;          
+            await AddAsync(rating);
+
         }
+
+
+
     }
 }

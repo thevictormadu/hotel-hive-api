@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.DTOs
 {
-    internal class RateHotelDTO
+    public class RateHotelDTO
     {
+        public int Rating { get; set; }
+        
     }
 }

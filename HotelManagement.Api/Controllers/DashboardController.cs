@@ -13,18 +13,18 @@ namespace HotelManagement.Api.Controllers
             this.ratingService = ratingService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> RateHotel(RateHotelDTO request)
-        {
-            try
-            {
-                await ratingService.RateHotel(request);
-                return Ok("Successful");
-            }
-            catch(Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> RateHotel(RateHotelDTO request)
+        //{
+        //    try
+        //    {
+        //        await ratingService.RateHotelAsync(request);
+        //        return Ok("Successful");
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
     }
 }
