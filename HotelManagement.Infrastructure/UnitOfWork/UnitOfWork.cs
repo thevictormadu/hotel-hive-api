@@ -18,6 +18,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private IHotelRepository _hotelRepository;
 		private IRoomRepository _roomRepository;
 		private IAmenityRepository _amenityRepository;
+		private ICustomerRepository _customerRepository;
 		public UnitOfWork(HotelDbContext hotelDbContext)
 		{
 			_hotelDbContext = hotelDbContext;
@@ -28,7 +29,8 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
 
-
+        public ICustomerRepository customerRepository =>
+         _customerRepository ??= new CustomerRepository(_hotelDbContext);
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
