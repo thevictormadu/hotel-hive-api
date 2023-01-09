@@ -91,7 +91,7 @@ namespace HotelManagement.Services.Services
         {
             try
             {
-                var hotelRatings = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name == HotelName).Result.Ratings;
+                var hotelRatings = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name.ToLower().Trim() == HotelName.ToLower().Trim()).Result.Ratings;
                 var mappedHotelRating = _mapper.Map<List<GetHotelByRatingsDto>>(hotelRatings);
 
                 if (mappedHotelRating == null) return Response<List<GetHotelByRatingsDto>>.Fail($"Hotel with {HotelName} Not Found");
