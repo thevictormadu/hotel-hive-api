@@ -196,7 +196,7 @@ namespace HotelManagement.Services.Services
         }
 
 
-        }
+        
         public async Task<Response<Hotel>> Create(AddHotelDto hotelDto)
         {
             var mappedHotel = _mapper.Map<Hotel>(hotelDto);
