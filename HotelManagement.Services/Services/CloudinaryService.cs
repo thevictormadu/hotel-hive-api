@@ -17,6 +17,7 @@ namespace HotelManagement.Services.Services
             _cloudinary = cloudinary;
         }
 
+
         public async Task<List<Dictionary<string, string>>> UploadAsync(IFormFile[] images)
         {
             var results = new List<Dictionary<string, string>>();
@@ -25,6 +26,7 @@ namespace HotelManagement.Services.Services
             {
                 return null;
             }
+
 
             IFormatProvider provider = CultureInfo.CreateSpecificCulture("en-US");
             foreach (var image in images)

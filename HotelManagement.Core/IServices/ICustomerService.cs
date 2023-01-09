@@ -9,6 +9,6 @@ namespace HotelManagement.Core.IServices
 {
     public interface ICustomerService
     {
-        Task<Response<List<GetCustomerDto>>> GetCustomers();
+        Task<Response<List<GetCustomerDto>>> GetCustomers(int pageNo);
     }
 }

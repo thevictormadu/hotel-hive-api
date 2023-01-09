@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HotelManagement.Application.Utility;
 using HotelManagement.Core;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
@@ -31,15 +32,21 @@ namespace HotelManagement.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Response<List<GetCustomerDto>>> GetCustomers()
+        public async Task<Response<List<GetCustomerDto>>> GetCustomers(int pageNo)
         {
             
-                var response = new Response<List<GetCustomerDto>>();
+                    var response = new Response<List<GetCustomerDto>>();
 
                 try
                 {
+                    //IQueryable Item = await _context.Customers.Where();
+                    //var gp = new GenericPagination<Datatype>();
+                    //var paginatedItem = GenericPagination.ToPagedList(item,3,5)
 
-                    IEnumerable<Customer> customers = await _unitOfWork.customerRepository.GetAllAsync();
+                    //<Customer> customers = await _unitOfWork.customerRepository.GetAllAsync();
+                    IQueryable customers = (IQueryable)await _unitOfWork.customerRepository.GetAllAsync();
+                    //var gp = new GenericPagination<GetCustomerDto>();
+                    var paginatedItem = GenericPagination<GetCustomerDto>.ToPagedList((IQueryable<GetCustomerDto>)customers, pageNo, 5);
                     var result = _mapper.Map<List<GetCustomerDto>>(customers);
                     response.Data = result;
                     response.StatusCode = (int)HttpStatusCode.OK;
