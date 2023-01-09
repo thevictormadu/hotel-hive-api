@@ -123,6 +123,24 @@ namespace HotelManagement.Services.Services
            
         }
 
+        public async Task<Response<List<GetRoomDto>>> GetAvailableRoomsBy(string HotelName, string roomId)
+        {
+            try
+            {
+                var rooms = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name.ToLower().Trim() == HotelName.ToLower().Trim())
+                .Result.RoomTypes.SelectMany(x => x.Rooms).Where(x=>x.IsBooked == false && x.Id == roomId);
+                var data = _mapper.Map<List<GetRoomDto>>(rooms);
+                if (data == null) return Response<List<GetRoomDto>>.Fail($"{HotelName} Has No Room Available");
+                return Response<List<GetRoomDto>>.Success(HotelName, data);
+            }
+            catch (Exception ex)
+            {
+
+                return Response<List<GetRoomDto>>.Fail($"{HotelName} Has No Room Available");
+            }
+
+        }
+
 
         public async Task<Response<string>> AddHotel(string Manager_ID, AddHotelDto addHotelDto)
         {
