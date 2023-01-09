@@ -1,5 +1,6 @@
 ﻿using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
+using HotelManagement.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IRepositories
 {
-    public interface IHotelRepository : IGenericRepository<Hotel>
+    public interface IAdminRepository
     {
-        void AddHotel(string Manager_ID, Hotel hotel);
-        void UpdateAsync(Hotel hotel);
+        Task<bool> CreateRole(RoleDTO role);
+        Task<bool> AddUserRole(string userId, Roles role);
+        Task<bool> RemoveUserRole(string userId, Roles role);
     }
 }

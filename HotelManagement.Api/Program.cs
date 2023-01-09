@@ -86,7 +86,7 @@ namespace HotelManagement.Api
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            //Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -94,7 +94,7 @@ namespace HotelManagement.Api
             }
 
             Seeder.SeedData(app).Wait();
-
+             
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
