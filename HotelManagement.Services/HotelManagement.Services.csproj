@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HotelManagement.Application\HotelManagement.Application.csproj" />
     <ProjectReference Include="..\HotelManagement.Core\HotelManagement.Core.csproj" />
   </ItemGroup>
 

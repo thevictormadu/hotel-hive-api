@@ -88,7 +88,7 @@ namespace HotelManagement.Api
             builder.Services.AddSwagger();
 
             //Swagger Authorization setup
-            builder.Services.AddSwaggerGen(c =>
+           /* builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelManagementAPI", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -100,7 +100,7 @@ namespace HotelManagement.Api
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
-                });
+                }); 
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement()
                       {
@@ -120,7 +120,7 @@ namespace HotelManagement.Api
                             new List<string>()
                           }
                         });
-            });
+            }); */
 
             builder.Services.AddCors(c =>
             {

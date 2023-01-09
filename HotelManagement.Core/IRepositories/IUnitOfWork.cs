@@ -8,7 +8,7 @@ namespace HotelManagement.Core.IRepositories
 { 
     public interface IUnitOfWork : IDisposable
     {
-
+     IWishlistRepository wishlist { get; }
      void SaveChanges();
 
      void BeginTransaction();

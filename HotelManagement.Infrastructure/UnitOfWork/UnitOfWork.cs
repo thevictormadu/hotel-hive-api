@@ -1,5 +1,6 @@
 ﻿using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
+using HotelManagement.Infrastructure.Repositories;
 
 namespace HotelManagement.Infrastructure.UnitOfWork
 {
@@ -7,6 +8,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
     {
         private readonly HotelDbContext _hotelDbContext;
         private bool _disposed;
+        private  IWishlistRepository _wishlistRepository;
 
     public UnitOfWork (HotelDbContext hotelDbContext)
 	{
@@ -19,7 +21,8 @@ namespace HotelManagement.Infrastructure.UnitOfWork
        _disposed = false;
     }
 
-
+        public IWishlistRepository wishlist =>
+            _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
     public void SaveChanges()
     {
        _hotelDbContext.SaveChangesAsync();
