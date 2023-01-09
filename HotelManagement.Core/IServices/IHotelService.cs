@@ -10,6 +10,11 @@ namespace HotelManagement.Core.IServices
         Task<Response<GetHotelsDto>> GetHotelById(string Id);
         Task<Response<List<GetRoomDto>>> GetRoomsByAvailability(string HotelNmae, string RoomType);
         Task<Response<List<GetHotelByRatingsDto>>> GetHotelRating(string HotelName);
+ 
+        Task<Response<string>> AddHotel(string Manager_ID, AddHotelDto addHotelDto);
+
+        Task<Response<string>> DeleteHotelById(string id);
+
         Task<Response<Hotel>> Create(AddHotelDto hotelDto);
         Task<Response<List<GetRoomDto>>> GetHotelRoomsById(string HotelName, string RoomId);
 

@@ -11,6 +11,7 @@ namespace HotelManagement.Core.IServices
     public interface IRoomService
     {
         Task<Response<GetRoomDto>> GetRoombyId(string Id);
+        Task<Response<string>>AddRoom(string RoomType_ID, string Hotel_Name, AddRoomDto addRoomDto);
         Task<Response<Room>> Create(AddRommDto rommDto);
     }
 }

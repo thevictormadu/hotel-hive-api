@@ -1,6 +1,8 @@
 ﻿using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IServices;
+using HotelManagement.Services.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 
 namespace HotelManagement.Api.Controllers
 {
@@ -51,19 +53,43 @@ namespace HotelManagement.Api.Controllers
             if (!result.Succeeded) return BadRequest(result);
             return Ok(result);
         }
-        [HttpGet("Available-Rooms-By-Id")]
-        public async Task<IActionResult> AvailableRoomsById(string HotelName, string RoomId)
+
+        [HttpPost("add-hotel")]
+        public async Task<IActionResult> AddHotel (string Manager_Id, [FromBody] AddHotelDto addHotelDto)
         {
-            var result = await _hotelService.GetHotelRoomsById(HotelName,RoomId);
-            if (!result.Succeeded) return BadRequest(result);
+            if (addHotelDto== null)
+            {
+                return BadRequest("Invalid Input");
+            }
+            var result =await _hotelService.AddHotel(Manager_Id, addHotelDto);
+            return Ok(result);
+
+        }
+
+
+        [HttpDelete ("Id")]
+        public async Task<IActionResult> DeleteHotelById(string id)
+        {
+            var result = await _hotelService.DeleteHotelById(id);
+            if(!result.Succeeded) return BadRequest ();
             return Ok(result);
         }
-        [HttpPost]
-        public async Task<IActionResult> Create(AddHotelDto hotelDto)
+        [HttpPatch("{Id}")]
+        public async Task<IActionResult> PatchHotel([FromRoute] string Id, [FromBody] UpdateHotelDto update)
         {
-            var result = await _hotelService.Create(hotelDto);
-            if (!result.Succeeded) return BadRequest(result);
-            return Ok(result);
+            // Call the UpdateHotel method of the HotelService
+            var result = await _hotelService.UpdateHotel(update, Id);
+
+            // If the update was successful, return an OK response with the updated hotel data
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+
+            // Otherwise, return a Bad Request response with the error message
+            return BadRequest(result.Message);
         }
+
     }
+
 }

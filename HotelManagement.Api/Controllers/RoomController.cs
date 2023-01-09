@@ -23,6 +23,13 @@ namespace HotelManagement.Api.Controllers
             if(!result.Succeeded) return BadRequest(result.Message);
             return Ok(result);
         }
+        [HttpPost("add-room")]
+        public async Task<IActionResult> AddRoom(string RoomType_ID, string Hotel_Name,[FromBody] AddRoomDto addRoomDto)
+        {
+            if (addRoomDto == null) return BadRequest("Room Not Created");
+           var response=await _roomService.AddRoom(RoomType_ID, Hotel_Name, addRoomDto);
+            return Ok(response);
+        }
         [HttpPost]
         public async Task<IActionResult> Create(AddRommDto roomDto)
         {
