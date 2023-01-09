@@ -40,6 +40,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("CustomerId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Latitude")
                         .HasColumnType("nvarchar(max)");
 
@@ -78,6 +81,9 @@ namespace HotelManagement.Infrastructure.Migrations
 
                     b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -218,6 +224,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("NoOfPeople")
                         .HasColumnType("int");
 
@@ -265,6 +274,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("CreditCard")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
@@ -292,6 +304,9 @@ namespace HotelManagement.Infrastructure.Migrations
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsFeature")
                         .HasColumnType("bit");
@@ -339,6 +354,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ManagerId")
                         .HasColumnType("nvarchar(450)");
 
@@ -381,6 +399,9 @@ namespace HotelManagement.Infrastructure.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
@@ -439,6 +460,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int>("Ratings")
                         .HasColumnType("int");
 
@@ -472,6 +496,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -497,6 +524,9 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsBooked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("RoomNo")
@@ -539,6 +569,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -568,6 +601,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -596,6 +632,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");

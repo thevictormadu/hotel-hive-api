@@ -40,9 +40,29 @@ namespace HotelManagement.Services.Services
         ///GetAmenities
         /// </summary>
         /// <returns></returns>
-        public Task<Response<List<AmenityDTO>>> GetAmenities()
+        public async Task<Response<List<AmenityDTO>>> GetAmenities()
         {
-            throw new NotImplementedException();
+           var response = new Response<List<AmenityDTO>>();
+
+            try
+            {
+
+                IEnumerable<Amenity> amenity = await _unitOfWork.AmenityRepository.GetAllAsync();
+                var result = _mapper.Map<List<AmenityDTO>>(amenity);
+                response.Data = result;
+                response.StatusCode = (int)HttpStatusCode.OK;
+                response.Succeeded = true;
+                response.Message = $"Successful";
+                return response;
+            }
+            catch (Exception)
+            {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                response.Succeeded = false;
+                response.Message = $"Failed";
+                response.Data = default;
+                return response;
+            }
         }
 
         /// <summary>

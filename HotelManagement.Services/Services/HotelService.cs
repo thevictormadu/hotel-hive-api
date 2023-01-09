@@ -4,6 +4,8 @@ using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
+using HotelManagement.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace HotelManagement.Services.Services
@@ -12,11 +14,13 @@ namespace HotelManagement.Services.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly HotelDbContext _hotelDbContext;
 
-        public HotelService(IUnitOfWork unitOfWork, IMapper mapper)
+        public HotelService(IUnitOfWork unitOfWork, IMapper mapper, HotelDbContext hotelDbContext)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _hotelDbContext = hotelDbContext;
         }
 
         public async Task<Response<GetHotelsDto>> GetHotelById(string Id)
@@ -118,6 +122,79 @@ namespace HotelManagement.Services.Services
             }
            
         }
+
+
+        public async Task<Response<string>> AddHotel(string Manager_ID, AddHotelDto addHotelDto)
+        {
+            var manger = await _hotelDbContext.Managers.FirstOrDefaultAsync(x => x.Id == Manager_ID);
+            if (manger == null)
+                return new Response<string>
+                {
+                    Data = Manager_ID,
+                    Succeeded = false,
+                    StatusCode = 404,
+                    Message = "Manager Not found"
+                };
+            var newhotel = _mapper.Map<Hotel>(addHotelDto);
+            _unitOfWork.hotelRepository.AddHotel(Manager_ID, newhotel);
+            _unitOfWork.SaveChanges();
+
+            return Response<string>.Success("Created Sucessfuly", addHotelDto.Name);
+        }
+
+        public async Task<Response<string>> DeleteHotelById(string id)
+        {
+            try
+            {
+                var hotelTodelete = _unitOfWork.hotelRepository.DeleteAsync<string>(id);
+                if (hotelTodelete == null)
+                    return Response<string>.Fail($"Hotel with {id} doesnot exist");
+                _unitOfWork.SaveChanges();
+                return Response<string>.Success($"Hotel with {id} Sucessful Deleted", id);
+ 
+    }
+            catch (Exception ex)
+            {
+
+                return Response<string>.Fail(ex.Message);
+            };
+           
+        }
+
+        public async Task<Response<UpdateHotelDto>> PatchHotel(string Id, UpdateHotelDto update)
+        {
+            try
+            {
+                var patchHotel = await _unitOfWork.hotelRepository.GetByIdAsync(x => x.Id == Id);
+
+                if (patchHotel == null)
+                {
+                    return new Response<UpdateHotelDto>
+                    {
+                        StatusCode = 404,
+                        Succeeded = false,
+                        Data = null,
+                        Message = "Hotel not found"
+                    };
+                }
+
+                // Update the patchHotel object with the properties from the update object that are not null
+                if (update.Name != null) patchHotel.Name = update.Name;
+                if (update.State != null) patchHotel.State = update.State;
+                if (update.Phone != null) patchHotel.Phone = update.Phone;
+                if (update.Email != null) patchHotel.Email = update.Email;
+                if (update.Description != null) patchHotel.Description = update.Description;
+
+                _unitOfWork.SaveChanges();
+
+                return Response<UpdateHotelDto>.Success("Hotel updated successfully", update);
+            }
+            catch (Exception ex)
+            {
+                return Response<UpdateHotelDto>.Fail(ex.Message);
+            }
+        }
+
     }
 }
 
