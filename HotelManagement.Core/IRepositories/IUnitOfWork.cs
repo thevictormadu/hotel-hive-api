@@ -8,7 +8,8 @@ namespace HotelManagement.Core.IRepositories
 { 
     public interface IUnitOfWork : IDisposable
     {
-
+      
+     IReviewRepository ReviewRepository { get; }
      void SaveChanges();
 
      void BeginTransaction();

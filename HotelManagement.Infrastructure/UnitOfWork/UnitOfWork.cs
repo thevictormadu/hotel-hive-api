@@ -1,5 +1,6 @@
 ﻿ using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
+using HotelManagement.Infrastructure.Repositories;
 
 namespace HotelManagement.Infrastructure.UnitOfWork
 {
@@ -7,12 +8,14 @@ namespace HotelManagement.Infrastructure.UnitOfWork
     {
         private readonly HotelDbContext _hotelDbContext;
         private bool _disposed;
+        private IReviewRepository _reviewRepository;
 
     public UnitOfWork (HotelDbContext hotelDbContext)
 	{
         _hotelDbContext = hotelDbContext;
 	}
        
+    public IReviewRepository ReviewRepository => _reviewRepository ??= new ReviewRepository(_hotelDbContext);
 
     public void BeginTransaction()
     {
