@@ -25,6 +25,21 @@ namespace HotelManagement.Core.Utilities
             _httpContext = httpContext;
         }
 
+        private string Token(List<Claim> claims)
+        {
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
+
+            JwtSecurityToken token = new JwtSecurityToken(
+            issuer: _configuration["JwtSettings:ValidIssuer"],
+            audience: _configuration["JwtSettings:ValidAudience"],
+            expires: DateTime.Now.AddHours(3),
+            claims: claims,
+            signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
         public string CreateToken(UserModel user)
         {
             var authClaims = new List<Claim>
@@ -34,20 +49,19 @@ namespace HotelManagement.Core.Utilities
                 new Claim(ClaimTypes.Role, user.Role),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
-
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtSettings:SecretKey"]));
-
-            JwtSecurityToken token = new JwtSecurityToken(
-            issuer: _configuration["JwtSettings:ValidIssuer"],
-            audience: _configuration["JwtSettings:ValidAudience"],
-            expires: DateTime.Now.AddHours(3),
-            claims: authClaims,
-            signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-            );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return Token(authClaims);
         }
-
+        public string CreateToken(ManagerRequest request)
+        {
+            var authClaims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, request.ManagerName),
+                new Claim(ClaimTypes.NameIdentifier, request.Id),
+                new Claim(ClaimTypes.Expiration, request.ExpiresAt.ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+            return Token(authClaims);
+        }
         public RefreshToken SetRefreshToken()
         {
             var refreshToken = new RefreshToken
