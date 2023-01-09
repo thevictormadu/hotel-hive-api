@@ -1,6 +1,8 @@
 using FluentValidation.AspNetCore;
 using HotelManagement.Api.Extensions;
 using HotelManagement.Api.Policies;
+using HotelManagement.Infrastructure.Context;
+using HotelManagement.Infrastructure.Seeding;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;

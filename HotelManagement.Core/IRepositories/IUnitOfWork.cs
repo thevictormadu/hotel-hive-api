@@ -9,8 +9,6 @@
 
         void SaveChanges();
      IWishlistRepository wishlist { get; }
-     void SaveChanges();
-
         void BeginTransaction();
 
         void Rollback();
