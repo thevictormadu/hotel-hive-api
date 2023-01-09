@@ -14,5 +14,6 @@ namespace HotelManagement.Core.Domains
         public string Thumbnail { get; set; }
         public Hotel Hotel { get; set; }
         public int Available { get; set; }
+        public ICollection<Room> Rooms { get; set; }
     }
 }
