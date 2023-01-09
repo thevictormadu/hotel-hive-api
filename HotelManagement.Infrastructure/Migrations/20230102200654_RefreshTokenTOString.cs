@@ -1,33 +1,32 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace HotelManagement.Infrastructure.Migrations
 {
-    public partial class updateentitiesPublicId : Migration
+    public partial class RefreshTokenTOString : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "PublicId",
+                name: "RefreshToken",
                 table: "AspNetUsers",
                 type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
+                nullable: false,
+                oldClrType: typeof(Guid),
+                oldType: "uniqueidentifier");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "PublicId",
+            migrationBuilder.AlterColumn<Guid>(
+                name: "RefreshToken",
                 table: "AspNetUsers",
-                type: "nvarchar(max)",
+                type: "uniqueidentifier",
                 nullable: false,
-                defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
+                oldType: "nvarchar(max)");
         }
     }
 }
