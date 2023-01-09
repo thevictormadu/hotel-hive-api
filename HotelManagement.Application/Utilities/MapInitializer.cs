@@ -25,7 +25,10 @@ namespace HotelManagement.Application.Utilities
             CreateMap<Amenity, UpdateAmenityDTO>().ReverseMap();
 
             // Booking Maps
-            CreateMap<Booking, BookingRequestDto>().ReverseMap();
+            CreateMap<Booking, BookingRequestDto>().ReverseMap()
+                .ForPath(dest => dest.RoomType.Name, opt => opt.MapFrom(src => src.RoomType))
+                .ForPath(dest => dest.RoomType.Hotel.Name, opt => opt.MapFrom(src => src.Hotel))
+                .ForPath(dest => dest.Customer.AppUser.FirstName, opt => opt.MapFrom(src => src.CustomerName));
             CreateMap<Booking, BookingResponseDto>().ReverseMap();
 
             // Hotel Maps
