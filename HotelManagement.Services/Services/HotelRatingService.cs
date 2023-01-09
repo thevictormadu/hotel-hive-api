@@ -28,15 +28,26 @@ namespace HotelManagement.Services.Services
             _hotelDbContext = hotelDbContext;
         }
 
-        public async Task<Response<string>> RateHotelAsync(string hotelId, string customerId, RateHotelDTO rateHotelDto)
+        public async Task<Response<string>> RateHotelAsync(RateHotelDTO rateHotelDto)
         {
-            var hotel = await _hotelDbContext.Hotels.FirstOrDefaultAsync(h => h.Id == hotelId);
-            var customer = await _hotelDbContext.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
-            if (customer == null || hotel == null)
+            var hotel = await _hotelDbContext.Hotels.FindAsync(rateHotelDto.HotelId);
+            if (hotel == null)
             {
                 return new Response<string>
                 {
-                    Data = hotelId,
+                    Data = rateHotelDto.HotelId,
+                    Succeeded = false,
+                    StatusCode = 404,
+                    Message = "Hotel Not found"
+                };
+            }
+
+            var customer = await _hotelDbContext.Customers.FindAsync(rateHotelDto.CustomerId);
+            if (customer == null)
+            {
+                return new Response<string>
+                {
+                    Data = rateHotelDto.CustomerId,
                     Succeeded = false,
                     StatusCode = 404,
                     Message = "Hotel Not found"
@@ -44,7 +55,9 @@ namespace HotelManagement.Services.Services
             }
 
             var newRating = _mapper.Map<Rating>(rateHotelDto);
-            //_unitOfWork.ratingRepository.AddHotel(hotelId, customerId, newRating);
+            newRating.Customer = customer;
+            newRating.Hotel= hotel;
+            _unitOfWork.RatingRepository.RateHotelAsync(newRating);
             _unitOfWork.SaveChanges();
 
             return Response<string>.Success("Created Sucessfuly", rateHotelDto.Rating.ToString());

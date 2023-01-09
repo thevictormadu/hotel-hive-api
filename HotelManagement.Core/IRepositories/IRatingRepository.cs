@@ -10,6 +10,6 @@ namespace HotelManagement.Core.IRepositories
 {
     public interface IRatingRepository : IGenericRepository<Rating>
     {
-        void RateHotelAsync(string customerId, string hotelId, Rating rating);
+        void RateHotelAsync(Rating rating);
     }
 }

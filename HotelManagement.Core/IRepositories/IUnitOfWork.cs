@@ -5,6 +5,7 @@
         IHotelRepository hotelRepository { get; }
         IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
+        IRatingRepository RatingRepository { get; }
         
 
         void SaveChanges();

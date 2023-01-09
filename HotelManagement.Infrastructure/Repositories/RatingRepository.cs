@@ -22,14 +22,9 @@ namespace HotelManagement.Infrastructure.Repositories
 
 
 
-        public async void RateHotelAsync(string customerId, string hotelId, Rating rating)
+        public async void RateHotelAsync(Rating rating)
         {
-            var hotel = await hotelDbContext.Hotels.FirstOrDefaultAsync(h => h.Id == hotelId);
-            var customer = await hotelDbContext.Customers.FirstOrDefaultAsync(c => c.Id == customerId);
-            rating.Hotel = hotel;
-            rating.HotelId = hotelId;
-            rating.Customer = customer;
-            rating.CustomerId = customerId;
+            
 
             await AddAsync(rating);
 

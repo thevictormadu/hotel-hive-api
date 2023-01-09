@@ -9,6 +9,6 @@ namespace HotelManagement.Core.IServices
 {
     public interface IHotelRatingService
     {
-        Task<Response<string>> RateHotelAsync(string hotelId, string customerId, RateHotelDTO rateHotelDto);
+        Task<Response<string>> RateHotelAsync(RateHotelDTO rateHotelDto);
     }
 }
