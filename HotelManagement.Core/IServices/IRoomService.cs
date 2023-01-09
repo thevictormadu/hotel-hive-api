@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IServices
 {
-    public interface ITransactionReferenceService
+    public interface IRoomService
     {
-        Task<TransactionReferenceDTO> GetAllRoomTransaction(TransactionReferenceDTO transactionReferenceDTO);
-        Task GetAllRoomTransaction();
+        Task<Response<GetRoomDto>> GetRoombyId(string Id);
     }
 }

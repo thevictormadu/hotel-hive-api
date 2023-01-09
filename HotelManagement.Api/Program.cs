@@ -1,26 +1,13 @@
-using FluentValidation;
-using HotelManagement.Core.Domains;
-using HotelManagement.Core.IRepositories;
-using HotelManagement.Core.IServices;
+using FluentValidation.AspNetCore;
+using HotelManagement.Api.Extensions;
+using HotelManagement.Api.Policies;
 using HotelManagement.Infrastructure.Context;
-using HotelManagement.Infrastructure.Repositories;
-using HotelManagement.Services.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
+using HotelManagement.Infrastructure.Seeding;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System.Configuration;
-using System.Reflection;
-using System.Text;
-using HotelManagement.Api.Extensions;
 using Serilog;
-using HotelManagement.Api.Policies;
-using FluentValidation.AspNetCore;
-using HotelManagement.Infrastructure.Seeding;
 
 namespace HotelManagement.Api
 {
@@ -36,6 +23,7 @@ namespace HotelManagement.Api
             // Add services to the container.
             builder.Services.AddHttpClient();
             //builder.Services.AddDbContextAndConfigurations(builder.Environment, config);
+            //builder.Services.AddScoped<IHotelServices, HotelRepository>();
 
             builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>()
                 .AddScoped<IUrlHelper>(x =>
@@ -49,7 +37,7 @@ namespace HotelManagement.Api
 
             //builder.Services.AddControllers();
             // Configure Mailing Service
-            builder.Services.ConfigureMailService(config);
+           builder.Services.ConfigureMailService(config);
 
 
             builder.Services.AddSingleton(Log.Logger);
@@ -58,7 +46,7 @@ namespace HotelManagement.Api
             builder.Services.AddPolicyAuthorization();
 
             // Configure Identity
-            builder.Services.ConfigureIdentity(); 
+            builder.Services.ConfigureIdentity();
 
             builder.Services.AddAuthentication();
 
@@ -69,8 +57,7 @@ namespace HotelManagement.Api
             services.ConfigureAutoMappers();
 
             // Configure Cloudinary
-
-            //builder.Services.AddCloudinary(CloudinaryServiceExtension.GetAccount(Configuration));
+            builder.Services.AddCloudinary(CloudinaryServiceExtension.GetAccount(config));
 
             builder.Services.AddControllers().AddNewtonsoftJson(op => op.SerializerSettings.ReferenceLoopHandling
             = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -115,7 +102,10 @@ namespace HotelManagement.Api
 
             app.MapControllers();
 
-            app.Run(); 
+            app.Run();
         }
     }
 }
+
+
+

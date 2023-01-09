@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.DTOs;
+﻿using HotelManagement.Core;
+using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IServices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,8 +10,8 @@ namespace HotelManagement.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthService _authService;
-
+       private readonly IAuthService _authService;
+        
         public AuthController(IAuthService authService)
         {
             _authService = authService;
@@ -22,6 +23,7 @@ namespace HotelManagement.Api.Controllers
             if(register.ToString().Contains("Successfully")) return Ok(register);
             return BadRequest(register);
         }
+        
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
