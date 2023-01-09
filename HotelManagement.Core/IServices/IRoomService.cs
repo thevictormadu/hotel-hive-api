@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IServices
 {
-    public interface IAuthService
+    public interface IRoomService
     {
-        Task<object> Login(LoginDTO model);
-        Task<object> Register(RegisterDTO user);
+        Task<Response<GetRoomDto>> GetRoombyId(string Id);
+        Task<Response<string>>AddRoom(string RoomType_ID, string Hotel_Name, AddRoomDto addRoomDto);
     }
 }

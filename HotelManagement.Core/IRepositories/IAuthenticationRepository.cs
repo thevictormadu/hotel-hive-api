@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IRepositories
 {
-    public interface IAuthRepository
+    public interface IAuthenticationRepository
     {
-        public Task<object> Login(LoginDTO model);
-        public Task<object> Register(RegisterDTO user);
+        Task<Response<string>> Login(LoginDTO model);
+        Task<bool> Register(RegisterDTO user);
+        Task<Response<string>> RefreshToken();
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(HotelDbContext))]
-    [Migration("20221220080149_initial-migration")]
-    partial class initialmigration
+    [Migration("20230102200654_RefreshTokenTOString")]
+    partial class RefreshTokenTOString
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -172,11 +172,11 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PublicId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RefreshToken")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RefreshTokenExpiryTime")
                         .HasColumnType("datetime2");
@@ -475,9 +475,11 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CustomerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("HotelId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Ratings")
@@ -611,7 +613,6 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Id")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(max)");
 
@@ -862,13 +863,21 @@ namespace HotelManagement.Infrastructure.Migrations
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Rating", b =>
                 {
-                    b.HasOne("HotelManagement.Core.Domains.Customer", null)
+                    b.HasOne("HotelManagement.Core.Domains.Customer", "Customer")
                         .WithMany("Ratings")
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("HotelManagement.Core.Domains.Hotel", null)
+                    b.HasOne("HotelManagement.Core.Domains.Hotel", "Hotel")
                         .WithMany("Ratings")
-                        .HasForeignKey("HotelId");
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+
+                    b.Navigation("Hotel");
                 });
 
             modelBuilder.Entity("HotelManagement.Core.Domains.Review", b =>

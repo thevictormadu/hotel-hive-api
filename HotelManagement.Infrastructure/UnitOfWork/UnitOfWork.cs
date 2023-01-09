@@ -1,9 +1,34 @@
 ﻿using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
 using HotelManagement.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.UnitOfWork
 {
+	public class UnitOfWork : IUnitOfWork
+	{
+		private readonly HotelDbContext _hotelDbContext;
+	
+		private bool _disposed;
+		private IHotelRepository _hotelRepository;
+		private IRoomRepository _roomRepository;
+		private IAmenityRepository _amenityRepository;
+		public UnitOfWork(HotelDbContext hotelDbContext)
+		{
+			_hotelDbContext = hotelDbContext;
+		
+		}
+		public IHotelRepository hotelRepository =>
+			_hotelRepository ??= new HotelRepository(_hotelDbContext );
+		public IRoomRepository roomRepository =>
+			_roomRepository ??= new RoomRespository(_hotelDbContext);
+
+
     public class UnitOfWork : IUnitOfWork
     {
         private readonly HotelDbContext _hotelDbContext;
@@ -16,10 +41,12 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 	}
        
 
-    public void BeginTransaction()
-    {
-       _disposed = false;
-    }
+        public IAmenityRepository AmenityRepository =>
+         _amenityRepository ??= new AmenityRepository(_hotelDbContext);
+        public void BeginTransaction()
+		{
+			_disposed = false;
+		}
 
         public IWishlistRepository wishlist =>
             _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
@@ -28,32 +55,33 @@ namespace HotelManagement.Infrastructure.UnitOfWork
        _hotelDbContext.SaveChangesAsync();
     }
 
-    public void Rollback()
-    {
-        _hotelDbContext.Database.RollbackTransaction();
-    }
-      
+		public void Rollback()
+		{
+			_hotelDbContext.Database.RollbackTransaction();
+		}
 
-    protected virtual void Dispose(bool disposing)
-    {
 
-          if (!_disposed)
-          {
-              if (disposing)
-              {
-                _hotelDbContext.Dispose();
-              }
-          }
+		protected virtual void Dispose(bool disposing)
+		{
 
-            _disposed = true;
-    }
+			if (!_disposed)
+			{
+				if (disposing)
+				{
+					_hotelDbContext.Dispose();
+				}
+			}
 
-    public void Dispose()
-    {
-       Dispose(true);
-       GC.SuppressFinalize(this);
-    }
+			_disposed = true;
+		}
 
-        
-	}         
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
+		}
+
+
+	}
 }
+  
