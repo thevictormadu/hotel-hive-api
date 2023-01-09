@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.DTOs;
+﻿using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 
 namespace HotelManagement.Core.IServices
 {
@@ -9,6 +10,8 @@ namespace HotelManagement.Core.IServices
         Task<Response<GetHotelsDto>> GetHotelById(string Id);
         Task<Response<List<GetRoomDto>>> GetRoomsByAvailability(string HotelNmae, string RoomType);
         Task<Response<List<GetHotelByRatingsDto>>> GetHotelRating(string HotelName);
+        Task<Response<Hotel>> Create(AddHotelDto hotelDto);
+        Task<Response<List<GetRoomDto>>> GetHotelRoomsById(string HotelName, string RoomId);
 
     }
 }

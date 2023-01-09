@@ -10,10 +10,13 @@ namespace HotelManagement.Api.Controllers
     {
 
         private readonly IHotelService _hotelService;
+        
+
         public HotelController(IHotelService hotelService)
         {
 
             _hotelService = hotelService;
+            
         }
 
         [HttpGet]
@@ -48,6 +51,19 @@ namespace HotelManagement.Api.Controllers
             if (!result.Succeeded) return BadRequest(result);
             return Ok(result);
         }
-
+        [HttpGet("Available-Rooms-By-Id")]
+        public async Task<IActionResult> AvailableRoomsById(string HotelName, string RoomId)
+        {
+            var result = await _hotelService.GetHotelRoomsById(HotelName,RoomId);
+            if (!result.Succeeded) return BadRequest(result);
+            return Ok(result);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(AddHotelDto hotelDto)
+        {
+            var result = await _hotelService.Create(hotelDto);
+            if (!result.Succeeded) return BadRequest(result);
+            return Ok(result);
+        }
     }
 }

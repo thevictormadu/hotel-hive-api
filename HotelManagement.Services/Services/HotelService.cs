@@ -4,6 +4,7 @@ using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
 namespace HotelManagement.Services.Services
@@ -12,6 +13,7 @@ namespace HotelManagement.Services.Services
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
         public HotelService(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -95,8 +97,8 @@ namespace HotelManagement.Services.Services
             }
             catch (Exception ex)
             {
-
-                return Response<List<GetHotelByRatingsDto>>.Fail(ex.Message);
+                
+                return Response<List<GetHotelByRatingsDto>>.Fail("Error Loading...");
             }
         }
 
@@ -113,10 +115,36 @@ namespace HotelManagement.Services.Services
             }
             catch (Exception ex)
             {
-
-                return Response<List<GetRoomDto>>.Fail(ex.Message);
+                
+                return Response<List<GetRoomDto>>.Fail("Error Loading...");
             }
            
+        }
+        public async Task<Response<List<GetRoomDto>>> GetHotelRoomsById(string HotelName,string RoomId)
+        {
+            try
+            {
+                var rooms = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name.ToLower().Trim() == HotelName.ToLower().Trim())
+                .Result.RoomTypes.SelectMany(x => x.Rooms).Where(x=>x.IsBooked == false && x.Id == RoomId);
+                
+                var data = _mapper.Map<List<GetRoomDto>>(rooms);
+                if (data == null) return Response<List<GetRoomDto>>.Fail($" Room with Id {RoomId} is Not Available in Hotel {HotelName}");
+                return Response<List<GetRoomDto>>.Success(HotelName, data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return Response<List<GetRoomDto>>.Fail("Error Loading...");
+            }
+
+        }
+        public async Task<Response<Hotel>> Create(AddHotelDto hotelDto)
+        {
+            var mappedHotel = _mapper.Map<Hotel>(hotelDto);
+            if (mappedHotel == null) return Response<Hotel>.Fail("Hotel not Added");
+            await _unitOfWork.hotelRepository.AddAsync(mappedHotel);
+            _unitOfWork.SaveChanges();
+            return Response<Hotel>.Success("Successfully Created", mappedHotel);
         }
     }
 }
