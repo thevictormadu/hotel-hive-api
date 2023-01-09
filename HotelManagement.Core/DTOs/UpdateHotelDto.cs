@@ -18,7 +18,7 @@ namespace HotelManagement.Core.DTOs
         public string AccountNumber { get; set; }
         public string BankName { get; set; }
         public string? BankCode { get; set; }
-        public object Location { get; set; }
-        public object Rating { get; set; }
+        public string Location { get; set; }
+        public string Rating { get; set; }
     }
 }
