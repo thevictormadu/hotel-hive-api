@@ -37,7 +37,7 @@ namespace HotelManagement.Application.Utilities
             // Room Maps
             CreateMap<Room,AddRoomDto>().ReverseMap();
 
-
+            CreateMap<Room, AddRommDto>().ReverseMap();
             CreateMap<Room, GetRoomDto>().ReverseMap();
             // RoomType Maps
 

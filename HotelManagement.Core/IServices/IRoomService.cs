@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.DTOs;
+﻿using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace HotelManagement.Core.IServices
     {
         Task<Response<GetRoomDto>> GetRoombyId(string Id);
         Task<Response<string>>AddRoom(string RoomType_ID, string Hotel_Name, AddRoomDto addRoomDto);
+        Task<Response<Room>> Create(AddRommDto rommDto);
     }
 }
