@@ -73,7 +73,10 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			GC.SuppressFinalize(this);
 		}
 
-
-	}
+        public Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
   
