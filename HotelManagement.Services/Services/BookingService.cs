@@ -27,7 +27,7 @@ namespace HotelManagement.Services.Services
         }
         public async Task<Response<string>> CreateHotelBooking(BookingRequestDto bookingRequestDto)
         {
-            _logger.LogInformation($"Attempt to create hotel bookings for customer with id {bookingRequestDto.CustomerName}");
+            _logger.LogInformation($"Attempt to create hotel bookings for customer with id {bookingRequestDto.CustomerId}");
             var bookingRequest = _mapper.Map<Booking>(bookingRequestDto);
             bookingRequest.Id = Guid.NewGuid().ToString();
             // bookingRequest.CheckIn = DateTime.ParseExact($"{bookingRequest.CheckIn}","MM/dd/yy",CultureInfo.GetCultureInfo("en-NG"));

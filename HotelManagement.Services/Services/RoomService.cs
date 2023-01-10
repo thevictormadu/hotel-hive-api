@@ -5,6 +5,7 @@ using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
 using HotelManagement.Infrastructure.Context;
+using HotelManagement.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,14 @@ namespace HotelManagement.Services.Services
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly HotelDbContext _hotelDbContext;
+        private readonly IRoomRepository _roomRepository;
 
-        public RoomService(IUnitOfWork unitOfWork, IMapper mapper, HotelDbContext hotelDbContext)
+        public RoomService(IUnitOfWork unitOfWork, IMapper mapper, HotelDbContext hotelDbContext,IRoomRepository roomRepository)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _hotelDbContext = hotelDbContext;
+            _roomRepository = roomRepository;
         }
 
         public async Task<Response<string>> AddRoom(string RoomType_ID, string Hotel_Name, AddRoomDto addRoomDto)
@@ -51,6 +54,7 @@ namespace HotelManagement.Services.Services
             try
             {
                 var room = await _unitOfWork.roomRepository.GetByIdAsync(x => x.Id == Id);
+               
                 var data = _mapper.Map<GetRoomDto>(room);
                 if (data == null) return Response<GetRoomDto>.Fail("No Room Found");
                 return Response<GetRoomDto>.Success(Id, data);
@@ -60,6 +64,26 @@ namespace HotelManagement.Services.Services
 
                 return Response<GetRoomDto>.Fail(ex.Message);
             }
+        }
+
+        public async Task<Response<string>> DeleteRoomById(string id)
+        {
+            try
+            {
+                var room = _hotelDbContext.Rooms.FirstOrDefault(x => x.Id == id);
+                if (room == null)
+                    return Response<string>.Fail($"Room with {id} does not exist");
+                await _roomRepository.DeleteAsync(room);
+                _unitOfWork.SaveChanges();
+                return Response<string>.Success($"Room with {id} Sucessful Deleted",id);
+                
+            }
+            catch (Exception ex)
+            {
+
+                return Response<string>.Fail(ex.Message);
+            };
+
         }
     }
 }

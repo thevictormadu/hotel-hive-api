@@ -29,5 +29,13 @@ namespace HotelManagement.Api.Controllers
            var response=await _roomService.AddRoom(RoomType_ID, Hotel_Name, addRoomDto);
             return Ok(response);
         }
+
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> DeleteAsync(string Id)
+        {
+            var result = await _roomService.DeleteRoomById(Id);
+            if(!result.Succeeded) return BadRequest(result.Message);
+            return Ok(result);
+        }
     }
 }

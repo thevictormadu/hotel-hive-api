@@ -20,6 +20,7 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ITokenDetails, TokenDetails>();
             services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IRoomRepository, RoomRespository>();
 
 
             services.AddScoped<ICloudinaryService, CloudinaryService>();

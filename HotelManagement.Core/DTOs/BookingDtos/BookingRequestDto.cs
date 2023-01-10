@@ -17,8 +17,8 @@ namespace HotelManagement.Core.DTOs.BookingDtos
         // public DateTime CheckOut { get; set; }
         public int NoOfPeople { get; set; }
         public string ServiceName { get; set; }
-        public string CustomerName { get; set; }
-        public string RoomType { get; set; }
-        public string Hotel { get; set; }
+        public string CustomerId { get; set; }
+        public string RoomTypeId { get; set; }
+        public string HotelId { get; set; }
     }
 }
