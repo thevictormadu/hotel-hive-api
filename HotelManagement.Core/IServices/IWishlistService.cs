@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.Domains;
+﻿using HotelManagement.Application.Utility;
+using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace HotelManagement.Core.IServices
 {
     public interface IWishlistService
     {
-        Task<Response<GenericPagination<WishListDto>>> GetWishListAsync(string customerId, GenericPagination<WishListDto> pagination);
+        Task<Response<GenericPagination<WishListDto>>> GetWishListAsync(string customerId, int pageNumber, int pageSize);
     }
 }

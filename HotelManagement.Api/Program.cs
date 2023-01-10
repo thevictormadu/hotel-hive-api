@@ -72,7 +72,7 @@ namespace HotelManagement.Api
                 fv.ImplicitlyValidateChildProperties = true;
             });
 
-            //builder.Services.AddSwagger();
+            builder.Services.AddSwagger();
 
             //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "HotelManagementAPI", Version = "v1" });
             //    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

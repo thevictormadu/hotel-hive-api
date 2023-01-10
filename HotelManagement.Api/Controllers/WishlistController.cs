@@ -19,11 +19,11 @@ namespace HotelManagement.Api.Controllers
             _wishlistService = wishlistService;
         }
         [HttpGet("Get-Customer-Wishlist")]
-        public async Task<IActionResult> GetCustomerWishList([FromQuery][Required] string customerId, GenericPagination<WishListDto> pagination)
+        public async Task<IActionResult> GetCustomerWishList([FromQuery][Required] string customerId, int pageNumber, int pageSize)
         {
             try
             {
-                var response = await _wishlistService.GetWishListAsync(customerId, pagination) ;
+                var response = await _wishlistService.GetWishListAsync(customerId, pageNumber, pageSize) ;
                 if (response == null)
                 {
                     return BadRequest(response);

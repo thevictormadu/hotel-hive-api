@@ -25,26 +25,32 @@ namespace HotelManagement.Services.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<Response<GenericPagination<WishListDto>>> GetWishListAsync(string customerId, GenericPagination<WishListDto> pagination)
+        public async Task<Response<GenericPagination<WishListDto>>> GetWishListAsync(string customerId, int pageNumber, int pageSize)
         {
-            
-            var response = await _unitOfWork.wishlist.GetAllAsync(x=>x.CustomerId == customerId);
+            //get wishlist of a particular customer
+            var response = await _unitOfWork.wishlist.GetByIdAsync(x=>x.CustomerId == customerId);
             
 
             try
             {
                 if (response == null)
                 {
-                    Response<WishListDto>.Fail("unsuccessful", 400);
+                    // checks if the customer's wishlist is empty
+                  return  Response<GenericPagination<WishListDto>>.Fail("no wishlist for this customer", 400);
 
                 }
+                //maps wishlist response with the WishlistDto
                 var customerWishlistDto = _mapper.Map<IQueryable<WishListDto>>(response);
-                var data = GenericPagination<WishListDto>.ToPagedList(customerWishlistDto, pagination.CurrentPage,pagination.PageSize);
-                Response<GenericPagination<WishListDto>>.Success("successful", data, 200);
+
+                //paginates wishlist response
+                var data = GenericPagination<WishListDto>.ToPagedList(customerWishlistDto, pageNumber, pageSize);
+
+                //returns the paginated wishlist of the customer with {customerId}
+                return Response<GenericPagination<WishListDto>>.Success("customer's wishlist fetched", data, 200);
             }
             catch (Exception ex)
             {
-                Response<WishListDto>.Fail("unsuccessful", 400);
+              return  Response<GenericPagination<WishListDto>>.Fail(ex.Message, 400);
             }
             return null;
         }
