@@ -7,6 +7,8 @@
         IAmenityRepository AmenityRepository { get; }
         
 
+        IBookingRepository bookingRepository { get; }
+
         void SaveChanges();
 
         void BeginTransaction();

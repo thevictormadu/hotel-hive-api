@@ -99,8 +99,8 @@ namespace HotelManagement.Services.Services
             }
             catch (Exception ex)
             {
-                
-                return Response<List<GetHotelByRatingsDto>>.Fail("Error Loading...");
+
+                return Response<List<GetHotelByRatingsDto>>.Fail(ex.Message);
             }
         }
 
@@ -195,16 +195,6 @@ namespace HotelManagement.Services.Services
             }
         }
 
-
-        
-        public async Task<Response<Hotel>> Create(AddHotelDto hotelDto)
-        {
-            var mappedHotel = _mapper.Map<Hotel>(hotelDto);
-            if (mappedHotel == null) return Response<Hotel>.Fail("Hotel not Added");
-            await _unitOfWork.hotelRepository.AddAsync(mappedHotel);
-            _unitOfWork.SaveChanges();
-            return Response<Hotel>.Success("Successfully Created", mappedHotel);
-        }
     }
 }
 

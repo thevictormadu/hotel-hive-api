@@ -1,5 +1,4 @@
-﻿using HotelManagement.Core.Domains;
-using HotelManagement.Core.DTOs;
+﻿using HotelManagement.Core.DTOs;
 
 namespace HotelManagement.Core.IServices
 {
@@ -14,9 +13,6 @@ namespace HotelManagement.Core.IServices
         Task<Response<string>> AddHotel(string Manager_ID, AddHotelDto addHotelDto);
 
         Task<Response<string>> DeleteHotelById(string id);
-
-        Task<Response<Hotel>> Create(AddHotelDto hotelDto);
-        
 
     }
 }

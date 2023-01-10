@@ -12,13 +12,10 @@ namespace HotelManagement.Api.Controllers
     {
 
         private readonly IHotelService _hotelService;
-        
-
         public HotelController(IHotelService hotelService)
         {
 
             _hotelService = hotelService;
-            
         }
 
         [HttpGet]
