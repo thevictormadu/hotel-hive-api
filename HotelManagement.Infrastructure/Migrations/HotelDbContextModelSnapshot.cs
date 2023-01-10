@@ -178,8 +178,9 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<string>("PublicId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("RefreshToken")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("RefreshTokenExpiryTime")
                         .HasColumnType("datetime2");
@@ -234,6 +235,7 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("HotelId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsDeleted")
@@ -384,6 +386,10 @@ namespace HotelManagement.Infrastructure.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ManagerId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -393,6 +399,10 @@ namespace HotelManagement.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rating")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -861,9 +871,11 @@ namespace HotelManagement.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("HotelManagement.Core.Domains.Hotel", null)
+                    b.HasOne("HotelManagement.Core.Domains.Hotel", "Hotel")
                         .WithMany("Bookings")
-                        .HasForeignKey("HotelId");
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("HotelManagement.Core.Domains.RoomType", "RoomType")
                         .WithMany()
@@ -872,6 +884,8 @@ namespace HotelManagement.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
+
+                    b.Navigation("Hotel");
 
                     b.Navigation("RoomType");
                 });

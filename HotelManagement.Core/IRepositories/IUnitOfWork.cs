@@ -8,14 +8,13 @@
         ICustomerRepository customerRepository { get; }
         
 
+        IBookingRepository bookingRepository { get; }
+
         void SaveChanges();
 
         void BeginTransaction();
 
         void Rollback();
-
-
-     
-       
+        Task SaveChangesAsync();
     }
 }

@@ -36,7 +36,7 @@ namespace HotelManagement.Infrastructure.Context
                         item.Entity.UpdatedAt = DateTime.UtcNow;
                         break;
                    case EntityState.Deleted:
-                       item.Entity.IsDeleted = true;
+                       //item.Entity.IsDeleted = true;
                         break;
                     case EntityState.Added:
                         item.Entity.Id = Guid.NewGuid().ToString();

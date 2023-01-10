@@ -1,6 +1,12 @@
-﻿namespace HotelManagement.Core.Domains
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HotelManagement.Core.DTOs.BookingDtos
 {
-    public class Booking : BaseEntity
+    public class BookingResponseDto
     {
         public bool PaymentStatus { get; set; }
         public string BookingReference { get; set; }
@@ -8,13 +14,8 @@
         public DateTime CheckOut { get; set; }
         public int NoOfPeople { get; set; }
         public string ServiceName { get; set; }
-        public string HotelId { get; set; }
-        public Hotel Hotel { get; set; }
         public string CustomerId { get; set; }
-        public Customer Customer { get; set; }
         public string RoomTypeId { get; set; }
-        public RoomType RoomType { get; set; }
         public string PaymentId { get; set; }
-        public Payment Payment { get; set; }
     }
 }
