@@ -63,6 +63,7 @@ namespace HotelManagement.Services.Services
         }
         public async Task<Response<Room>> Create(AddRommDto rommDto)
         {
+
             var mappedRoom = _mapper.Map<Room>(rommDto);
             if (mappedRoom == null) return Response<Room>.Fail("Operation Not Successful");
             await _unitOfWork.roomRepository.AddAsync(mappedRoom);
