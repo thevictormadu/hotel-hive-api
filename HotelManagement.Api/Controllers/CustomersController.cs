@@ -38,7 +38,8 @@ namespace HotelManagement.Api.Controllers
 
             catch (Exception ex)
             {
-                //log errors
+                //log the errors
+                // catch exception
                 return StatusCode(500, ex.Message);
             }
 
