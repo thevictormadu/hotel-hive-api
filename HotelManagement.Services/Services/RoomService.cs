@@ -61,6 +61,20 @@ namespace HotelManagement.Services.Services
                 return Response<GetRoomDto>.Fail(ex.Message);
             }
         }
+
+        public async Task<Response<GetRoomDto>> GetSingleRoom(string Id)
+        {
+            try
+            {
+                var SingleRoom = await _unitOfWork.roomRepository.GetByIdAsync(x => x.Id == Id);
+                var MapData = _mapper.Map<GetRoomDto>(SingleRoom);
+                return MapData == null ? Response<GetRoomDto>.Fail("Room does not Exist") : Response<GetRoomDto>.Success(Id, MapData);
+            }
+            catch (Exception ex)
+            {
+                return Response<GetRoomDto>.Fail(ex.Message);
+            }
+        }
         public async Task<Response<Room>> Create(AddRommDto rommDto)
         {
 
