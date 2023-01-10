@@ -59,7 +59,7 @@ namespace HotelManagement.Application.Utilities
             //TransactionResponse Mapper
 
             //Transaction Maps
-            CreateMap<Payment, PaymentDTO>();
+            CreateMap<Payment, PaymentDTO>().ReverseMap();
 
 
 
