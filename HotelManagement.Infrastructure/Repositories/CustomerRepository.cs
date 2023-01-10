@@ -13,6 +13,7 @@ namespace HotelManagement.Infrastructure.Repositories
     {
         public CustomerRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
         {
+
         }
     }
 }
