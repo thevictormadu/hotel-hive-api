@@ -9,14 +9,14 @@ namespace HotelManagement.Core.DTOs
 {
     public class GetCustomerDto
     {
-        public string CreditCard { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Gender { get; set; }
+        public int Age { get; set; }
         public string Address { get; set; }
         public string State { get; set; }
-        public AppUserCustomerDto AppUserCustomerDto { get; set; }
-        //public AppUser AppUser { get; set; }
-        //public ICollection<Booking> Bookings { get; set; }
-        //public ICollection<WishList> WishLists { get; set; }
-        //public ICollection<Review> Reviews { get; set; }
-        //public ICollection<Rating> Ratings { get; set; }
+        public bool IsActive { get; set; }
+        public string Avatar { get; set; }
+
     }
 }
