@@ -109,9 +109,9 @@ namespace HotelManagement.Services.Services
             try
             {
                 var roomsByAvailability = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name == HotelNmae)
-                .Result.RoomTypes.Where(x => x.Name == RoomType).SelectMany(x => x.Rooms);
-                var rooms = roomsByAvailability.Where(x => x.IsBooked == false).Select(x => x);
-                var data = _mapper.Map<List<GetRoomDto>>(rooms);
+                .Result.RoomTypes.Where(x => x.Name == RoomType).SelectMany(x => x.Rooms).Where(x => x.IsBooked == false).Select(x => x);
+                
+                var data = _mapper.Map<List<GetRoomDto>>(roomsByAvailability);
                 if (data == null) return Response<List<GetRoomDto>>.Fail($"{HotelNmae} Has No Room Available For {RoomType} RoomType");
                 return Response<List<GetRoomDto>>.Success(HotelNmae, data);
             }
