@@ -123,20 +123,20 @@ namespace HotelManagement.Services.Services
            
         }
 
-        public async Task<Response<List<GetRoomDto>>> GetAvailableRoomsBy(string HotelName, string roomId)
+        public async Task<Response<GetRoomDto>> GetAvailableRoomsBy(string HotelName, string roomId)
         {
             try
             {
-                var rooms = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name.ToLower().Trim() == HotelName.ToLower().Trim())
-                .Result.RoomTypes.SelectMany(x => x.Rooms).Where(x=>x.IsBooked == false && x.Id == roomId);
-                var data = _mapper.Map<List<GetRoomDto>>(rooms);
-                if (data == null) return Response<List<GetRoomDto>>.Fail($"{HotelName} Has No Room Available");
-                return Response<List<GetRoomDto>>.Success(HotelName, data);
+                var room = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name.ToLower().Trim() == HotelName.ToLower().Trim())
+                .Result.RoomTypes.SelectMany(x => x.Rooms).Where(x=>x.IsBooked == false && x.Id == roomId).FirstOrDefault();
+                var data = _mapper.Map<GetRoomDto>(room);
+                if (data == null) return Response<GetRoomDto>.Fail($"{HotelName} Has No Room Available");
+                return Response<GetRoomDto>.Success(HotelName, data);
             }
             catch (Exception ex)
             {
 
-                return Response<List<GetRoomDto>>.Fail($"{HotelName} Has No Room Available");
+                return Response<GetRoomDto>.Fail($"{HotelName} Has No Room Available");
             }
 
         }
