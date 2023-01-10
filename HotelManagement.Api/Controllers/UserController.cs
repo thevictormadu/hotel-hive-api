@@ -14,7 +14,9 @@ namespace HotelManagement.Api.Controllers
 
         public UserController(ICloudinaryService cloudinaryService)
         {
+            //Added the cloudinary service
             _cloudinaryService = cloudinaryService;
+            
         }
 
         //[Authorize]
