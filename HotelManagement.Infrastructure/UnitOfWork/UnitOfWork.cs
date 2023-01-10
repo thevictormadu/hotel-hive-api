@@ -21,17 +21,24 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		//public UnitOfWork(HotelDbContext hotelDbContext)
        // private IAmenityRepository _amenityRepository;
 		private IBookingRepository _bookingRepository;
-        public UnitOfWork(HotelDbContext hotelDbContext)
+		public UnitOfWork(HotelDbContext hotelDbContext)
 		{
-			_hotelDbContext = hotelDbContext;
+            _hotelDbContext = hotelDbContext;
+        }
+
+		private ICustomerRepository _customerRepository;
+		//public UnitOfWork(HotelDbContext hotelDbContext)
+		//{
+		//	_hotelDbContext = hotelDbContext;
 		
-		}
+		//}
 		public IHotelRepository hotelRepository =>
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
 
-
+        public ICustomerRepository customerRepository =>
+         _customerRepository ??= new CustomerRepository(_hotelDbContext);
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);

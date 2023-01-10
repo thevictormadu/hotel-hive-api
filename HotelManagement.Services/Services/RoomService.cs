@@ -85,5 +85,28 @@ namespace HotelManagement.Services.Services
             };
 
         }
+
+        public async Task<Response<GetRoomDto>> GetSingleRoom(string Id)
+        {
+            try
+            {
+                var SingleRoom = await _unitOfWork.roomRepository.GetByIdAsync(x => x.Id == Id);
+                var MapData = _mapper.Map<GetRoomDto>(SingleRoom);
+                return MapData == null ? Response<GetRoomDto>.Fail("Room does not Exist") : Response<GetRoomDto>.Success(Id, MapData);
+            }
+            catch (Exception ex)
+            {
+                return Response<GetRoomDto>.Fail(ex.Message);
+            }
+        }
+        public async Task<Response<Room>> Create(AddRommDto rommDto)
+        {
+
+            var mappedRoom = _mapper.Map<Room>(rommDto);
+            if (mappedRoom == null) return Response<Room>.Fail("Operation Not Successful");
+            await _unitOfWork.roomRepository.AddAsync(mappedRoom);
+            return Response<Room>.Success(" Room Created Successfully", mappedRoom);
+
+        }
     }
 }

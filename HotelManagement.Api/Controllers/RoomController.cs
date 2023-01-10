@@ -30,6 +30,13 @@ namespace HotelManagement.Api.Controllers
             return Ok(response);
         }
 
+        [HttpGet("get-single-room")]
+        public async Task<IActionResult> GetSingleRoom(string Id)
+        {
+            var room = await _roomService.GetSingleRoom(Id);
+            return room.Succeeded ? Ok(room) : BadRequest(room.Message);
+        }
+
         [HttpDelete("{Id}")]
         public async Task<IActionResult> DeleteAsync(string Id)
         {
