@@ -12,9 +12,6 @@ namespace HotelManagement.Core.Domains
         public string RoomNo { get; set; }
         public bool IsBooked { get; set; }
         public RoomType Roomtype { get; set; }
-        ////Added Hotels
-        public string HotelId { get; set; }
-        ////Added
-        public Hotel Hotel { get; set; }
+      
     }
 }

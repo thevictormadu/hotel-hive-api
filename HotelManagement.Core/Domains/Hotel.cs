@@ -20,8 +20,6 @@ namespace HotelManagement.Core.Domains
         public string ManagerId { get; set; }
         public Manager Manager { get; set; }
         public ICollection<WishList> WishLists { get; set; }
-        ////Added the rooms navigational property
-        public ICollection<Room> Rooms { get; set; }
         public ICollection<Review> Reviews { get; set; }
         public ICollection<Rating> Ratings { get; set; }
         public ICollection<RoomType> RoomTypes { get; set; }

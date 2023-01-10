@@ -40,8 +40,6 @@ namespace HotelManagement.Services.Services
                 // Find the manager with the specified ID and include the hotels, rooms, room types, and bookings associated with the manager
                 var manager = await _hotelDbContext.Managers
                     .Include(m => m.Hotels)
-                        .ThenInclude(h => h.Rooms)
-                    .Include(m => m.Hotels)
                         .ThenInclude(h => h.RoomTypes)
                     .Include(m => m.Hotels)
                         .ThenInclude(h => h.Bookings)
