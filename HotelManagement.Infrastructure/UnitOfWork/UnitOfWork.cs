@@ -18,7 +18,9 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private IHotelRepository _hotelRepository;
 		private IRoomRepository _roomRepository;
 		private IAmenityRepository _amenityRepository;
-		public UnitOfWork(HotelDbContext hotelDbContext)
+        private IWishlistRepository _wishlistRepository;
+
+        public UnitOfWork(HotelDbContext hotelDbContext)
 		{
 			_hotelDbContext = hotelDbContext;
 		
@@ -27,29 +29,19 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
-
-
-    public class UnitOfWork : IUnitOfWork
-    {
-        private readonly HotelDbContext _hotelDbContext;
-        private bool _disposed;
-        private  IWishlistRepository _wishlistRepository;
-
-    public UnitOfWork (HotelDbContext hotelDbContext)
-	{
-        _hotelDbContext = hotelDbContext;
-	}
        
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
+        public IWishlistRepository wishlist =>
+           _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
+
         public void BeginTransaction()
 		{
 			_disposed = false;
 		}
 
-        public IWishlistRepository wishlist =>
-            _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
+       
     public void SaveChanges()
     {
        _hotelDbContext.SaveChangesAsync();

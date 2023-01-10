@@ -30,7 +30,9 @@ namespace HotelManagement.Application.Utilities
             CreateMap<Hotel, UpdateHotelDto>().ReverseMap();
            // CreateMap<Hotel, GetHotelsDto>().ReverseMap();
            CreateMap<Rating,GetHotelByRatingsDto>().ReverseMap();
-            CreateMap<Hotel,AddHotelDto>().ReverseMap();    
+            CreateMap<Hotel,AddHotelDto>().ReverseMap();
+            CreateMap<WishList, WishListDto>().ReverseMap();
+
 
 
 

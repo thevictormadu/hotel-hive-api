@@ -5,10 +5,11 @@
         IHotelRepository hotelRepository { get; }
         IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
+        IWishlistRepository wishlist { get; }
         
 
         void SaveChanges();
-     IWishlistRepository wishlist { get; }
+     
         void BeginTransaction();
 
         void Rollback();
