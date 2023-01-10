@@ -26,6 +26,7 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IHotelService, HotelService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IHotelStatisticsService, HotelStatisticsService>();
 
             // Add Repository Injections Here
             services.AddScoped<IHotelRepository, HotelRepository>();
