@@ -9,6 +9,7 @@
         
 
         IBookingRepository bookingRepository { get; }
+        ITransactionsRepository transactionsRepository { get; }
 
         void SaveChanges();
 
