@@ -12,13 +12,10 @@ namespace HotelManagement.Api.Controllers
     {
 
         private readonly IHotelService _hotelService;
-        
-
         public HotelController(IHotelService hotelService)
         {
 
             _hotelService = hotelService;
-            
         }
 
         [HttpGet]
@@ -44,13 +41,6 @@ namespace HotelManagement.Api.Controllers
         {
             var result = await _hotelService.GetRoomsByAvailability(HotelName,RoomType);
             if(!result.Succeeded) return BadRequest(result);
-            return Ok(result);
-        }
-        [HttpGet("Rooms-Availability-By-Id")]
-        public async Task<IActionResult> RoomsAvailableById(string HotelName, string roomId)
-        {
-            var result = await _hotelService.GetAvailableRoomsBy(HotelName,roomId);
-            if (!result.Succeeded) return BadRequest(result);
             return Ok(result);
         }
         [HttpGet("Ratings")]
