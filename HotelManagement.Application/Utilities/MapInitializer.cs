@@ -4,6 +4,7 @@ using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using System.Linq;
 using HotelManagement.Core.DTOs.BookingDtos;
+using HotelManagement.Core.DTOs.ReviewDTOs;
 
 namespace HotelManagement.Application.Utilities
 {
@@ -73,6 +74,8 @@ namespace HotelManagement.Application.Utilities
 
 
             //Customer
+            CreateMap<Customer, GetCustomerDto>().ReverseMap();
+
             CreateMap<Customer,AddCustomerAddressDto>().ReverseMap();
 
 
@@ -88,6 +91,7 @@ namespace HotelManagement.Application.Utilities
 
 
             //Review Maps
+            CreateMap<Review, UpdateReviewDto>().ReverseMap();
 
 
             // IWshList Maps
@@ -103,7 +107,9 @@ namespace HotelManagement.Application.Utilities
             .ForPath(dest => dest.Discount, opt => opt.MapFrom(src => src.Hotel.RoomTypes.Select(x => x.Discount)));
 
             // Transaction Maps
-            CreateMap<PaymentDTO, Payment>().ReverseMap();
+
+            CreateMap<Payment, PaymentDTO>().ReverseMap();
+
 
             //Manager Maps
 
