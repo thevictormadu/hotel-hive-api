@@ -456,4 +456,5 @@ $RECYCLE.BIN/
 appsettings.json
 appsettings.[Dd]evelopment.json
 /HotelManagement.Api/appsettings.json
-/HotelManagement.Infrastructure/Repositories/CustomerRepository.cs
+/HotelManagement.Api/appsettings.Development.json
+/HotelManagement.Api/appsettings.Development.json
