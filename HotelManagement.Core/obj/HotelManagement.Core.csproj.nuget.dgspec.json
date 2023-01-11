@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Desktop\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj": {}
+    "C:\\Users\\Decagon001\\Desktop\\LiveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Desktop\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj": {
+    "C:\\Users\\Decagon001\\Desktop\\LiveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Decagon001\\Desktop\\LiveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
         "projectName": "HotelManagement.Core",
-        "projectPath": "C:\\Users\\hp\\Desktop\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
-        "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\HotelManagementSystemSQ012\\HotelManagement.Core\\obj\\",
+        "projectPath": "C:\\Users\\Decagon001\\Desktop\\LiveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
+        "packagesPath": "C:\\Users\\Decagon001\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Decagon001\\Desktop\\LiveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Decagon001\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,6 +48,10 @@
             "CloudinaryDotNet": {
               "target": "Package",
               "version": "[1.20.0, )"
+            },
+            "Microsoft.AspNet.Identity.EntityFramework": {
+              "target": "Package",
+              "version": "[2.2.3, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -81,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
