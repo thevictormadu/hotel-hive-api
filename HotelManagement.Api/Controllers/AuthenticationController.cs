@@ -31,6 +31,7 @@ namespace HotelManagement.Api.Controllers
             if (login.Succeeded == false) return Unauthorized(login);
             return Ok(login);
         }
+
         [Authorize]
         [HttpGet("Refresh-Token")]
         public async Task<IActionResult> RefreshToken()
