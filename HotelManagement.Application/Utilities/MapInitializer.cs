@@ -73,7 +73,7 @@ namespace HotelManagement.Application.Utilities
 
 
             //Customer
-
+            CreateMap<Customer,AddCustomerAddressDto>().ReverseMap();
 
 
             //TransactionResponse Mapper
@@ -113,7 +113,7 @@ namespace HotelManagement.Application.Utilities
 
 
             //Manager Request Map
-
+            CreateMap<ManagerRequest, ManagerRequestDTO>().ReverseMap();
 
         }
     }
