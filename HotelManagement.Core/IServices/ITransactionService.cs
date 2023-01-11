@@ -19,3 +19,5 @@ namespace HotelManagement.Core.IServices
 
     }
 }
+
+

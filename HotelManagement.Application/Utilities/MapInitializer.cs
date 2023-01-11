@@ -103,7 +103,7 @@ namespace HotelManagement.Application.Utilities
             .ForPath(dest => dest.Discount, opt => opt.MapFrom(src => src.Hotel.RoomTypes.Select(x => x.Discount)));
 
             // Transaction Maps
-
+            CreateMap<PaymentDTO, Payment>().ReverseMap();
 
             //Manager Maps
 
