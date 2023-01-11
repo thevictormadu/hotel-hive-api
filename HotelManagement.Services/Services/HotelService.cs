@@ -210,6 +210,22 @@ namespace HotelManagement.Services.Services
                 return Response<UpdateHotelDto>.Fail(ex.Message);
             }
         }
+        public async Task<Response<List<GetHotelByRatingsDto>>> GetHotelByState(string State)
+        {
+            try
+            {
+                var Hotels =await  _unitOfWork.hotelRepository.GetAllAsync(x=>x.State.ToLower().Trim()== State.ToLower().Trim());
+                var mappedHotels = _mapper.Map<List<GetHotelByRatingsDto>>(Hotels);
+
+                if (mappedHotels == null) return Response<List<GetHotelByRatingsDto>>.Fail($"Hotel Not Found in {State}");
+                return Response<List<GetHotelByRatingsDto>>.Success(State, mappedHotels);
+            }
+            catch (Exception ex)
+            {
+
+                return Response<List<GetHotelByRatingsDto>>.Fail(ex.Message);
+            }
+        }
 
     }
 }

@@ -20,7 +20,9 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<ITokenDetails, TokenDetails>();
             services.AddScoped<IBookingService, BookingService>();
-            services.AddScoped<ITransactionsServices, TransactionsServices>();
+            services.AddScoped<IRoomRepository, RoomRespository>();
+            services.AddScoped<ITransactionService, TransactionService>();
+
 
 
             services.AddScoped<ICloudinaryService, CloudinaryService>();
@@ -34,17 +36,13 @@ namespace HotelManagement.Api.Extensions
             //services.AddScoped<IHotelRepository, HotelRepository>();
             services.AddScoped<IAmenityRepository, AmenityRepository>();
             services.AddScoped<IAmenityService, AmenityService>();
-<<<<<<< HEAD
             services.AddScoped<ITransactionsRepository, TransactionsRepository>();
-            services.AddScoped<ITransactionService, TransactionService>();
+        
 
-=======
             services.AddScoped<IBookingRepository, BookingRepository>();
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<ITransactionsRepository, TransactionsRepository>();
->>>>>>> cee4b77ddffcd30a6a829434f8c9a5d9e504d6a2
             // Add Model Services Injection Here
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

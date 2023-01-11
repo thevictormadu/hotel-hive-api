@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
-    public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
+    public class ManagerRepository: GenericRepository<Manager>, IManagerRepository
     {
-        public CustomerRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
+        public ManagerRepository(HotelDbContext hotelDbContext):base(hotelDbContext)
         {
-
+                
         }
     }
 }

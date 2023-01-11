@@ -7,9 +7,8 @@
         IAmenityRepository AmenityRepository { get; }
         ICustomerRepository customerRepository { get; }
         
-
+        IManagerRepository managerRepository { get; }
         IBookingRepository bookingRepository { get; }
-        ITransactionsRepository transactionsRepository { get; }
 
         void SaveChanges();
 
