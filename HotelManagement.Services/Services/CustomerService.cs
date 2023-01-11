@@ -64,9 +64,5 @@ namespace HotelManagement.Services.Services
                 }
             
         }
-
-        
     }
 }
-
-

@@ -11,6 +11,4 @@ namespace HotelManagement.Core.IServices
     {
         Task<Response<List<GetCustomerDto>>> GetCustomers(int pageNo);
     }
-
-
 }
