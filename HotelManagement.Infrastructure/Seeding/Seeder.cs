@@ -82,7 +82,7 @@ namespace HotelManagement.Infrastructure.Seeding
                     await userManager.AddToRoleAsync(hbaUsers[i], "Customer");
                 }
             }
-
+           
             await dbContext.SaveChangesAsync();
         }
 

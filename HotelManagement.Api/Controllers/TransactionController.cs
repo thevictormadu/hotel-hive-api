@@ -1,10 +1,9 @@
-
-using HotelManagement.Core.IServices;
-using Microsoft.AspNetCore.Authorization;
 ﻿using HotelManagement.Core;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
 using HotelManagement.Core.Enums;
+using HotelManagement.Core.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +13,6 @@ namespace HotelManagement.Api.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-
         private ITransactionService _transactionService;
 
         public TransactionController(ITransactionService transactionService) 
@@ -65,21 +63,6 @@ namespace HotelManagement.Api.Controllers
 
         }
 
-        [HttpGet("DisplayAllTransactionForAdmin")]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetAllTransactionForAdmin()
-        {
-
-            var result = await _transactionService.DisplayAllTransactionToAdmin();
-
-            if (!result.Succeeded) return BadRequest($"unable to get transactions{result}");
-            return Ok(result);
-
-
-        }
-
-
-
         [HttpGet("customerId/hotel/hotelId/transactions"), Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Get(string customerId, string hotelId, int pageNumber, int pageSize)
         {
@@ -98,6 +81,5 @@ namespace HotelManagement.Api.Controllers
             }
 
         }
-
     }
 }
