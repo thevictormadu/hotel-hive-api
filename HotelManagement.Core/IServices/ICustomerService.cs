@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IServices
 {
-    public interface IAuthService
+    public interface ICustomerService
     {
-        Task<object> Login(LoginDTO model);
-        Task<object> Register(RegisterDTO user);
+        Task<Response<List<GetCustomerDto>>> GetCustomers(int pageNo);
     }
 }
