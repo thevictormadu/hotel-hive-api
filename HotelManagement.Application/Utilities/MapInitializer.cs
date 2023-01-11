@@ -31,6 +31,11 @@ namespace HotelManagement.Application.Utilities
                 .ForPath(dest => dest.Customer.AppUser.LastName, opt => opt.MapFrom(src => src.CustomerId))
                 .ForPath(dest => dest.Customer.AppUser.FirstName, opt => opt.MapFrom(src => src.CustomerId));
                 //.ForMember(x => x.Customer.AppUser.LastName, y => y.MapFrom(src => src.CustomerName));
+                .ForPath(dest => dest.RoomType.Name, opt => opt.MapFrom(src => src.RoomTypeId))
+                .ForPath(dest => dest.RoomType.Hotel.Name, opt => opt.MapFrom(src => src.HotelId))
+                .ForPath(dest => dest.Customer.AppUser.LastName, opt => opt.MapFrom(src => src.CustomerId))
+                .ForPath(dest => dest.Customer.AppUser.FirstName, opt => opt.MapFrom(src => src.CustomerId));
+                 //.ForMember(x => x.Customer.AppUser.LastName, y => y.MapFrom(src => src.CustomerName));
             CreateMap<Booking, BookingResponseDto>().ReverseMap();
 
             // Hotel Maps
