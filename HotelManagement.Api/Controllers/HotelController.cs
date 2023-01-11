@@ -93,6 +93,14 @@ namespace HotelManagement.Api.Controllers
             // Otherwise, return a Bad Request response with the error message
             return BadRequest(result.Message);
         }
+        [HttpGet("By-State")]
+        public async Task<IActionResult> GetHotelByState(string State)
+        {
+            var result = await _hotelService.GetHotelByState(State);
+            if (!result.Succeeded) return BadRequest(result);
+            return Ok(result);
+        }
+
 
     }
 
