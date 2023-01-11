@@ -63,7 +63,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
 		public void Dispose()
 		{
-			Dispose(true);
+			//Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 

@@ -83,7 +83,7 @@ namespace HotelManagement.Services.Services
             var subject = "Manager request Approval for Hotel listing platform";
             //https://localhost:7255/api/Authentication/Login
             var content = $"Click on this link to register as a manager <a href='https://localhost:7255/api/ManagerRequest/Register/' target='_blank'>Register</a> " +
-                $"You can also copy an paste to you another tap: https://localhost:7255/api/ManagerRequest/" +
+                $"You can also copy and paste to another tab: https://localhost:7255/api/ManagerRequest/" +
                 $"\n\r Link expires in 5-days";
             var message = new EmailMessage(new List<string> { manager.Email }, subject, content);
             await _emailService.SendEmailAsync(message);
@@ -101,7 +101,7 @@ namespace HotelManagement.Services.Services
 
             var jwt = new JwtSecurityTokenHandler().ReadJwtToken(token);
             var x = jwt.Claims;
-            string user = jwt.Claims.First(c => c.Type == "NameIdentifier").Value;
+            string user = jwt.Claims.First(c => c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value;
             var manager = await _managerRequestRepository.GetManagerRequestById(user);
             if (manager == null)
             {
