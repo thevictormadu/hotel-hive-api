@@ -2,8 +2,6 @@
 using AutoMapper;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
-using HotelManagement.Core.Domains;
-using HotelManagement.Core.DTOs;
 using System.Linq;
 using HotelManagement.Core.DTOs.BookingDtos;
 
@@ -72,7 +70,6 @@ namespace HotelManagement.Application.Utilities
             //TransactionResponse Mapper
 
             //Transaction Maps
-
 
 
             // aminity
