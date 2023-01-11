@@ -30,9 +30,12 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<IHotelService, HotelService>();
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IHotelStatisticsService, HotelStatisticsService>();
+            services.AddScoped<IWishlistService, WishlistService>();
+
 
             // Add Repository Injections Here
             services.AddScoped<IHotelRepository, HotelRepository>();
+            services.AddScoped<IWishlistRepository, WishlistRepository>();
             //services.AddScoped<IHotelRepository, HotelRepository>();
             services.AddScoped<IAmenityRepository, AmenityRepository>();
             services.AddScoped<IAmenityService, AmenityService>();
