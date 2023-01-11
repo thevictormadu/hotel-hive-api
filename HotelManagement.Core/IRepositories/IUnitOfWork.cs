@@ -5,7 +5,11 @@
         IHotelRepository hotelRepository { get; }
         IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
-        ITransactionRepository transactionRepository { get; }
+        ICustomerRepository customerRepository { get; }
+        
+
+        IBookingRepository bookingRepository { get; }
+        ITransactionsRepository transactionsRepository { get; }
 
         void SaveChanges();
 

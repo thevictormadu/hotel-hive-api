@@ -20,11 +20,11 @@ namespace HotelManagement.Services.Services
     public class TransactionService : ITransactionService
     {
         private readonly IMapper _mapper;
-        private readonly ITransactionRepository _transRepo;
+        private readonly ITransactionsRepository _transRepo;
         protected DbSet<Payment> _dbSet;
         private readonly IUnitOfWork _unitOfWork;
 
-        public TransactionService(IMapper mapper, IUnitOfWork unitOfWork, ITransactionRepository transRepo)
+        public TransactionService(IMapper mapper, IUnitOfWork unitOfWork, ITransactionsRepository transRepo)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;

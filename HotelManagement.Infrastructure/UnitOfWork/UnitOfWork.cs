@@ -17,27 +17,52 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private bool _disposed;
 		private IHotelRepository _hotelRepository;
 		private IRoomRepository _roomRepository;
+<<<<<<< HEAD
         private IAmenityRepository _amenityRepository;
-		private ITransactionRepository _transactionRepository;
+		private ITransactionsRepository _transactionRepository;
         public UnitOfWork(HotelDbContext hotelDbContext)
+=======
+		private IAmenityRepository _amenityRepository;
+		//public UnitOfWork(HotelDbContext hotelDbContext)
+       // private IAmenityRepository _amenityRepository;
+		private IBookingRepository _bookingRepository;
+		public UnitOfWork(HotelDbContext hotelDbContext)
+>>>>>>> cee4b77ddffcd30a6a829434f8c9a5d9e504d6a2
 		{
-			_hotelDbContext = hotelDbContext;
-		
-		}
+            _hotelDbContext = hotelDbContext;
+        }
+
+		private ICustomerRepository _customerRepository;
+		private ITransactionsRepository _transactionsRepository;
+
+		//public UnitOfWork(HotelDbContext hotelDbContext)
+		//{
+		//	_hotelDbContext = hotelDbContext;
+
+		//}
 		public IHotelRepository hotelRepository =>
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
 
-
+        public ICustomerRepository customerRepository =>
+         _customerRepository ??= new CustomerRepository(_hotelDbContext);
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
 
-		public ITransactionRepository transactionRepository =>
-		 _transactionRepository ??= new TransactionRepository(_hotelDbContext);
+<<<<<<< HEAD
+		public ITransactionsRepository transactionRepository =>
+		 _transactionRepository ??= new TransactionsRepository(_hotelDbContext);
 
 		public void BeginTransaction()
+=======
+		public IBookingRepository bookingRepository =>
+			_bookingRepository ??= new BookingRepository(_hotelDbContext);
+        public ITransactionsRepository transactionsRepository =>
+            _transactionsRepository ??= new TransactionsRepository(_hotelDbContext);
+        public void BeginTransaction()
+>>>>>>> cee4b77ddffcd30a6a829434f8c9a5d9e504d6a2
 		{
 			_disposed = false;
 		}

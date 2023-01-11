@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="JsonFIle\Users.json" />
   </ItemGroup>
 
