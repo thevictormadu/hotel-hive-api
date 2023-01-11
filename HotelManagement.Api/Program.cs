@@ -13,6 +13,7 @@ namespace HotelManagement.Api
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
 
@@ -34,11 +35,7 @@ namespace HotelManagement.Api
 
             builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
             (builder.Configuration.GetConnectionString("ConnStr")));
-            builder.Services.AddDbContext<ManagerRequestDbContext>(options => options.UseSqlServer
-            (builder.Configuration.GetConnectionString("ConnStr")));
-            builder.Services.AddDbContext<ManagerInviteDbContext>(options => options.UseSqlServer
-            (builder.Configuration.GetConnectionString("ConnStr")));
-
+            
 
             //builder.Services.AddControllers();
             // Configure Mailing Service
