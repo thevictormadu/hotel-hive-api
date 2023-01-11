@@ -23,6 +23,7 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IRoomRepository, RoomRespository>();
             services.AddScoped<ITransactionService, TransactionService>();
+            services.AddScoped<ILogger,Logger<TransactionService>>();
 
 
 
