@@ -22,7 +22,9 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private IManagerRepository _managerRepository;
         private ICustomerRepository _customerRepository;
         private IBookingRepository _bookingRepository;
-		public UnitOfWork(HotelDbContext hotelDbContext)
+        private IWishlistRepository _wishlistRepository;
+        public UnitOfWork(HotelDbContext hotelDbContext)
+
 		{
             _hotelDbContext = hotelDbContext;
         }
@@ -31,6 +33,9 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
+
+        public IWishlistRepository wishlist =>
+          _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
 
         public ICustomerRepository customerRepository =>
          _customerRepository ??= new CustomerRepository(_hotelDbContext);
@@ -51,11 +56,11 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			_disposed = false;
 		}
 
-
-		public void SaveChanges()
-		{
-			_hotelDbContext.SaveChangesAsync();
-		}
+       
+    public void SaveChanges()
+    {
+       _hotelDbContext.SaveChangesAsync();
+    }
 
 		public void Rollback()
 		{
