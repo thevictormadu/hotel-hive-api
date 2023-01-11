@@ -17,28 +17,16 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private bool _disposed;
 		private IHotelRepository _hotelRepository;
 		private IRoomRepository _roomRepository;
-<<<<<<< HEAD
         private IAmenityRepository _amenityRepository;
 		private ITransactionsRepository _transactionRepository;
-        public UnitOfWork(HotelDbContext hotelDbContext)
-=======
-		private IAmenityRepository _amenityRepository;
 		private IManagerRepository _managerRepository;
-		//public UnitOfWork(HotelDbContext hotelDbContext)
-       // private IAmenityRepository _amenityRepository;
-		private IBookingRepository _bookingRepository;
+        private ICustomerRepository _customerRepository;
+        private IBookingRepository _bookingRepository;
 		public UnitOfWork(HotelDbContext hotelDbContext)
->>>>>>> cee4b77ddffcd30a6a829434f8c9a5d9e504d6a2
 		{
             _hotelDbContext = hotelDbContext;
         }
 
-		private ICustomerRepository _customerRepository;
-		//public UnitOfWork(HotelDbContext hotelDbContext)
-		//{
-		//	_hotelDbContext = hotelDbContext;
-		
-		//}
 		public IHotelRepository hotelRepository =>
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
@@ -51,17 +39,14 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
+        public IBookingRepository bookingRepository =>
+            _bookingRepository ??= new BookingRepository(_hotelDbContext);
 
-<<<<<<< HEAD
-		public ITransactionsRepository transactionRepository =>
+        public ITransactionsRepository transactionRepository =>
 		 _transactionRepository ??= new TransactionsRepository(_hotelDbContext);
 
 		public void BeginTransaction()
-=======
-		public IBookingRepository bookingRepository =>
-			_bookingRepository ??= new BookingRepository(_hotelDbContext);
-        public void BeginTransaction()
->>>>>>> cee4b77ddffcd30a6a829434f8c9a5d9e504d6a2
+
 		{
 			_disposed = false;
 		}
