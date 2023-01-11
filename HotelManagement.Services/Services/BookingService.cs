@@ -20,11 +20,13 @@ namespace HotelManagement.Services.Services
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<BookingService> _logger;
-        public BookingService(IMapper mapper, IUnitOfWork unitOfWork, ILogger<BookingService> logger)
+        private readonly IBookingRepository _bookingRepository;
+        public BookingService(IMapper mapper, IUnitOfWork unitOfWork, ILogger<BookingService> logger, IBookingRepository bookingRepository)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             _logger = logger;
+            _bookingRepository = bookingRepository;
         }
         public async Task<Response<string>> CreateHotelBooking(BookingRequestDto bookingRequestDto)
         {
