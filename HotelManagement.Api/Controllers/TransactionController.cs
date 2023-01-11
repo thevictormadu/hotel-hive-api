@@ -19,8 +19,28 @@ namespace HotelManagement.Api.Controllers
         {
             _transactionService = transactionService; 
         }
+        //Display all transaction for admin controller
+        [HttpGet("DisplayAllTransactionforAdmin")]
+        [Authorize(Roles ="Admin")]
+        public async Task<IActionResult> DisplayAllTransactionToAdmin()
+        {
+            try
+            {
+                var result = await _transactionService.DisplayAllTransactionToAdmin();
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
 
-         
+        }
+
+
         [HttpGet("GetAllRoomTransactionForManager")]
         public async Task<ActionResult<Response<RoomTransactionDTO>>>GetAllRoomTransactionForManager(string mangerId)
         {

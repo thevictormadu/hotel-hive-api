@@ -12,6 +12,7 @@
         IReviewRepository reviewRepository { get; }
 
         IBookingRepository bookingRepository { get; }
+        ITransactionsRepository transactionRepository { get; }
 
         void SaveChanges();
      

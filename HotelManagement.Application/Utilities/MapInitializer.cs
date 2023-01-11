@@ -108,6 +108,8 @@ namespace HotelManagement.Application.Utilities
 
             // Transaction Maps
 
+            CreateMap<Payment, PaymentDTO>().ReverseMap();
+
 
             //Manager Maps
 
