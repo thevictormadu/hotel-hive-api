@@ -22,11 +22,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private IManagerRepository _managerRepository;
         private ICustomerRepository _customerRepository;
         private IBookingRepository _bookingRepository;
-		public UnitOfWork(HotelDbContext hotelDbContext)
-		private IAmenityRepository _amenityRepository;
         private IWishlistRepository _wishlistRepository;
-		private IBookingRepository _bookingRepository;
-        private ICustomerRepository _customerRepository;
         public UnitOfWork(HotelDbContext hotelDbContext)
 
 		{
