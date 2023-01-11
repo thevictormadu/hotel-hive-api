@@ -10,6 +10,7 @@
         
         IManagerRepository managerRepository { get; }
         IBookingRepository bookingRepository { get; }
+        ITransactionsRepository transactionRepository { get; }
 
         void SaveChanges();
      
