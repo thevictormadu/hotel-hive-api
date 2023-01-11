@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IRepositories
 {
-    public interface ITransactionRepo : IGenericRepository<Payment>
+    public interface IManagerRepository:IGenericRepository<Manager>
     {
-
     }
 }

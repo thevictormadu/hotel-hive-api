@@ -20,7 +20,8 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private IAmenityRepository _amenityRepository;
         private IBookingRepository _bookingRepository;
         private ICustomerRepository _customerRepository;
-        private ITransactionRepo _transactionRepo;
+        private ITransactionsRepository _transactionsRepository;
+		private IManagerRepository _managerRepository;
 		
 		public UnitOfWork(HotelDbContext hotelDbContext)
 
@@ -42,12 +43,15 @@ namespace HotelManagement.Infrastructure.UnitOfWork
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
 
 
-        public ITransactionRepo Payment =>
-         _transactionRepo ??= new TransactionRepo(_hotelDbContext);
+        public ITransactionsRepository Payment =>
+         _transactionsRepository ??= new TransactionsRepository(_hotelDbContext);
 
 
 		public IBookingRepository bookingRepository =>
 			_bookingRepository ??= new BookingRepository(_hotelDbContext);
+		public IManagerRepository managerRepository =>
+			_managerRepository ??= new ManagerRepository(_hotelDbContext);
+
 
         public void BeginTransaction()
 		{

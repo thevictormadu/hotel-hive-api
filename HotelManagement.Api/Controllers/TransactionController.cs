@@ -1,5 +1,9 @@
+
 ﻿using HotelManagement.Core.IServices;
 using Microsoft.AspNetCore.Authorization;
+﻿using HotelManagement.Core;
+using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,27 +13,68 @@ namespace HotelManagement.Api.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        private readonly ITransactionService _transactionService;
 
-        public TransactionController(ITransactionService transactionService)
+        private ITransactionService _transactionService;
+
+        public TransactionController(ITransactionService transactionService) 
         {
-            _transactionService = transactionService;
+            _transactionService = transactionService; 
+        }
 
+         
+        [HttpGet("GetAllRoomTransactionForManager")]
+        public async Task<ActionResult<Response<RoomTransactionDTO>>>GetAllRoomTransactionForManager(string mangerId)
+        {
+            try
+            {
+                var roomTransactions = await _transactionService.GetRoomTransactionsByManger(mangerId);
+                if (roomTransactions == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(roomTransactions);
+
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return StatusCode(500, ex.Message);
+            }
+        
+        }
+
+        [HttpGet("GetAllRoomTransaction")]
+        public async Task<ActionResult<Response<RoomTransactionDTO>>> GetAllRoomTransaction(string hotelId)
+        {
+            try
+            {
+                var roomTransactions = await _transactionService.GetAllRoomsTransactions(hotelId);
+                if (roomTransactions == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(roomTransactions);
+
+            }
+            catch (Exception ex)
+            {
+                //log error
+                return StatusCode(500, ex.Message);
+            }
 
         }
-        [HttpGet]
-        [Authorize(Roles ="Admin")]
+        [HttpGet("DisplayAllTransactionForAdmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllTransactionForAdmin()
         {
-           
-      var result = await _transactionService.DisplayAllTransactionToAdmin();
+
+            var result = await _transactionService.DisplayAllTransactionToAdmin();
 
             if (!result.Succeeded) return BadRequest($"unable to get transactions{result}");
             return Ok(result);
 
 
         }
-
 
     }
 }

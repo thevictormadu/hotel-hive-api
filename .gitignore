@@ -462,3 +462,4 @@ appsettings.[Dd]evelopment.json
 /HotelManagement.Api/appsettings.Development.json
 /HotelManagement.Api/appsettings.Development.json
 >>>>>>> 4ba619135d923d3b4fab67a866425bbbd46e2a4d
+/HotelManagement.Infrastructure/Migrations/20230110195651_LemmyMigration.cs

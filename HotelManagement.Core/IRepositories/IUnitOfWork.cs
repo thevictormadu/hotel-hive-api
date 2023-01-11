@@ -6,11 +6,11 @@
         IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
 
-        ITransactionRepo Payment { get; }
+        ITransactionsRepository Payment { get; }
 
         ICustomerRepository customerRepository { get; }
         
-
+        IManagerRepository managerRepository { get; }
         IBookingRepository bookingRepository { get; }
 
         void SaveChanges();

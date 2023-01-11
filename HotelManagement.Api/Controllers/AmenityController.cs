@@ -97,7 +97,7 @@ namespace HotelManagement.Api.Controllers
 
         //[Authorize(Roles = "Admin")]
         [HttpPut("UpdateAmenity")]
-        public async Task<ActionResult<Response<UpdateAmenityDTO>>> UpdateAmenity(string id, [FromBody] UpdateAmenityDTO updateDto)
+        public async Task<ActionResult<Response<UpdateAmenityDTO>>> UpdateAmenity(string id,  UpdateAmenityDTO updateDto)
         {
          
 
