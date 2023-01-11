@@ -24,7 +24,6 @@ namespace HotelManagement.Api
             // Add services to the container.
             builder.Services.AddHttpClient();
             //builder.Services.AddDbContextAndConfigurations(builder.Environment, config);
-
             //builder.Services.AddScoped<IHotelServices, HotelRepository>();
 
             builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>()
@@ -121,8 +120,7 @@ namespace HotelManagement.Api
 
             var app = builder.Build();
 
-            //Configure the HTTP request pipeli'One or more errors occurred. (Cannot find the object "AspNetUsers" because it does not exist or you do not have permissions.)'
-
+            //Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
