@@ -24,6 +24,9 @@
             return new GenericPagination<T>(currentPageItems, count, pageNumber, pageSize);
         }
     }
+    //IQueryable Item = await _context.Customers.Where();
+    //var gp = new GenericPagination<Datatype>();
+    //var paginatedItem = GenericPagination.ToPagedList(item,3,5)
 }
 
 
