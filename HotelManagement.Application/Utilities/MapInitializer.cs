@@ -113,7 +113,7 @@ namespace HotelManagement.Application.Utilities
 
 
             //Manager Request Map
-
+            CreateMap<ManagerRequest, ManagerRequestDTO>().ReverseMap();
 
         }
     }

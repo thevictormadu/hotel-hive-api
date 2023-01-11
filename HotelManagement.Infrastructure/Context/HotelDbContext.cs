@@ -20,6 +20,7 @@ namespace HotelManagement.Infrastructure.Context
         public DbSet<State> States { get; set; }
         public DbSet<WishList> WishLists { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<ManagerRequest> ManagerRequests { get; set; }
 
         public HotelDbContext(DbContextOptions<HotelDbContext> Options) : base(Options)
         {
