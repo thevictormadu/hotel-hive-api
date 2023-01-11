@@ -1,14 +1,7 @@
 ﻿using HotelManagement.Core.Domains;
-using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
@@ -45,5 +38,17 @@ namespace HotelManagement.Infrastructure.Repositories
             return hotel;
         }
 
+        public async Task<IQueryable<Payment>> GetAllCustomerTransactionsForAHotel(string hotelId, string customerId)
+        {
+            var bookings = await _db.Bookings
+                            .Include(b => b.Payment)
+                            .Where(b => b.Hotel.Id == hotelId && b.Customer.Id == customerId)
+                            .ToListAsync();
+                                
+                                
+            
+            var payment = bookings.Select(b => b.Payment).AsQueryable();
+            return payment;
+        }
     }
 }
