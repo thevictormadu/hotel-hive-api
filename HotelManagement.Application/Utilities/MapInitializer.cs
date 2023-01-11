@@ -79,6 +79,7 @@ namespace HotelManagement.Application.Utilities
             //TransactionResponse Mapper
 
             //Transaction Maps
+            CreateMap<Payment, PaymentDTO>().ReverseMap();
 
 
             // aminity
