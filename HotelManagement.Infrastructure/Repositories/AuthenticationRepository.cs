@@ -18,11 +18,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using HotelManagement.Application.Utilities;
-<<<<<<< HEAD
+
 using Microsoft.EntityFrameworkCore;
-=======
+
 using HotelManagement.Core.IServices;
->>>>>>> 3e17c6629544b3b81ccd7a8871d37d0514217d9a
 
 namespace HotelManagement.Infrastructure.Repositories
 {
@@ -32,27 +31,19 @@ namespace HotelManagement.Infrastructure.Repositories
         private readonly ITokenService _token;
         private readonly ITokenDetails _tokenDetails;
         private readonly IHttpContextAccessor _httpContext;
-<<<<<<< HEAD
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IEmailService _emailService;
 
         public AuthenticationRepository(UserManager<AppUser> userManager, ITokenService token, 
             ITokenDetails tokenDetails, IHttpContextAccessor httpContext,
-            RoleManager<IdentityRole> roleManager)
-=======
-        private readonly IEmailService _emailService;
-
-        public AuthenticationRepository(UserManager<AppUser> userManager,ITokenService token,ITokenDetails tokenDetails, IHttpContextAccessor httpContext, IEmailService emailService)
->>>>>>> 3e17c6629544b3b81ccd7a8871d37d0514217d9a
+            RoleManager<IdentityRole> roleManager, IEmailService emailService)
         {
             _userManager = userManager;
             _token = token;
             _tokenDetails = tokenDetails;
             _httpContext = httpContext;
-<<<<<<< HEAD
             _roleManager = roleManager;
-=======
             _emailService = emailService;
->>>>>>> 3e17c6629544b3b81ccd7a8871d37d0514217d9a
         }
 
         public string GetId() => _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
