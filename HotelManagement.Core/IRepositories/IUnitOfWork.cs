@@ -6,7 +6,7 @@
         IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
         ICustomerRepository customerRepository { get; }
-        
+        IReviewRepository reviewRepository { get; }
 
         IBookingRepository bookingRepository { get; }
 
