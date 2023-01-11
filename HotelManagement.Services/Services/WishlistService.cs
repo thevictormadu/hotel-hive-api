@@ -10,6 +10,7 @@ using HotelManagement.Core.IServices;
 using HotelManagement.Core.DTOs;
 using AutoMapper;
 using HotelManagement.Application.Utility;
+using Microsoft.Extensions.Logging;
 
 namespace HotelManagement.Services.Services
 {
@@ -18,12 +19,14 @@ namespace HotelManagement.Services.Services
         private readonly IWishlistRepository _wishlistRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly ILogger<BookingService> _logger;
 
-        public WishlistService(IUnitOfWork unitOfWork, IMapper mapper)
+        public WishlistService(IUnitOfWork unitOfWork, IMapper mapper, ILogger<BookingService> logger)
         {
             
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _logger = logger;
         }
         public async Task<Response<GenericPagination<WishListDto>>> GetWishListAsync(string customerId, int pageNumber, int pageSize)
         {

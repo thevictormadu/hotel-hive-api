@@ -19,23 +19,30 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		private IRoomRepository _roomRepository;
 		private IAmenityRepository _amenityRepository;
         private IWishlistRepository _wishlistRepository;
-
+		private IBookingRepository _bookingRepository;
+        private ICustomerRepository _customerRepository;
         public UnitOfWork(HotelDbContext hotelDbContext)
+
 		{
-			_hotelDbContext = hotelDbContext;
-		
-		}
+            _hotelDbContext = hotelDbContext;
+        }
+
 		public IHotelRepository hotelRepository =>
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
-       
+
+        public IWishlistRepository wishlist =>
+          _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
+
+        public ICustomerRepository customerRepository =>
+         _customerRepository ??= new CustomerRepository(_hotelDbContext);
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
-        public IWishlistRepository wishlist =>
-           _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
 
+		public IBookingRepository bookingRepository =>
+			_bookingRepository ??= new BookingRepository(_hotelDbContext);
         public void BeginTransaction()
 		{
 			_disposed = false;

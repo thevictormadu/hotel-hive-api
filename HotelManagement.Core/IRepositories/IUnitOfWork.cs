@@ -6,7 +6,8 @@
         IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
         IWishlistRepository wishlist { get; }
-        
+        ICustomerRepository customerRepository { get; }
+        IBookingRepository bookingRepository { get; }
 
         void SaveChanges();
      
