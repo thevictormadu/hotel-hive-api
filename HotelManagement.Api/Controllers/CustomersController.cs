@@ -4,6 +4,9 @@ using HotelManagement.Core.IServices;
 using HotelManagement.Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using HotelManagement.Core.Enums;
+using Microsoft.AspNetCore.Identity;
+using HotelManagement.Core.Domains;
 
 namespace HotelManagement.Api.Controllers
 {
@@ -13,11 +16,13 @@ namespace HotelManagement.Api.Controllers
     {
         private readonly ILogger<CustomersController> _logger;
         private readonly ICustomerService _customerService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public CustomersController(ILogger<CustomersController> logger, ICustomerService customerService)
+        public CustomersController(ILogger<CustomersController> logger, ICustomerService customerService, UserManager<AppUser> userManager)
         {
             _logger = logger;
             _customerService = customerService;
+            _userManager = userManager;
         }
 
         [HttpGet("GetCustomers/{pageNo}")]
@@ -44,5 +49,6 @@ namespace HotelManagement.Api.Controllers
             }
 
         }
+
     }
 }

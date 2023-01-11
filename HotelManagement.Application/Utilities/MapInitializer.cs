@@ -81,6 +81,7 @@ namespace HotelManagement.Application.Utilities
             // IWshList Maps
 
             // Transaction Maps
+            CreateMap<Payment, PaymentDTO>().ReverseMap();
 
 
             //Manager Maps
