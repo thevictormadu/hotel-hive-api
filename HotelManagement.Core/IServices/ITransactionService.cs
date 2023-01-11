@@ -17,6 +17,7 @@ namespace HotelManagement.Core.IServices
 
        Task<Response<List<RoomTransactionDTO>>>GetRoomTransactionsByManger(string managerId);
         Task<Response<List<RoomTransactionDTO>>> GetAllRoomsTransactions(string hotelId);
+        Task<Response<List<PaymentDTO>>> GetAllCustomerTransactionForAnHotel(string customerId, string hotelId, int pageNumber, int pageSize);
 
 
 

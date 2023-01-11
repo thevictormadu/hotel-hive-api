@@ -13,8 +13,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 	public class UnitOfWork : IUnitOfWork
 	{
 		private readonly HotelDbContext _hotelDbContext;
-	
-		private bool _disposed;
+	    private bool _disposed;
 		private IHotelRepository _hotelRepository;
 		private IRoomRepository _roomRepository;
 		private IAmenityRepository _amenityRepository;
@@ -22,9 +21,8 @@ namespace HotelManagement.Infrastructure.UnitOfWork
         private ICustomerRepository _customerRepository;
         private ITransactionsRepository _transactionsRepository;
 		private IManagerRepository _managerRepository;
-		
-		public UnitOfWork(HotelDbContext hotelDbContext)
-
+        private IWishlistRepository _wishlistRepository;
+        public UnitOfWork(HotelDbContext hotelDbContext)
 		{
             _hotelDbContext = hotelDbContext;
         }
@@ -35,6 +33,9 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
+
+        public IWishlistRepository wishlist =>
+          _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
 
         public ICustomerRepository customerRepository =>
          _customerRepository ??= new CustomerRepository(_hotelDbContext);
@@ -58,11 +59,11 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			_disposed = false;
 		}
 
-
-		public void SaveChanges()
-		{
-			_hotelDbContext.SaveChangesAsync();
-		}
+       
+        public void SaveChanges()
+        {
+       _hotelDbContext.SaveChangesAsync();
+        }
 
 		public void Rollback()
 		{
@@ -86,7 +87,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
 		public void Dispose()
 		{
-			Dispose(true);
+			//Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 
