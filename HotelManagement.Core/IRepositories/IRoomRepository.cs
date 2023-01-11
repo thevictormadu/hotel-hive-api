@@ -10,6 +10,7 @@ namespace HotelManagement.Core.IRepositories
     public interface IRoomRepository: IGenericRepository<Room>
     {
         void Add(string Roomtype_ID,string Hotel_Name, Room room);
+        Task<Room> DeleteAsync(string Id);
 
     }
 }
