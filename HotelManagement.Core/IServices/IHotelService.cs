@@ -14,6 +14,7 @@ namespace HotelManagement.Core.IServices
 
         Task<Response<string>> DeleteHotelById(string id);
         Task<Response<GetRoomDto>> GetAvailableRoomsBy(string HotelName, string roomId);
+        Task<Response<List<GetHotelByRatingsDto>>> GetHotelByState(string State);
 
     }
 }

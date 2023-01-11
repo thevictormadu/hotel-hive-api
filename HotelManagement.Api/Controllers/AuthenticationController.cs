@@ -39,5 +39,28 @@ namespace HotelManagement.Api.Controllers
             if(token.Succeeded == false) return BadRequest(token);
             return Ok(token);
         }
+
+        [HttpPost("Change-Password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDTO model)
+        {
+            var result = await _authenticationService.ChangePassword(model);
+            if (result.ToString().Contains("login")) return Unauthorized(result);
+            if (result.ToString().Contains("character")) return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpPost("Reset-Password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDTO model)
+        {
+            var result = await _authenticationService.ForgottenPassword(model);
+            return Ok(result);
+        }
+
+        [HttpPost("Reset-Update-Password")]
+        public async Task<IActionResult> ResetUpdatePassword([FromBody] UpdatePasswordDTO model, string Token)
+        {
+            var result = await _authenticationService.ResetPasswordAsync(model);
+            return Ok(result);
+        }
     }
 }

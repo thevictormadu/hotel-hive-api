@@ -11,6 +11,7 @@ namespace HotelManagement.Core.IServices
     public interface IBookingService
     {
         Task<Response<string>> CreateHotelBooking(BookingRequestDto bookingRequestDto);
+        Task<Response<List<BookingResponseDto>>> GetBookingPerManager(string managerId);
 
     }
 }
