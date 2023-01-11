@@ -12,7 +12,9 @@ namespace HotelManagement.Core.IRepositories
 {
     public interface ITransactionRepository : IGenericRepository<Payment>
     {
-      
+
+        Task<Manager> GetHotelManager(string managerId);
+        Task<Hotel> GetAllRoomsTransaction(string hotelId);
 
     }
 }

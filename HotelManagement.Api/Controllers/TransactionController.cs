@@ -24,7 +24,7 @@ namespace HotelManagement.Api.Controllers
         {
             try
             {
-                ~var roomTransactions = await _transactionService.GetRoomTransactionsByManger(mangerId);
+                var roomTransactions = await _transactionService.GetRoomTransactionsByManger(mangerId);
                 if (roomTransactions == null)
                 {
                     return BadRequest();

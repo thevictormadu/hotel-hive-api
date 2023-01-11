@@ -20,30 +20,21 @@ namespace HotelManagement.Services.Services
     public class TransactionService : ITransactionService
     {
         private readonly IMapper _mapper;
-        private readonly HotelDbContext _hotelDbContext;
+        private readonly ITransactionRepository _transRepo;
         protected DbSet<Payment> _dbSet;
         private readonly IUnitOfWork _unitOfWork;
 
-        public TransactionService(IMapper mapper, HotelDbContext hotelDbContext, IUnitOfWork unitOfWork)
+        public TransactionService(IMapper mapper, IUnitOfWork unitOfWork, ITransactionRepository transRepo)
         {
             _mapper = mapper;
-            _hotelDbContext = hotelDbContext;
-            _dbSet = hotelDbContext.Set<Payment>();
             _unitOfWork = unitOfWork;
+            _transRepo = transRepo;
         }
         
         public async Task<Response<List<RoomTransactionDTO>>> GetRoomTransactionsByManger(string managerId)
         {
-           
 
-         
-                // Find the manager with the specified ID and include the hotels, rooms, room types, and bookings associated with the manager
-                var manager = await _hotelDbContext.Managers
-                    .Include(m => m.Hotels)
-                        .ThenInclude(h => h.RoomTypes)
-                    .Include(m => m.Hotels)
-                        .ThenInclude(h => h.Bookings)
-                    .FirstOrDefaultAsync(m => m.Id == managerId);
+            var manager = await _transRepo.GetHotelManager(managerId);
 
                 if (manager == null)
                 {
@@ -57,31 +48,27 @@ namespace HotelManagement.Services.Services
                 foreach (var hotel in manager.Hotels)
                 {
                     // Loop through each room in the hotel
-                    foreach (var room in hotel.Rooms)
+                    foreach (var roomtypes in hotel.RoomTypes)
                     {
-                        // Find the room type for the current room
-                        var roomType = hotel.RoomTypes.FirstOrDefault(rt => rt.Id == room.RoomTypeId);
-
                         // Find the booking for the current room (if it exists)
-                        var booking = hotel.Bookings.FirstOrDefault(b => b.RoomTypeId == room.RoomTypeId);
+                        var booking = hotel.Bookings.FirstOrDefault(b => b.RoomTypeId == roomtypes.Id);
 
                         // Create a new room transaction DTO for the current room
                         var roomTransactionDto = new RoomTransactionDTO
                         {
                             HotelName = hotel.Name,
-                            RoomNo = room.RoomNo,
-                            RoomType = roomType.Name,
-                            Price = roomType.Price,
-                            Discount = roomType.Discount,
-                            IsBooked = room.IsBooked,
+                            RoomType = roomtypes.Name,
+                            Price = roomtypes.Price,
+                            Discount = roomtypes.Discount,
+                           
                         };
 
                         // If there is a booking for the current room, add the booking details to the room transaction DTO
                         if (booking != null)
                         {
-                            roomTransactionDto.BookingId = booking.Id;
                             roomTransactionDto.CheckInDate = booking.CheckIn;
-                            roomTransactionDto.CheckOutDate = booking.CheckOut;
+                            roomTransactionDto.BookingReference = booking.BookingReference;
+                            roomTransactionDto.PaymentStatus = booking.PaymentStatus;
                         }
 
                         // Add the room transaction DTO to the list
@@ -92,49 +79,43 @@ namespace HotelManagement.Services.Services
                 return Response<List<RoomTransactionDTO>>.Success("Room transactions retrieved successfully.", roomTransactionDtos, 200);
             }
 
-        public async  Task<Response<List<RoomTransactionDTO>>> GetAllRoomsTransactions(string hotelId)
+        public async Task<Response<List<RoomTransactionDTO>>> GetAllRoomsTransactions(string hotelId)
         {
-            // Find the hotel with the specified ID and include the rooms, room types, and bookings associated with the hotel
-            var hotel = await _hotelDbContext.Hotels
-                .Include(h => h.Rooms)
-                .Include(h => h.RoomTypes)
-                .Include(h => h.Bookings)
-                .FirstOrDefaultAsync(h => h.Id == hotelId);
+            var hotel = await _transRepo.GetAllRoomsTransaction(hotelId);
+
 
             //check if tyhe hotelid is null
             if (hotel == null)
             {
                 return Response<List<RoomTransactionDTO>>.Fail("Hotel not found.", 404);
             }
-            // Create a list to store the room transaction DTOs
+            // Create a list to store the roomType transaction DTOs
             var roomTransactionDtos = new List<RoomTransactionDTO>();
             // Loop through each room in the hotel
-            foreach (var room in hotel.Rooms)
+            foreach (var roomtype in hotel.RoomTypes)
             {
-                // Find the room type for the current room
-                var roomType = hotel.RoomTypes.FirstOrDefault(rt => rt.Id == room.RoomTypeId);
+                
 
-                // Find the booking for the current roomType (if it exists)
-                var booking = hotel.Bookings.FirstOrDefault(b => b.RoomTypeId == room.RoomTypeId);
-
+                // Find the booking for the current room (if it exists)
+                var booking = hotel.Bookings.FirstOrDefault(b => b.RoomTypeId == roomtype.Id);
                 // Create a new room transaction DTO for the current room
                 var roomTransactionDto = new RoomTransactionDTO
                 {
                     HotelName = hotel.Name,
-                    RoomNo = room.RoomNo,
-                    RoomType = roomType.Name,
-                    Price = roomType.Price,
-                    Discount = roomType.Discount,
-                    IsBooked = room.IsBooked,
+                    RoomType = roomtype.Name,
+                    Price = roomtype.Price,
+                    Discount = roomtype.Discount,
                 };
+
 
                 // If there is a booking for the current room, add the booking details to the room transaction DTO
                 if (booking != null)
                 {
-                    roomTransactionDto.BookingId = booking.Id;
                     roomTransactionDto.CheckInDate = booking.CheckIn;
-                    roomTransactionDto.CheckOutDate = booking.CheckOut;
+                    roomTransactionDto.BookingReference = booking.BookingReference;
+                    roomTransactionDto.PaymentStatus = booking.PaymentStatus;
                 }
+
                 // Add the room transaction DTO to the list
                 roomTransactionDtos.Add(roomTransactionDto);
             }
@@ -143,6 +124,6 @@ namespace HotelManagement.Services.Services
         }
 
     }
-        }
+}
     
 
