@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HotelManagement.Core.DTOs.BookingDtos;
+using System.Net.NetworkInformation;
 
 namespace HotelManagement.Services.Services
 {
@@ -19,11 +20,13 @@ namespace HotelManagement.Services.Services
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<BookingService> _logger;
-        public BookingService(IMapper mapper, IUnitOfWork unitOfWork, ILogger<BookingService> logger)
+        private readonly IBookingRepository _bookingRepository;
+        public BookingService(IMapper mapper, IUnitOfWork unitOfWork, ILogger<BookingService> logger, IBookingRepository bookingRepository)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             _logger = logger;
+            _bookingRepository = bookingRepository;
         }
         public async Task<Response<string>> CreateHotelBooking(BookingRequestDto bookingRequestDto)
         {
@@ -47,5 +50,25 @@ namespace HotelManagement.Services.Services
             }
            
         }
+        public async Task<Response<List<BookingResponseDto>>> GetBookingPerManager(string managerId)
+        {
+            
+           try
+            {
+               var bookings =   _unitOfWork.managerRepository.GetByIdAsync(x=>x.Id==managerId).Result.Hotels.SelectMany(x=>x.Bookings);
+                var mappedBookings = _mapper.Map<List<BookingResponseDto>>(bookings);
+                if(mappedBookings == null) return Response<List<BookingResponseDto>>.Fail("No Booking Found");
+                return Response<List<BookingResponseDto>>.Success("Booking Successfully Loaded", mappedBookings);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred while creating the booking");
+
+                // Return a failure response
+                return Response<List<BookingResponseDto>>.Fail("An error occurred while Loading the booking");
+            }
+
+        }
+
     }
 }
