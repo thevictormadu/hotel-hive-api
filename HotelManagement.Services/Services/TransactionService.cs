@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HotelManagement.Application.Utility;
 using HotelManagement.Core;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
@@ -123,7 +124,35 @@ namespace HotelManagement.Services.Services
             return Response<List<RoomTransactionDTO>>.Success("Room transactions retrieved successfully.", roomTransactionDtos, 200);
         }
 
+        public async Task<Response<List<PaymentDTO>>> GetAllCustomerTransactionForAnHotel(string customerId, string hotelId, int pageNumber, int pageSize)
+        {
+            try
+            {
+                var transactions = await _transRepo.GetAllCustomerTransactionsForAHotel(hotelId, customerId);
+
+                //_logger.LogInformation("Customer repository Triggered); 
+                
+                if (transactions == null)
+                {
+                    return Response<List<PaymentDTO>>.Fail($"No transactions found for this customer");
+                }
+
+                var paginatedTran = GenericPagination<Payment>.ToPagedList(transactions, pageNumber, pageSize);
+                var data = _mapper.Map<List<PaymentDTO>>(transactions);
+                return Response<List<PaymentDTO>>.Success("Successful", data);
+            }
+
+            catch (Exception ex)
+            {
+                //_logger.LogError("Unable to retrieve users transactions for hotel");
+                return Response<List<PaymentDTO>>.Fail($"");
+            }
+
+        }
     }
+
 }
+
+
     
 
