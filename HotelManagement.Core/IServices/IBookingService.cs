@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.DTOs.BookingDtos;
+﻿using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs.BookingDtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

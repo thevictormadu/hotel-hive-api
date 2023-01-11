@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using HotelManagement.Application.Utilities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
@@ -27,13 +28,17 @@ namespace HotelManagement.Infrastructure.Repositories
         private readonly ITokenService _token;
         private readonly ITokenDetails _tokenDetails;
         private readonly IHttpContextAccessor _httpContext;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AuthenticationRepository(UserManager<AppUser> userManager,ITokenService token,ITokenDetails tokenDetails, IHttpContextAccessor httpContext)
+        public AuthenticationRepository(UserManager<AppUser> userManager, ITokenService token, 
+            ITokenDetails tokenDetails, IHttpContextAccessor httpContext,
+            RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _token = token;
             _tokenDetails = tokenDetails;
             _httpContext = httpContext;
+            _roleManager = roleManager;
         }
 
         public async Task<Response<string>> Login(LoginDTO model)
@@ -116,7 +121,8 @@ namespace HotelManagement.Infrastructure.Repositories
             var newUser = mapInitializer.regMapper.Map<RegisterDTO, AppUser>(user);
             
             var result = await _userManager.CreateAsync(newUser, user.Password);
-            
+            var roles = await _roleManager.Roles.ToListAsync();
+            if (roles.Count == 0) await _roleManager.CreateAsync(new IdentityRole { Name = "Customer" });
             if (result.Succeeded) await _userManager.AddToRoleAsync(newUser, "Customer");
             
             return result.Succeeded;
