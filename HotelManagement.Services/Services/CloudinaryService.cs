@@ -23,6 +23,7 @@ namespace HotelManagement.Services.Services
             this.context = context;
         }
 
+
         public async Task<List<Dictionary<string, string>>> UploadAsync(IFormFile[] images)
         {
             var results = new List<Dictionary<string, string>>();

@@ -50,5 +50,24 @@ namespace HotelManagement.Services.Services
 
             return response;
         }
+
+        public async Task<object> ChangePassword(ChangePasswordDTO model)
+        {
+            if (model.ConfirmNewPassword != model.NewPassword) return "Password does not match";
+            var response = await repository.ChangePassword(model);
+            return response;
+        }
+
+        public async Task<object> ResetPasswordAsync(UpdatePasswordDTO model)
+        {
+            var response = await repository.ResetPassword(model);
+            return response;
+        }
+
+        public async Task<object> ForgottenPassword(ResetPasswordDTO model)
+        {
+            var response = await repository.ForgottenPassword(model);
+            return response;
+        }
     }
 }
