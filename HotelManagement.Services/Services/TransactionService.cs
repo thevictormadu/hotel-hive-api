@@ -123,6 +123,28 @@ namespace HotelManagement.Services.Services
             return Response<List<RoomTransactionDTO>>.Success("Room transactions retrieved successfully.", roomTransactionDtos, 200);
         }
 
+        public async Task<Response<List<GetCustomerDto>>> GetAllUsersTransactionAsync()
+        {
+            try
+            {
+                var paidCustomers = await _transRepo.GetAllUsersTransaction();
+
+                if (paidCustomers == null)
+                {
+                    return Response<List<GetCustomerDto>>.Fail("Hotel not found.", 404);
+                }
+
+                var paidCustomersDTO = _mapper.Map<List<GetCustomerDto>>(paidCustomers);
+
+                return Response<List<GetCustomerDto>>.Success("List of all paid customers", paidCustomersDTO, 200);
+            }
+            catch (Exception ex)
+            {
+                return Response<List<GetCustomerDto>>.Fail(ex.Message, 500);
+            }
+           
+        }
+
     }
 }
     

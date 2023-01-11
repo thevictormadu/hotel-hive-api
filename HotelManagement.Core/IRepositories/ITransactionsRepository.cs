@@ -15,6 +15,6 @@ namespace HotelManagement.Core.IRepositories
 
         Task<Manager> GetHotelManager(string managerId);
         Task<Hotel> GetAllRoomsTransaction(string hotelId);
-
+        Task<List<Customer>> GetAllUsersTransaction();
     }
 }

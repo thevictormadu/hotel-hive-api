@@ -45,5 +45,50 @@ namespace HotelManagement.Infrastructure.Repositories
             return hotel;
         }
 
+        public async Task<List<Customer>> GetAllUsersTransaction()
+        {
+            var paidCustomers =new List<Customer>();
+
+            var allBookings = new List<Booking>();
+
+            var customers = _db.Customers
+                            .Include(x => x.Bookings)
+                              .ThenInclude(x => x.Payment)
+                            .Where(x => x.Bookings != null);
+
+
+            //foreach(var customer in customers)
+            //{
+            //    if(customer.Bookings != null)
+            //    {                    
+            //        foreach(var booking in customer.Bookings)
+            //        {
+            //            if(booking.Payment != null)
+            //            {
+            //                paidCustomers.Add(customer);
+            //            }
+            //        }
+            //    }
+            //}
+
+
+            foreach (var customer in customers)
+            {
+                if (customer.Bookings != null)
+                {
+                    allBookings.AddRange(customer.Bookings);
+                }             
+            }
+
+            foreach (var booking in allBookings)
+            {
+                if (booking.Payment != null)
+                {
+                    paidCustomers.Add(booking.Customer);
+                }
+            }
+
+            return paidCustomers;
+        }
     }
 }
