@@ -17,3 +17,5 @@ namespace HotelManagement.Infrastructure.Repositories
         }
     }
 }
+
+
