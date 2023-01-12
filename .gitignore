@@ -456,3 +456,13 @@ $RECYCLE.BIN/
 appsettings.json
 appsettings.[Dd]evelopment.json
 /HotelManagement.Api/appsettings.json
+/HotelManagement.Api/appsettings.Development.json
+/HotelManagement.Api/appsettings.Development.json
+/HotelManagement.Api/appsettings.json
+/HotelManagement.Infrastructure/Migrations/20230108082432_AddedManagerRequestEntity.cs
+/HotelManagement.Infrastructure/Migrations/20230108091126_AddedNameToManagerRequestEntity.cs
+/HotelManagement.Infrastructure/Migrations/20230110060835_InitialMigration.cs
+/HotelManagement.Infrastructure/Migrations/HotelDbContextModelSnapshot.cs
+/HotelManagement.Infrastructure/Migrations/20230108091126_AddedNameToManagerRequestEntity.Designer.cs
+/HotelManagement.Infrastructure/Migrations/20230108082432_AddedManagerRequestEntity.Designer.cs
+/HotelManagement.Infrastructure/Migrations/20230110060835_InitialMigration.Designer.cs
