@@ -4,7 +4,7 @@
     {
 
       
-     IReviewRepository ReviewRepository { get; }
+        //IReviewRepository ReviewRepository { get; }
      
 
         IHotelRepository hotelRepository { get; }

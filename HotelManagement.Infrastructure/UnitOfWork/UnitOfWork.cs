@@ -56,7 +56,8 @@ namespace HotelManagement.Infrastructure.UnitOfWork
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
 
 
-        IReviewRepository IUnitOfWork.ReviewRepository => _reviewRepository ??= new ReviewRepository(_hotelDbContext);
+        //IReviewRepository IUnitOfWork.ReviewRepository => 
+        //    _reviewRepository ??= new ReviewRepository(_hotelDbContext);
        
 
 
