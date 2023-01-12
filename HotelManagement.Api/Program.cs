@@ -15,6 +15,7 @@ namespace HotelManagement.Api
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
 
@@ -37,6 +38,7 @@ namespace HotelManagement.Api
 
             builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
             (builder.Configuration.GetConnectionString("ConnStr")));
+            
 
             //builder.Services.AddControllers();
             // Configure Mailing Service
@@ -77,7 +79,6 @@ namespace HotelManagement.Api
 
             builder.Services.AddSwagger();
 
-
             builder.Services.AddCors(c =>
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
@@ -97,7 +98,7 @@ namespace HotelManagement.Api
                 app.UseSwaggerUI();
             }
 
-            Seeder.SeedData(app).Wait();
+            //Seeder.SeedData(app).Wait();
              
             app.UseHttpsRedirection();
 

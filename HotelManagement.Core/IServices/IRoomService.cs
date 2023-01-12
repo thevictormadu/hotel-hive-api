@@ -11,5 +11,7 @@ namespace HotelManagement.Core.IServices
     {
         Task<Response<GetRoomDto>> GetRoombyId(string Id);
         Task<Response<string>>AddRoom(string RoomType_ID, string Hotel_Name, AddRoomDto addRoomDto);
+        Task<Response<GetRoomDto>> GetSingleRoom(string Id);
+        Task<Response<string>> DeleteRoomById(string id);
     }
 }

@@ -123,7 +123,23 @@ namespace HotelManagement.Services.Services
            
         }
 
+         public async Task<Response<GetRoomDto>> GetAvailableRoomsBy(string HotelName, string roomId)
+        {
+            try
+            {
+                var room = _unitOfWork.hotelRepository.GetByIdAsync(x => x.Name.ToLower().Trim() == HotelName.ToLower().Trim())
+                .Result.RoomTypes.SelectMany(x => x.Rooms).Where(x=>x.IsBooked == false && x.Id == roomId).FirstOrDefault();
+                var data = _mapper.Map<GetRoomDto>(room);
+                if (data == null) return Response<GetRoomDto>.Fail($"{HotelName} Has No Room Available");
+                return Response<GetRoomDto>.Success(HotelName, data);
+            }
+            catch (Exception ex)
+            {
 
+                return Response<GetRoomDto>.Fail($"{HotelName} Has No Room Available");
+            }
+
+        }
         public async Task<Response<string>> AddHotel(string Manager_ID, AddHotelDto addHotelDto)
         {
             var manger = await _hotelDbContext.Managers.FirstOrDefaultAsync(x => x.Id == Manager_ID);
@@ -192,6 +208,22 @@ namespace HotelManagement.Services.Services
             catch (Exception ex)
             {
                 return Response<UpdateHotelDto>.Fail(ex.Message);
+            }
+        }
+        public async Task<Response<List<GetHotelByRatingsDto>>> GetHotelByState(string State)
+        {
+            try
+            {
+                var Hotels =await  _unitOfWork.hotelRepository.GetAllAsync(x=>x.State.ToLower().Trim()== State.ToLower().Trim());
+                var mappedHotels = _mapper.Map<List<GetHotelByRatingsDto>>(Hotels);
+
+                if (mappedHotels == null) return Response<List<GetHotelByRatingsDto>>.Fail($"Hotel Not Found in {State}");
+                return Response<List<GetHotelByRatingsDto>>.Success(State, mappedHotels);
+            }
+            catch (Exception ex)
+            {
+
+                return Response<List<GetHotelByRatingsDto>>.Fail(ex.Message);
             }
         }
 

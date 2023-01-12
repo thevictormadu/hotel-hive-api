@@ -43,6 +43,13 @@ namespace HotelManagement.Api.Controllers
             if(!result.Succeeded) return BadRequest(result);
             return Ok(result);
         }
+        [HttpGet("Available-Rooms-By-Id")]
+        public async Task<IActionResult> RoomsAvailableById(string HotelName, string roomId)
+        {
+            var result = await _hotelService.GetAvailableRoomsBy(HotelName, roomId);
+            if (!result.Succeeded) return BadRequest(result);
+            return Ok(result);
+        }
         [HttpGet("Ratings")]
         public async Task<IActionResult> GetHotelRatings(string HotelName)
         {
@@ -86,6 +93,14 @@ namespace HotelManagement.Api.Controllers
             // Otherwise, return a Bad Request response with the error message
             return BadRequest(result.Message);
         }
+        [HttpGet("By-State")]
+        public async Task<IActionResult> GetHotelByState(string State)
+        {
+            var result = await _hotelService.GetHotelByState(State);
+            if (!result.Succeeded) return BadRequest(result);
+            return Ok(result);
+        }
+
 
     }
 
