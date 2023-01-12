@@ -162,7 +162,7 @@ namespace HotelManagement.Services.Services
                 }
 
                 var paginatedTran = GenericPagination<Payment>.ToPagedList(transactions, pageNumber, pageSize);
-                var data = _mapper.Map<List<PaymentDTO>>(transactions);
+                var data = _mapper.Map<List<PaymentDTO>>(paginatedTran);
                 return Response<List<PaymentDTO>>.Success("Successful", data);
             }
 
