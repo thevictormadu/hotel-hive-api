@@ -6,7 +6,6 @@ using HotelManagement.Core.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace HotelManagement.Api.Controllers
 {
@@ -19,6 +18,26 @@ namespace HotelManagement.Api.Controllers
         public TransactionController(ITransactionService transactionService)
         {
             _transactionService = transactionService;
+        }
+        //Display all transaction for admin controller
+        [HttpGet("DisplayAllTransactionforAdmin")]
+        [Authorize(Roles ="Admin")]
+        public async Task<IActionResult> DisplayAllTransactionToAdmin()
+        {
+            try
+            {
+                var result = await _transactionService.DisplayAllTransactionToAdmin();
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
 
@@ -64,7 +83,7 @@ namespace HotelManagement.Api.Controllers
 
         }
 
-        [HttpGet("customerId/hotel/hotelId/transactions"), Authorize(Roles = "Admin,Manager")]
+        [HttpGet("{customerId}/hotel/{hotelId}/transactions"), Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Get(string customerId, string hotelId, int pageNumber, int pageSize)
         {
             try
@@ -93,3 +112,5 @@ namespace HotelManagement.Api.Controllers
         }
     }
 }
+
+

@@ -1,8 +1,6 @@
-﻿using HotelManagement.Core;
-using HotelManagement.Core.Domains;
+﻿using HotelManagement.Core.Domains;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
-    public class BookingRepository : GenericRepository<Booking>, IBookingRepository
+    public class ReviewRepository : GenericRepository<Review>, IReviewRepository
     {
         private readonly HotelDbContext _hotelDbContext;
 
-        public BookingRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
+        public ReviewRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
         {
             _hotelDbContext = hotelDbContext;
         }
     }
 }
+ 
