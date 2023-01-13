@@ -77,7 +77,7 @@ namespace HotelManagement.Application.Utilities
 
 
             //TransactionResponse Mapper
-
+            CreateMap<Customer, GetCustomerDto>().ReverseMap();
             //Transaction Maps
 
 

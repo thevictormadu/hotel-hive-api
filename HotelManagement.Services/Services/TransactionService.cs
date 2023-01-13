@@ -138,7 +138,7 @@ namespace HotelManagement.Services.Services
                 }
 
                 var paginatedTran = GenericPagination<Payment>.ToPagedList(transactions, pageNumber, pageSize);
-                var data = _mapper.Map<List<PaymentDTO>>(transactions);
+                var data = _mapper.Map<List<PaymentDTO>>(paginatedTran);
                 return Response<List<PaymentDTO>>.Success("Successful", data);
             }
 
@@ -149,13 +149,9 @@ namespace HotelManagement.Services.Services
             }
 
         }
-    }
-
-}
 
 
-    
-        public async Task<Response<List<GetCustomerDto>>> GetAllUsersTransactionAsync()
+        public async Task<Response<List<GetCustomerDto>>> GetAllUsersTransactionAsync(int pageNumber, int pageSize)
         {
             try
             {
@@ -165,19 +161,27 @@ namespace HotelManagement.Services.Services
                 {
                     return Response<List<GetCustomerDto>>.Fail("Hotel not found.", 404);
                 }
+                var paginatedTran = GenericPagination<Customer>.ToPagedList(paidCustomers, pageNumber, pageSize);
 
-                var paidCustomersDTO = _mapper.Map<List<GetCustomerDto>>(paidCustomers);
+                var paidCustomersDTO = _mapper.Map<List<GetCustomerDto>>(paginatedTran);
 
                 return Response<List<GetCustomerDto>>.Success("List of all paid customers", paidCustomersDTO, 200);
             }
             catch (Exception ex)
             {
+                //_logger.LogError("An Exception occurred");
                 return Response<List<GetCustomerDto>>.Fail(ex.Message, 500);
             }
-           
-        }
 
+        }
     }
+
 }
+
+
+    
+        
+
+
     
 

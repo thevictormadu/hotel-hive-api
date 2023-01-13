@@ -45,12 +45,11 @@ namespace HotelManagement.Infrastructure.Repositories
                             .Where(b => b.Hotel.Id == hotelId && b.Customer.Id == customerId)
                             .ToListAsync();
                                 
-                                
-            
+                                            
             var payment = bookings.Select(b => b.Payment).AsQueryable();
             return payment;
         }
-        public async Task<List<Customer>> GetAllUsersTransaction()
+        public async Task<IQueryable<Customer>> GetAllUsersTransaction()
         {
             var paidCustomers =new List<Customer>();
 
@@ -60,22 +59,6 @@ namespace HotelManagement.Infrastructure.Repositories
                             .Include(x => x.Bookings)
                               .ThenInclude(x => x.Payment)
                             .Where(x => x.Bookings != null);
-
-
-            //foreach(var customer in customers)
-            //{
-            //    if(customer.Bookings != null)
-            //    {                    
-            //        foreach(var booking in customer.Bookings)
-            //        {
-            //            if(booking.Payment != null)
-            //            {
-            //                paidCustomers.Add(customer);
-            //            }
-            //        }
-            //    }
-            //}
-
 
             foreach (var customer in customers)
             {
@@ -93,7 +76,7 @@ namespace HotelManagement.Infrastructure.Repositories
                 }
             }
 
-            return paidCustomers;
+            return paidCustomers.AsQueryable();
         }
     }
 }

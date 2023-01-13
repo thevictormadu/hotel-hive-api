@@ -6,6 +6,7 @@ using HotelManagement.Core.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace HotelManagement.Api.Controllers
 {
@@ -83,9 +84,11 @@ namespace HotelManagement.Api.Controllers
         }
 
         [HttpGet("GetAllUsersTransaction")]
-        public async Task<ActionResult<Response<RoomTransactionDTO>>> GetAllUserTransactions()
+        public async Task<ActionResult<Response<RoomTransactionDTO>>> GetAllUserTransactions(int pageNumber, int pageSize)
         {
-            var result = await _transactionService.GetAllUsersTransactionAsync();
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);         
+            var result = await _transactionService.GetAllUsersTransactionAsync(pageNumber, pageSize);
             return Ok(result);
         }
     }
