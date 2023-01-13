@@ -104,9 +104,7 @@ namespace HotelManagement.Api.Controllers
 
         [HttpGet("GetAllUsersTransaction")]
         public async Task<ActionResult<Response<RoomTransactionDTO>>> GetAllUserTransactions(int pageNumber, int pageSize)
-        {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);         
+        {        
             var result = await _transactionService.GetAllUsersTransactionAsync(pageNumber, pageSize);
             return Ok(result);
         }
