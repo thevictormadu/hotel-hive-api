@@ -83,7 +83,7 @@ namespace HotelManagement.Api.Controllers
 
         }
 
-        [HttpGet("customerId/hotel/hotelId/transactions"), Authorize(Roles = "Admin,Manager")]
+        [HttpGet("{customerId}/hotel/{hotelId}/transactions"), Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Get(string customerId, string hotelId, int pageNumber, int pageSize)
         {
             try
@@ -103,3 +103,5 @@ namespace HotelManagement.Api.Controllers
         }
     }
 }
+
+
