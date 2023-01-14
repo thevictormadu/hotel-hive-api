@@ -44,5 +44,25 @@ namespace HotelManagement.Api.Controllers
             }
 
         }
+
+        [HttpGet("GetCustomersByHotel")]
+        public async Task<ActionResult<Response<GetCustomersByHotelDto>>> GetCustomersByHotel(string hotelId)
+        {
+            try
+            {
+                var HotelByCust = await _customerService.GetCustomersByHotelId(hotelId);
+                if( HotelByCust ==  null)
+                {
+                    return BadRequest();
+                }
+                return Ok(HotelByCust); 
+            }
+            catch (Exception ex)
+            {
+
+                
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

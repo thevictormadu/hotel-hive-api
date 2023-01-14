@@ -9,5 +9,6 @@ namespace HotelManagement.Core.IRepositories
 {
     public interface ICustomerRepository : IGenericRepository<Customer>
     {
+        Task<List<Customer>>GetCustomersByHotel(string hotelId);
     }
 }
