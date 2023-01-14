@@ -23,11 +23,17 @@ namespace HotelManagement.Infrastructure.UnitOfWork
         private ICustomerRepository _customerRepository;
         private IBookingRepository _bookingRepository;
         private IWishlistRepository _wishlistRepository;
-        public UnitOfWork(HotelDbContext hotelDbContext)
-
+		public UnitOfWork(HotelDbContext hotelDbContext)
 		{
             _hotelDbContext = hotelDbContext;
         }
+
+		//private IAmenityRepository _amenityRepository
+		//public UnitOfWork(HotelDbContext hotelDbContext)
+       // private IAmenityRepository _amenityRepository;
+		//private IBookingRepository _bookingRepository;
+		private IReviewRepository _reviewRepository;
+
 
 		public IHotelRepository hotelRepository =>
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
@@ -41,6 +47,9 @@ namespace HotelManagement.Infrastructure.UnitOfWork
          _customerRepository ??= new CustomerRepository(_hotelDbContext);
 		public IManagerRepository managerRepository =>
 			_managerRepository ??= new ManagerRepository( _hotelDbContext );
+
+		public IReviewRepository reviewRepository =>
+			_reviewRepository ??= new ReviewRepository(_hotelDbContext);
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
@@ -84,7 +93,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
 		public void Dispose()
 		{
-			Dispose(true);
+			//Dispose(true);
 			GC.SuppressFinalize(this);
 		}
 

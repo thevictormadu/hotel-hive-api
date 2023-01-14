@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using HotelManagement.Application.Utility;
 using HotelManagement.Core;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
@@ -14,6 +15,7 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace HotelManagement.Services.Services
 {
@@ -21,16 +23,39 @@ namespace HotelManagement.Services.Services
     {
         private readonly IMapper _mapper;
         private readonly ITransactionsRepository _transRepo;
+        private readonly ILogger _logger;
         protected DbSet<Payment> _dbSet;
         private readonly IUnitOfWork _unitOfWork;
 
-        public TransactionService(IMapper mapper, IUnitOfWork unitOfWork, ITransactionsRepository transRepo)
+        public TransactionService(IMapper mapper, IUnitOfWork unitOfWork, ITransactionsRepository transRepo, ILogger logger)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
             _transRepo = transRepo;
+            _logger = logger;
         }
-        
+        //Display all transaction for admin service
+        public async Task<Response<IEnumerable<PaymentDTO>>> DisplayAllTransactionToAdmin()
+        {
+            var response = await _unitOfWork.transactionRepository.GetAllAsync();
+
+            var res = _mapper.Map<IEnumerable<Payment>, IEnumerable<PaymentDTO>>(response);
+            try
+            {
+                if (res == null)
+                    return Response<IEnumerable<PaymentDTO>>.Fail($"no request found {res}", 404);
+
+                return Response<IEnumerable<PaymentDTO>>.Success("successful", res, 200);
+            }
+
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return Response<IEnumerable<PaymentDTO>>.Fail($"no request found {res}", 404);
+            }
+
+        }
+
         public async Task<Response<List<RoomTransactionDTO>>> GetRoomTransactionsByManger(string managerId)
         {
 
@@ -123,7 +148,35 @@ namespace HotelManagement.Services.Services
             return Response<List<RoomTransactionDTO>>.Success("Room transactions retrieved successfully.", roomTransactionDtos, 200);
         }
 
+        public async Task<Response<List<PaymentDTO>>> GetAllCustomerTransactionForAnHotel(string customerId, string hotelId, int pageNumber, int pageSize)
+        {
+            try
+            {
+                var transactions = await _transRepo.GetAllCustomerTransactionsForAHotel(hotelId, customerId);
+
+                //_logger.LogInformation("Customer repository Triggered); 
+                
+                if (transactions == null)
+                {
+                    return Response<List<PaymentDTO>>.Fail($"No transactions found for this customer");
+                }
+
+                var paginatedTran = GenericPagination<Payment>.ToPagedList(transactions, pageNumber, pageSize);
+                var data = _mapper.Map<List<PaymentDTO>>(paginatedTran);
+                return Response<List<PaymentDTO>>.Success("Successful", data);
+            }
+
+            catch (Exception ex)
+            {
+                //_logger.LogError("Unable to retrieve users transactions for hotel");
+                return Response<List<PaymentDTO>>.Fail($"");
+            }
+
+        }
     }
+
 }
+
+
     
 

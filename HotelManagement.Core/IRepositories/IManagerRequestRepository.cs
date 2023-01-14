@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IRepositories
 {
-    public interface ICustomerRepository : IGenericRepository<Customer>
+    public interface IManagerRequestRepository:IGenericRepository<ManagerRequest>
     {
-        Task<Response<List<Customer>>> GetTopHotelCustomers(string hotelId);
-        Task<List<Customer>>GetCustomersByHotel(string hotelId);
+        Task<ManagerRequest> GetManagerRequestById(string managerId);
     }
 }

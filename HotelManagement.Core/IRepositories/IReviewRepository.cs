@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IRepositories
 {
-    public interface ICustomerRepository : IGenericRepository<Customer>
+    public interface IReviewRepository : IGenericRepository<Review>
     {
-        Task<Response<List<Customer>>> GetTopHotelCustomers(string hotelId);
-        Task<List<Customer>>GetCustomersByHotel(string hotelId);
+        //void UpdateAsync(Review review);
     }
 }
