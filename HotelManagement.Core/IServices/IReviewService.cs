@@ -15,7 +15,7 @@ namespace HotelManagement.Core.IServices
 
         Task<Response<AddReviewsDTO>> AddReviewAsync(AddReviewsDTO model, string customerId);
 
-
+        //basic comment.
         Task<Response<GetReviewsDTO>> GetHotelReviews(string hotelId);
     }
 }
