@@ -66,9 +66,9 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		}
 
        
-    public void SaveChanges()
+    public async void SaveChanges()
     {
-       _hotelDbContext.SaveChangesAsync();
+     await   _hotelDbContext.SaveChangesAsync();
     }
 
 		public void Rollback()
