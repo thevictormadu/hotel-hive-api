@@ -2,6 +2,11 @@
 {
     public interface IUnitOfWork : IDisposable
     {
+
+      
+        //IReviewRepository ReviewRepository { get; }
+     
+
         IHotelRepository hotelRepository { get; }
         IRoomRepository roomRepository { get; }
         IAmenityRepository AmenityRepository { get; }
@@ -15,7 +20,7 @@
         ITransactionsRepository transactionRepository { get; }
 
         void SaveChanges();
-     
+
         void BeginTransaction();
 
         void Rollback();
