@@ -47,7 +47,7 @@ namespace HotelManagement.Infrastructure.Seeding
                     await roleManager.CreateAsync(new IdentityRole { Name = role });
                 }
 
-                var user = new AppUser
+                var user = new AppUser()
                 {
                     Id = Guid.NewGuid().ToString(),
                     FirstName = "Chidi",
@@ -63,7 +63,7 @@ namespace HotelManagement.Infrastructure.Seeding
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
                 };
-                user.EmailConfirmed = true;
+                // user.EmailConfirmed = true;
                 await userManager.CreateAsync(user, "Password@123");
                 await userManager.AddToRoleAsync(user, "Admin");
 
@@ -83,7 +83,7 @@ namespace HotelManagement.Infrastructure.Seeding
 
                 for (int i = 0; i < hbaUsers.Count; i++)
                 {
-                    hbaUsers[i].EmailConfirmed = true;
+                    //hbaUsers[i].EmailConfirmed = true;
                     await userManager.CreateAsync(hbaUsers[i], "Password@123");
 
                     if (i < 5)
