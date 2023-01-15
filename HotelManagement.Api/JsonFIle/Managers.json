@@ -1,0 +1,57 @@
+[
+  {
+    "Id": "97ecdee3-dce9-ef45-49f7-7586820435a5",
+    "BusinessEmail": "Kitty.Simonis90@yahoo.com",
+    "BusinessPhone": "070882975095",
+    "Address": "26347 Destiny Shore",
+    "State": "Delaware",
+    "CreatedAt": "2023-01-13T23:15:01.0128107+01:00",
+    "UpdatedAt": "2023-01-13T19:15:03.7956326+01:00",
+    "IsDeleted": false,
+    "AppUserId": "5765c13a-f609-4f8e-96b5-08a0f7c146ac"
+  },
+  {
+    "Id": "06d6a894-7e47-2fc8-6563-2ae52ee997bb",
+    "BusinessEmail": "Litzy.Kessler71@hotmail.com",
+    "BusinessPhone": "070959217175",
+    "Address": "313 Russell Meadows",
+    "State": "Minnesota",
+    "CreatedAt": "2023-01-13T14:23:14.5932479+01:00",
+    "UpdatedAt": "2023-01-14T00:21:38.3367299+01:00",
+    "IsDeleted": false,
+    "AppUserId": "a84d25d7-a7ba-4b99-b757-8a52a25f61d5"
+  },
+  {
+    "Id": "bc0ff503-183b-e114-13c2-52b04fea7a68",
+    "BusinessEmail": "Randal91@yahoo.com",
+    "BusinessPhone": "070172072603",
+    "Address": "575 Hauck Stream",
+    "State": "South Dakota",
+    "CreatedAt": "2023-01-13T11:57:04.4461672+01:00",
+    "UpdatedAt": "2023-01-13T14:17:07.3107257+01:00",
+    "IsDeleted": false,
+    "AppUserId": "d7638183-f0a4-4188-9fa1-517ee2c2dbdf"
+  },
+  {
+    "Id": "63778b0a-abd0-8375-7e31-5b5add5855fc",
+    "BusinessEmail": "Ludwig81@yahoo.com",
+    "BusinessPhone": "070072078617",
+    "Address": "2840 Camron Street",
+    "State": "Idaho",
+    "CreatedAt": "2023-01-14T07:54:05.0236153+01:00",
+    "UpdatedAt": "2023-01-13T13:40:17.2783423+01:00",
+    "IsDeleted": false,
+    "AppUserId": "e495a8d1-6fd6-4bc8-b23a-b6d4e6b6623c"
+  },
+  {
+    "Id": "6c7c2f0f-b70e-fbcc-9abe-fd308d99f7e0",
+    "BusinessEmail": "Aditya4@gmail.com",
+    "BusinessPhone": "070153186430",
+    "Address": "52707 Madisen Courts",
+    "State": "Washington",
+    "CreatedAt": "2023-01-14T01:44:45.3404804+01:00",
+    "UpdatedAt": "2023-01-13T09:03:20.3182055+01:00",
+    "IsDeleted": false,
+    "AppUserId": "390e272d-a264-4d7b-b3af-8bdc2a1f92f3"
+  }
+]

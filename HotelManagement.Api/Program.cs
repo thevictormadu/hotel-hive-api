@@ -98,7 +98,7 @@ namespace HotelManagement.Api
                 app.UseSwaggerUI();
             }
 
-            //Seeder.SeedData(app).Wait();
+            Seeder.SeedData(app).Wait();
              
             app.UseHttpsRedirection();
 
