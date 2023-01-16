@@ -31,22 +31,22 @@ namespace HotelManagement.Services.Services
         }
 
 
-        //public async Task<Response<AddReviewsDTO>> AddReviewAsync(AddReviewsDTO model, string customerId)
-        //{
-        //    var addReview = _mapper.Map<AddReviewsDTO>(model);
-        //    _unitOfWork.reviewRepository.AddReview(customerId);
-        //    return Response<AddReviewsDTO>.Success("Ok", addReview);
+        public async Task<Response<AddReviewsDTO>> AddReviewAsync(AddReviewsDTO model, string customerId)
+        {
+            var addReview = _mapper.Map<AddReviewsDTO>(model);
+            _unitOfWork.reviewRepository.AddReview(customerId);
+            return Response<AddReviewsDTO>.Success("Ok", addReview);
 
-        //}
+        }
 
-        //public async Task<Response<GetReviewsDTO>> GetHotelReviews(string hotelId)
-        //{
-        //    var getReviews = _unitOfWork.reviewRepository.GetHotelReviews(hotelId);
-        //    var data = _mapper.Map<GetReviewsDTO>(getReviews);
+        public async Task<Response<GetReviewsDTO>> GetHotelReviews(string hotelId)
+        {
+            var getReviews = _unitOfWork.reviewRepository.GetHotelReviews(hotelId);
+            var data = _mapper.Map<GetReviewsDTO>(getReviews);
 
-        //    return Response<GetReviewsDTO>.Success("Ok", data);
+            return Response<GetReviewsDTO>.Success("Ok", data);
 
-        //}
+        }
 
         public async Task<Response<Review>> UpdateReview(string Id, UpdateReviewDto updateDto)
         {
