@@ -21,7 +21,7 @@ namespace HotelManagement.Api.Controllers
             _customerService = customerService;
         }
 
-        [HttpGet("GetCustomers/{pageNo}")]
+        [HttpGet("GetCustomers")]
         [Authorize(Roles ="Customer")]
         public async Task<ActionResult<Response<List<GetCustomerDto>>>> GetCustomers(int pageNo)
         {
