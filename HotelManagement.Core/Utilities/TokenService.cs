@@ -32,7 +32,7 @@ namespace HotelManagement.Core.Utilities
             JwtSecurityToken token = new JwtSecurityToken(
             issuer: _configuration["JwtSettings:ValidIssuer"],
             audience: _configuration["JwtSettings:ValidAudience"],
-            expires: DateTime.Now.AddHours(3),
+            expires: DateTime.Now.AddHours(5),
             claims: claims,
             signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
             );
@@ -47,7 +47,7 @@ namespace HotelManagement.Core.Utilities
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
             return Token(authClaims);
         }

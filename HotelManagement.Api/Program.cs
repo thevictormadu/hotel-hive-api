@@ -35,12 +35,10 @@ namespace HotelManagement.Api
 
             builder.Services.AddDbContext<HotelDbContext>(options => options.UseSqlServer
             (builder.Configuration.GetConnectionString("ConnStr")));
-            
 
             //builder.Services.AddControllers();
             // Configure Mailing Service
-           builder.Services.ConfigureMailService(config);
-
+           builder.Services.ConfigureMailService(config); 
 
             builder.Services.AddSingleton(Log.Logger);
 
@@ -127,7 +125,7 @@ namespace HotelManagement.Api
                 app.UseSwaggerUI();
             }
 
-            //Seeder.SeedData(app).Wait();
+            Seeder.SeedData(app).Wait();
              
             app.UseHttpsRedirection();
 
