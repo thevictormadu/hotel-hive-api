@@ -17,6 +17,7 @@ namespace HotelManagement.Core.IRepositories
 
         Task<IQueryable<Payment>> GetAllCustomerTransactionsForAHotel(string hotelId, string customerId);
 
+        Task<IQueryable<Customer>> GetAllUsersTransaction();
     }
 }
 

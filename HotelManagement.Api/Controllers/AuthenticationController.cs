@@ -3,6 +3,7 @@ using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelManagement.Api.Controllers
@@ -31,6 +32,8 @@ namespace HotelManagement.Api.Controllers
             if (login.Succeeded == false) return Unauthorized(login);
             return Ok(login);
         }
+
+
         [Authorize]
         [HttpGet("Refresh-Token")]
         public async Task<IActionResult> RefreshToken()

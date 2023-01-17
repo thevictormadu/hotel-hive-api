@@ -16,5 +16,7 @@ namespace HotelManagement.Core.Domains
         public DateTime UpdatedAt { get; set; }
         public string RefreshToken { get; set; } = String.Empty;
         public DateTime RefreshTokenExpiryTime { get; set; }
+        //public Customer Customer { get; set; }
+        //public Manager Manager { get; set; }
     }
 }

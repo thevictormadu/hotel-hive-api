@@ -47,7 +47,7 @@ namespace HotelManagement.Infrastructure.Seeding
                     await roleManager.CreateAsync(new IdentityRole { Name = role });
                 }
 
-                var user = new AppUser
+                var user = new AppUser()
                 {
                     Id = Guid.NewGuid().ToString(),
                     FirstName = "Chidi",
@@ -63,17 +63,33 @@ namespace HotelManagement.Infrastructure.Seeding
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
                 };
-                user.EmailConfirmed = true;
+                 user.EmailConfirmed = true;
                 await userManager.CreateAsync(user, "Password@123");
                 await userManager.AddToRoleAsync(user, "Admin");
 
                 var path = File.ReadAllText(FilePath(baseDir, "JsonFile/Users.json"));
+                var customerPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Customers.json"));
+                var managerPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Managers.json"));
+                var hotelPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Hotels.json"));
+                var roomTypePath = File.ReadAllText(FilePath(baseDir, "JsonFile/RoomTypes.json"));
+                var bookingPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Bookings.json"));
+                var roomPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Rooms.json"));
+                var AmenityPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Amenities.json"));
 
                 var hbaUsers = JsonConvert.DeserializeObject<List<AppUser>>(path);
+                var hbaCustomers = JsonConvert.DeserializeObject<List<Customer>>(customerPath);
+                var hbaManager = JsonConvert.DeserializeObject<List<Manager>>(managerPath);
+                var hbaHotel = JsonConvert.DeserializeObject<List<Hotel>>(hotelPath);
+                var hbaRoomType = JsonConvert.DeserializeObject<List<RoomType>>(roomTypePath);
+                var hbaBooking = JsonConvert.DeserializeObject<List<Booking>>(bookingPath);
+                var hbaRooms = JsonConvert.DeserializeObject<List<Room>>(roomPath);
+                var hbaAmenities = JsonConvert.DeserializeObject<List<Amenity>>(AmenityPath);
+
                 for (int i = 0; i < hbaUsers.Count; i++)
                 {
                     hbaUsers[i].EmailConfirmed = true;
                     await userManager.CreateAsync(hbaUsers[i], "Password@123");
+
                     if (i < 5)
                     {
                         await userManager.AddToRoleAsync(hbaUsers[i], "Manager");
@@ -81,6 +97,121 @@ namespace HotelManagement.Infrastructure.Seeding
                     }
                     await userManager.AddToRoleAsync(hbaUsers[i], "Customer");
                 }
+
+                for (int i = 0; i < hbaManager.Count; i++)
+                {
+
+                    var manager = new Manager() { Id = hbaManager[i].Id,
+                        AppUserId=hbaManager[i].AppUserId,
+                        BusinessEmail = hbaManager[i].BusinessEmail,
+                        BusinessPhone = hbaManager[i].BusinessPhone,
+                        Address = hbaManager[i].Address,
+                        State = hbaManager[i].State };
+
+                    await dbContext.Managers.AddAsync(manager);
+
+                }
+
+                for (int i = 0; i < hbaCustomers.Count; i++)
+                {
+
+                    var customer = new Customer() { 
+                        Id = hbaCustomers[i].Id, 
+                        AppUserId = hbaCustomers[i].AppUserId, 
+                        CreditCard = hbaCustomers[i].CreditCard,
+                        Address = hbaCustomers[i].Address,
+                        State = hbaCustomers[i].State };
+
+                    await dbContext.Customers.AddAsync(customer);
+
+                }
+
+                for (int i = 0; i < hbaHotel.Count; i++)
+                {
+                    var hotel = new Hotel()
+                    {
+                        Id = hbaHotel[i].Id,
+                        Name = hbaHotel[i].Name,
+                        Description = hbaHotel[i].Description,
+                        Email = hbaHotel[i].Email,
+                        Phone = hbaHotel[i].Phone,
+                        Address = hbaHotel[i].Address,
+                        City = hbaHotel[i].City,
+                        State = hbaHotel[i].State,
+                        AccountName = hbaHotel[i].AccountName,
+                        AccountNumber = hbaHotel[i].AccountNumber,
+                        BankName = hbaHotel[i].BankName,
+                        BankCode = hbaHotel[i].BankCode,
+                        ManagerId = hbaHotel[i].ManagerId,
+                        Location = hbaHotel[i].Location,
+                        Rating = hbaHotel[i].Rating
+                    };
+                    await dbContext.Hotels.AddAsync(hotel);
+
+                }
+
+                for (int i = 0; i < hbaRoomType.Count; i++)
+                {
+                    var roomType = new RoomType()
+                    {
+                        Id = hbaRoomType[i].Id,
+                        HotelId = hbaRoomType[i].HotelId,
+                        Name = hbaRoomType[i].Name,
+                        Description = hbaRoomType[i].Description,
+                        Price = hbaRoomType[i].Price,
+                        Discount = hbaRoomType[i].Discount,
+                        Thumbnail = hbaRoomType[i].Thumbnail,
+                        Available = hbaRoomType[i].Available
+                    };
+                    await dbContext.RoomTypes.AddAsync(roomType);
+
+                }
+
+                for (var i = 0; i < hbaBooking.Count; i++)
+                {
+                    var booking = new Booking()
+                    {
+                        Id = hbaBooking[i].Id,
+                        PaymentStatus = hbaBooking[i].PaymentStatus,
+                        BookingReference = hbaBooking[i].BookingReference,
+                        CheckIn = hbaBooking[i].CheckIn,
+                        CheckOut = hbaBooking[i].CheckOut,
+                        NoOfPeople = hbaBooking[i].NoOfPeople,
+                        ServiceName = hbaBooking[i].ServiceName,
+                        HotelId = hbaBooking[i].HotelId,
+                        CustomerId = hbaBooking[i].CustomerId,
+                        RoomTypeId = hbaBooking[i].RoomTypeId,
+                        PaymentId = hbaBooking[i].PaymentId
+                    };
+                    await dbContext.Bookings.AddAsync(booking);
+
+                }
+
+                for (var i = 0; i < hbaRooms.Count; i++)
+                {
+                    var room = new Room()
+                    {
+                        Id = hbaRooms[i].Id,
+                        RoomTypeId = hbaRooms[i].RoomTypeId,
+                        RoomNo= hbaRooms[i].RoomNo,
+                        IsBooked = hbaRooms[i].IsBooked,
+                    };
+                    await dbContext.Rooms.AddAsync(room);
+                }
+
+                for (var i = 0; i < hbaAmenities.Count; i++)
+                {
+                    var amenity = new Amenity()
+                    {
+                       Id= hbaAmenities[i].Id,
+                       Name= hbaAmenities[i].Name,
+                       Price= hbaAmenities[i].Price,
+                       Discount= hbaAmenities[i].Discount,
+                       HotelId = hbaAmenities[i].HotelId
+                    };
+                    await dbContext.Amenities.AddAsync(amenity);
+                }
+
             }
            
             await dbContext.SaveChangesAsync();
