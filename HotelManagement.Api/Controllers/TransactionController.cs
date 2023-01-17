@@ -1,7 +1,9 @@
 ﻿using HotelManagement.Core;
 using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
+using HotelManagement.Core.Enums;
 using HotelManagement.Core.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,14 +15,34 @@ namespace HotelManagement.Api.Controllers
     {
         private ITransactionService _transactionService;
 
-        public TransactionController(ITransactionService transactionService) 
+        public TransactionController(ITransactionService transactionService)
         {
-            _transactionService = transactionService; 
+            _transactionService = transactionService;
+        }
+        //Display all transaction for admin controller
+        [HttpGet("DisplayAllTransactionforAdmin")]
+        [Authorize(Roles ="Admin")]
+        public async Task<IActionResult> DisplayAllTransactionToAdmin()
+        {
+            try
+            {
+                var result = await _transactionService.DisplayAllTransactionToAdmin();
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
-         
+
         [HttpGet("GetAllRoomTransactionForManager")]
-        public async Task<ActionResult<Response<RoomTransactionDTO>>>GetAllRoomTransactionForManager(string mangerId)
+        public async Task<ActionResult<Response<RoomTransactionDTO>>> GetAllRoomTransactionForManager(string mangerId)
         {
             try
             {
@@ -37,7 +59,7 @@ namespace HotelManagement.Api.Controllers
                 //log error
                 return StatusCode(500, ex.Message);
             }
-        
+
         }
 
         [HttpGet("GetAllRoomTransaction")]
@@ -60,5 +82,33 @@ namespace HotelManagement.Api.Controllers
             }
 
         }
+
+        [HttpGet("{customerId}/hotel/{hotelId}/transactions"), Authorize(Roles = "Admin,Manager")]
+        public async Task<IActionResult> Get(string customerId, string hotelId, int pageNumber, int pageSize)
+        {
+            try
+            {
+
+                var result = await _transactionService.GetAllCustomerTransactionForAnHotel(customerId, hotelId, pageNumber, pageSize);
+                //_logger.LogInformation("Get all transaction by user triggered");
+                if (!result.Succeeded) return BadRequest();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                //_logger.LogError("Unable to retrieve users transactions for hotel");
+                return BadRequest(ex.Message);
+            }
+
+        }
+
+        [HttpGet("GetAllUsersTransaction")]
+        public async Task<ActionResult<Response<RoomTransactionDTO>>> GetAllUserTransactions(int pageNumber, int pageSize)
+        {        
+            var result = await _transactionService.GetAllUsersTransactionAsync(pageNumber, pageSize);
+            return Ok(result);
+        }
     }
 }
+
+

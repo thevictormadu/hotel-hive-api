@@ -1,6 +1,8 @@
-﻿using HotelManagement.Core.Domains;
+﻿using HotelManagement.Core;
+using HotelManagement.Core.Domains;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

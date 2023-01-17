@@ -4,6 +4,7 @@ using HotelManagement.Core.IServices;
 using HotelManagement.Services.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelManagement.Api.Controllers
 {
@@ -20,7 +21,8 @@ namespace HotelManagement.Api.Controllers
             _customerService = customerService;
         }
 
-        [HttpGet("GetCustomers/{pageNo}")]
+        [HttpGet("GetCustomers")]
+        [Authorize(Roles ="Customer")]
         public async Task<ActionResult<Response<List<GetCustomerDto>>>> GetCustomers(int pageNo)
         {
 
@@ -43,6 +45,20 @@ namespace HotelManagement.Api.Controllers
                 return StatusCode(500, ex.Message);
             }
 
+        }
+
+        [HttpPost("AddCustomerAddress")]
+        public async Task<IActionResult> AddCustomerAddress(AddCustomerAddressDto address)
+        {
+            var result = await _customerService.AddCustomerAddress(address);
+            if(result.Succeeded) return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("HotelTopCustomers/{hotelId}")]
+        public async Task<IActionResult> HotelTopCustomers(string hotelId)
+        {
+            var result = await _customerService.GetTopHotelCustomers(hotelId);
+            return Ok(result);
         }
     }
 }

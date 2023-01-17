@@ -1,0 +1,452 @@
+[
+  {
+    "Id": "ea251399-1158-6843-aa68-79ad119f0a99",
+    "RoomTypeId": "61c22d56-ae5c-1bf5-e82c-996a295c8621",
+    "RoomNo": "283",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2453218+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "d7e11d1d-8eaf-5af7-9faa-5086cd1b5f55",
+    "RoomTypeId": "61c22d56-ae5c-1bf5-e82c-996a295c8621",
+    "RoomNo": "168",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589078+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "cde74b2e-810b-71b8-382b-4b1679369b5d",
+    "RoomTypeId": "fca87bcf-b073-acb7-0f2c-0b18f266012d",
+    "RoomNo": "280",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589195+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "0ca4edd1-172b-e73c-879d-938b32a36c44",
+    "RoomTypeId": "fca87bcf-b073-acb7-0f2c-0b18f266012d",
+    "RoomNo": "397",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589206+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "0b9d404f-9e2c-3e86-c0b1-21514c10cf40",
+    "RoomTypeId": "1585bb39-8148-a646-ba90-212545f14766",
+    "RoomNo": "479",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589257+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "d267af96-502b-78ad-8bec-fcaaeabbb633",
+    "RoomTypeId": "1585bb39-8148-a646-ba90-212545f14766",
+    "RoomNo": "399",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589264+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "40ef886f-3f4a-e49a-3565-6f93fb51ff9a",
+    "RoomTypeId": "4d31a06d-4a2c-1714-8a30-4601c2e9ce9f",
+    "RoomNo": "406",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589269+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "4be1e011-a732-4a6c-0f67-c872776051b5",
+    "RoomTypeId": "4d31a06d-4a2c-1714-8a30-4601c2e9ce9f",
+    "RoomNo": "281",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589276+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "e578c613-3947-7a64-ba84-31ac53a7e1a5",
+    "RoomTypeId": "54d487a9-4c54-718c-db77-70106b679601",
+    "RoomNo": "383",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589282+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "2b050b02-237c-acd5-52a6-28e7504c16f2",
+    "RoomTypeId": "54d487a9-4c54-718c-db77-70106b679601",
+    "RoomNo": "172",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589288+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "642f6cad-6b1d-8316-c812-7da8600bca25",
+    "RoomTypeId": "56827344-9055-3572-9cdd-dc105924deb4",
+    "RoomNo": "336",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589293+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "523698d8-fa39-c8f0-1f3c-3ac5e23207b8",
+    "RoomTypeId": "56827344-9055-3572-9cdd-dc105924deb4",
+    "RoomNo": "258",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589299+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "bde9288b-ed94-1216-d680-214636634a32",
+    "RoomTypeId": "eb816d97-35bf-33ff-844c-82a71e84ea79",
+    "RoomNo": "212",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589305+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "9b939c10-5847-17ea-f63d-afb69fa0bc7e",
+    "RoomTypeId": "eb816d97-35bf-33ff-844c-82a71e84ea79",
+    "RoomNo": "339",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589311+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "8c813a90-d5ed-0782-9e0d-409dae6aea24",
+    "RoomTypeId": "4aeef78c-7ebb-074b-3ed5-953e0250b942",
+    "RoomNo": "167",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589317+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "bbeba451-f0d8-a242-6b8c-99682fa2f28f",
+    "RoomTypeId": "4aeef78c-7ebb-074b-3ed5-953e0250b942",
+    "RoomNo": "389",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589323+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "1dea69a3-b3d9-98f7-1d28-5c87cfd4eaf1",
+    "RoomTypeId": "3c669b4d-6332-49c4-5f56-545a968775fa",
+    "RoomNo": "305",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589329+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "57585e98-7a63-2a1a-8d44-47e667ddbf37",
+    "RoomTypeId": "3c669b4d-6332-49c4-5f56-545a968775fa",
+    "RoomNo": "191",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589335+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "870835ae-34d6-3afd-75d3-9945b1388202",
+    "RoomTypeId": "90ef8e2e-d711-de42-df07-bdc115ed0323",
+    "RoomNo": "316",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.258934+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "558c728c-9681-b73d-dd4a-4e322c15db24",
+    "RoomTypeId": "90ef8e2e-d711-de42-df07-bdc115ed0323",
+    "RoomNo": "249",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589346+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "426f9527-d84f-d72c-5422-5b6ebacda723",
+    "RoomTypeId": "0f6112ae-d517-7cc7-0954-7cde9de9d017",
+    "RoomNo": "299",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589352+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "6b697ca3-3e71-3b18-ac11-e5a132f5d62f",
+    "RoomTypeId": "0f6112ae-d517-7cc7-0954-7cde9de9d017",
+    "RoomNo": "274",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589357+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "3f5f6b1d-d885-2d7c-d1ec-8c8df1abaf22",
+    "RoomTypeId": "65d02f74-99cd-611f-2710-ed9d857146fa",
+    "RoomNo": "367",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589363+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "95975c2a-2d3e-f1c4-0dd3-83a0075cb752",
+    "RoomTypeId": "65d02f74-99cd-611f-2710-ed9d857146fa",
+    "RoomNo": "471",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589369+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "96816c27-900d-3063-d154-c65a342bc00d",
+    "RoomTypeId": "437c94cf-9083-fa69-30fe-bf3cdac70128",
+    "RoomNo": "304",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589375+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "3cedd35e-5a32-e1f8-15e9-c526eccca2ce",
+    "RoomTypeId": "437c94cf-9083-fa69-30fe-bf3cdac70128",
+    "RoomNo": "490",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589381+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "e186e97c-6291-693b-7054-bd9bd9fecc5c",
+    "RoomTypeId": "2b8021ee-c9b0-7d39-0be0-f49aee5cda75",
+    "RoomNo": "489",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589386+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "28243240-08df-6c19-0e20-7f6efca5a201",
+    "RoomTypeId": "2b8021ee-c9b0-7d39-0be0-f49aee5cda75",
+    "RoomNo": "218",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589392+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "bfb061df-daf8-2295-cdf3-649e114fa5af",
+    "RoomTypeId": "926fab0f-9077-26cd-2452-f7e63f3ec4df",
+    "RoomNo": "468",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589451+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "95c64142-fa91-f588-7500-efd734616852",
+    "RoomTypeId": "926fab0f-9077-26cd-2452-f7e63f3ec4df",
+    "RoomNo": "432",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589458+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "1d7d14d6-39fc-3662-1fbf-a40021660b37",
+    "RoomTypeId": "c8a0c461-887c-0bf3-6de9-a7fb9c9cec6d",
+    "RoomNo": "175",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589464+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "aafba0b6-b0d0-3fc1-a4dc-3bfdc05e01b5",
+    "RoomTypeId": "c8a0c461-887c-0bf3-6de9-a7fb9c9cec6d",
+    "RoomNo": "194",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589469+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "b8fdb2a1-4d04-0525-b5e5-778e0a54642c",
+    "RoomTypeId": "3d9654df-9e75-7fef-2974-d1b5cdb9bc0b",
+    "RoomNo": "378",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589475+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "912ef2bb-f26a-ea9b-3c18-34ef31ab2d76",
+    "RoomTypeId": "3d9654df-9e75-7fef-2974-d1b5cdb9bc0b",
+    "RoomNo": "313",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.258948+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "41a50b8c-20a2-07c1-7b31-4d33158197d1",
+    "RoomTypeId": "8065ad26-3ed2-4a46-93b5-741da0accebb",
+    "RoomNo": "394",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589486+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "b2303968-972c-4d57-b5b8-339eea1403e5",
+    "RoomTypeId": "8065ad26-3ed2-4a46-93b5-741da0accebb",
+    "RoomNo": "459",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589492+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "f347e704-b423-b3a6-88f4-141a92385db2",
+    "RoomTypeId": "53e30373-1b7e-28c1-efc3-1beea9d40d29",
+    "RoomNo": "416",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589498+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "c6c267cb-9aea-e54e-1968-697862d1ee30",
+    "RoomTypeId": "53e30373-1b7e-28c1-efc3-1beea9d40d29",
+    "RoomNo": "412",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589512+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "0108f8d3-9e1c-ebbd-66b5-7bd028d27160",
+    "RoomTypeId": "20009621-9664-0963-c355-c909a60da4bf",
+    "RoomNo": "446",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.258952+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "7aa6b920-761d-cbf3-4dae-991c13c71e29",
+    "RoomTypeId": "20009621-9664-0963-c355-c909a60da4bf",
+    "RoomNo": "373",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589529+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "65255599-157c-f13d-98a5-97609eac24d3",
+    "RoomTypeId": "61c22d56-ae5c-1bf5-e82c-996a295c8621",
+    "RoomNo": "347",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589538+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "ed241ace-b9b3-8290-a333-0e2ca6c075e3",
+    "RoomTypeId": "fca87bcf-b073-acb7-0f2c-0b18f266012d",
+    "RoomNo": "497",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589548+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "98ff7b2d-5b72-4027-fbb8-1b54d8faabb0",
+    "RoomTypeId": "1585bb39-8148-a646-ba90-212545f14766",
+    "RoomNo": "317",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589557+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "f799d25b-308e-9851-53fc-9e0b38a4b110",
+    "RoomTypeId": "4d31a06d-4a2c-1714-8a30-4601c2e9ce9f",
+    "RoomNo": "389",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589566+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "0fa10da3-fbfb-e256-0f68-b9e040a85eeb",
+    "RoomTypeId": "54d487a9-4c54-718c-db77-70106b679601",
+    "RoomNo": "331",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589575+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "10dca035-7641-95c4-931c-2da3b298ba81",
+    "RoomTypeId": "56827344-9055-3572-9cdd-dc105924deb4",
+    "RoomNo": "110",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.258958+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "fe037aa7-20b0-edaf-dc0d-fc7c47a882cd",
+    "RoomTypeId": "eb816d97-35bf-33ff-844c-82a71e84ea79",
+    "RoomNo": "195",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589586+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "e040eeb9-a497-b51d-cd87-bf22334d9e42",
+    "RoomTypeId": "4aeef78c-7ebb-074b-3ed5-953e0250b942",
+    "RoomNo": "325",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589592+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "245b9c05-aef5-a600-e781-b2d68bae9355",
+    "RoomTypeId": "3c669b4d-6332-49c4-5f56-545a968775fa",
+    "RoomNo": "152",
+    "IsBooked": true,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589598+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "ec5ef073-0881-cd7c-54d6-06d6eac8c093",
+    "RoomTypeId": "90ef8e2e-d711-de42-df07-bdc115ed0323",
+    "RoomNo": "144",
+    "IsBooked": false,
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-16T23:23:19.2589603+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  }
+]
