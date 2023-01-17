@@ -2407,11 +2407,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Decagon\\Desktop\\uuuuu\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
+      "projectUniqueName": "C:\\Users\\Decagon\\source\\repos\\HotelManagementSystemSQ012\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
       "projectName": "HotelManagement.Core",
-      "projectPath": "C:\\Users\\Decagon\\Desktop\\uuuuu\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
+      "projectPath": "C:\\Users\\Decagon\\source\\repos\\HotelManagementSystemSQ012\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
       "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Decagon\\Desktop\\uuuuu\\HotelManagementSystemSQ012\\HotelManagement.Core\\obj\\",
+      "outputPath": "C:\\Users\\Decagon\\source\\repos\\HotelManagementSystemSQ012\\HotelManagementSystemSQ012\\HotelManagement.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

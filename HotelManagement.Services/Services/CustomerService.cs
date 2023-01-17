@@ -51,10 +51,10 @@ namespace HotelManagement.Services.Services
                     //var gp = new GenericPagination<Datatype>();
                     //var paginatedItem = GenericPagination.ToPagedList(item,3,5)
 
-                    //<Customer> customers = await _unitOfWork.customerRepository.GetAllAsync();
-                    IQueryable customers = (IQueryable)await _unitOfWork.customerRepository.GetAllAsync();
+                    //IEnumerable<Customer> customers = await _unitOfWork.customerRepository.GetAllAsync();
+                    var customers = await _unitOfWork.customerRepository.GetAllAsync();
                     //var gp = new GenericPagination<GetCustomerDto>();
-                    var paginatedItem = GenericPagination<GetCustomerDto>.ToPagedList((IQueryable<GetCustomerDto>)customers, pageNo, 5);
+                    //var paginatedItem = GenericPagination<GetCustomerDto>.ToPagedList((IQueryable<GetCustomerDto>)customers, pageNo, 5);
                     var result = _mapper.Map<List<GetCustomerDto>>(customers);
                     response.Data = result;
                     response.StatusCode = (int)HttpStatusCode.OK;
