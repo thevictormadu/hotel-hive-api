@@ -63,7 +63,7 @@ namespace HotelManagement.Infrastructure.Seeding
                     CreatedAt = DateTime.Now,
                     UpdatedAt = DateTime.Now
                 };
-                // user.EmailConfirmed = true;
+                 user.EmailConfirmed = true;
                 await userManager.CreateAsync(user, "Password@123");
                 await userManager.AddToRoleAsync(user, "Admin");
 
@@ -73,6 +73,8 @@ namespace HotelManagement.Infrastructure.Seeding
                 var hotelPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Hotels.json"));
                 var roomTypePath = File.ReadAllText(FilePath(baseDir, "JsonFile/RoomTypes.json"));
                 var bookingPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Bookings.json"));
+                var roomPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Rooms.json"));
+                var AmenityPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Amenities.json"));
 
                 var hbaUsers = JsonConvert.DeserializeObject<List<AppUser>>(path);
                 var hbaCustomers = JsonConvert.DeserializeObject<List<Customer>>(customerPath);
@@ -80,10 +82,12 @@ namespace HotelManagement.Infrastructure.Seeding
                 var hbaHotel = JsonConvert.DeserializeObject<List<Hotel>>(hotelPath);
                 var hbaRoomType = JsonConvert.DeserializeObject<List<RoomType>>(roomTypePath);
                 var hbaBooking = JsonConvert.DeserializeObject<List<Booking>>(bookingPath);
+                var hbaRooms = JsonConvert.DeserializeObject<List<Room>>(roomPath);
+                var hbaAmenities = JsonConvert.DeserializeObject<List<Amenity>>(AmenityPath);
 
                 for (int i = 0; i < hbaUsers.Count; i++)
                 {
-                    //hbaUsers[i].EmailConfirmed = true;
+                    hbaUsers[i].EmailConfirmed = true;
                     await userManager.CreateAsync(hbaUsers[i], "Password@123");
 
                     if (i < 5)
@@ -181,6 +185,31 @@ namespace HotelManagement.Infrastructure.Seeding
                     };
                     await dbContext.Bookings.AddAsync(booking);
 
+                }
+
+                for (var i = 0; i < hbaRooms.Count; i++)
+                {
+                    var room = new Room()
+                    {
+                        Id = hbaRooms[i].Id,
+                        RoomTypeId = hbaRooms[i].RoomTypeId,
+                        RoomNo= hbaRooms[i].RoomNo,
+                        IsBooked = hbaRooms[i].IsBooked,
+                    };
+                    await dbContext.Rooms.AddAsync(room);
+                }
+
+                for (var i = 0; i < hbaAmenities.Count; i++)
+                {
+                    var amenity = new Amenity()
+                    {
+                       Id= hbaAmenities[i].Id,
+                       Name= hbaAmenities[i].Name,
+                       Price= hbaAmenities[i].Price,
+                       Discount= hbaAmenities[i].Discount,
+                       HotelId = hbaAmenities[i].HotelId
+                    };
+                    await dbContext.Amenities.AddAsync(amenity);
                 }
 
             }
