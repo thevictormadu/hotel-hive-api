@@ -17,5 +17,7 @@ namespace HotelManagement.Core.IServices
 
         //basic comment.
         Task<Response<GetReviewsDTO>> GetHotelReviews(string hotelId);
+
+        //Task<Response<GetReviewsDTO>> GetHotelReviews(string hotelId);
     }
 }
