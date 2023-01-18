@@ -18,6 +18,7 @@
 
         IBookingRepository bookingRepository { get; }
         ITransactionsRepository transactionRepository { get; }
+        IRateHotelRepository rateHotelRepository { get; }
 
         void SaveChanges();
 
