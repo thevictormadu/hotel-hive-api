@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0H+n8iKOtRslhjq8yR6aHSr+J+aUjHqd9o8eV0qKk5sGeLx0OS/6F/MF4PpIjdrrg/Od6gY70WO3W1EX+Z3AvA==",
+  "dgSpecHash": "2PXjSew0buGFCEloTpq3gTUbLh5xCot+0ZJ6G02P8YOyOLxkPoA/iAqBq7Meo3Qyqal8yokUpSmIoSV4ZLvgQA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Decagon\\source\\repos\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
+  "projectFilePath": "C:\\Users\\Decagon\\source\\repos\\HotelManagementSystemSQ012\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Decagon\\.nuget\\packages\\cloudinarydotnet\\1.20.0\\cloudinarydotnet.1.20.0.nupkg.sha512",
     "C:\\Users\\Decagon\\.nuget\\packages\\entityframework\\6.1.0\\entityframework.6.1.0.nupkg.sha512",
