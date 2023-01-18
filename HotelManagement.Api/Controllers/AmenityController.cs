@@ -64,7 +64,7 @@ namespace HotelManagement.Api.Controllers
 
                 //Check if this  amenity has been created for the hotel
                 if (await _amenityService.GetAsync(x => x.Name.ToLower() ==
-                createDto.Name.ToLower()) != null)
+                createDto.Name.ToLower() && x.HotelId == createDto.HotelId) != null)
                 {
                     //log error
                     ModelState.AddModelError("ErrorMessage", "This Amenity has been created for this hotel!");

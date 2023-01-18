@@ -21,7 +21,9 @@ namespace HotelManagement.Infrastructure.Repositories
             // Find the manager with the specified ID and include the hotels, rooms, room types, and bookings associated with the manager
             var manager = await _db.Managers
                 .Include(m => m.Hotels)
-                    .ThenInclude(h => h.Bookings).ThenInclude(rt => rt.RoomType)
+                .Include(m => m.Hotels).ThenInclude(b => b.Bookings)
+                .Include(m => m.Hotels).ThenInclude(rt => rt.RoomTypes)
+                    //.ThenInclude(h => h.Bookings).ThenInclude(rt => rt.RoomType)
                 .FirstOrDefaultAsync(m => m.Id == managerId);
 
             return manager; 
