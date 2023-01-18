@@ -17,7 +17,10 @@ namespace HotelManagement.Core.IServices
         //Display all transaction for admin ITransactionservice
         Task<Response<IEnumerable<PaymentDTO>>> DisplayAllTransactionToAdmin();
 
+        Task<Response<List<GetCustomerDto>>> GetAllUsersTransactionAsync(int pageNumber, int pageSize);
 
 
     }
 }
+
+
