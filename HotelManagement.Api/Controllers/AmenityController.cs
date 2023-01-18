@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using HotelManagement.Core;
-using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
-using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
-using HotelManagement.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
