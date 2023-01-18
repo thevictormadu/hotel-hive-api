@@ -72,7 +72,7 @@ namespace HotelManagement.Api
 
             builder.Services.AddMvc().AddFluentValidation(fv =>
             {
-                fv.DisableDataAnnotationsValidation = true;
+                fv.DisableDataAnnotationsValidation = true; 
                 fv.RegisterValidatorsFromAssemblyContaining<Program>();
                 fv.ImplicitlyValidateChildProperties = true;
             });
