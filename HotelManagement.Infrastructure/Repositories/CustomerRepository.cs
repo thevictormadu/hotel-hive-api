@@ -17,29 +17,31 @@ namespace HotelManagement.Infrastructure.Repositories
     {
         private readonly HotelDbContext _hotelDbContext;
 
-        protected readonly HotelDbContext _context;
+       
         public CustomerRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
         {
             _hotelDbContext = hotelDbContext;
+         
         }
-            _context = hotelDbContext;
-        }
+            
+    
 
-        public async Task<List<Customer>> GetCustomersByHotel(string hotelId)
+    public async Task<List<Customer>> GetCustomersByHotel(string hotelId)
+    {
+        try
         {
-            try
-            {
-              var customers = await _context.Customers
-             .Where(c => c.Bookings.Any(b => b.HotelId == hotelId))
-             .ToListAsync();
-                return customers;
-            }
-            catch (Exception)
-            {
-               
+            var customers = await _hotelDbContext.Customers
+           .Where(c => c.Bookings.Any(b => b.HotelId == hotelId))
+           .ToListAsync();
+            return customers;
+        }
+        catch (Exception)
+        {
 
-                throw;
-            }
+
+            throw;
+        }
+    }
 
         public async Task<Response<List<Customer>>> GetTopHotelCustomers(string hotelId)
         {
@@ -58,3 +60,4 @@ namespace HotelManagement.Infrastructure.Repositories
         }
     }
 }
+

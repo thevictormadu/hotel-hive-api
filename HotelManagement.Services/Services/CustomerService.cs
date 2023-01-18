@@ -140,7 +140,8 @@ namespace HotelManagement.Services.Services
                 };
                 hotelCustomers.Add(hotelCustDtos);
             }
-            return Response<List<GetCustomersByHotelDto>>.Success("Successful", hotelCustDto, 200);
+             return Response<List<GetCustomersByHotelDto>>.Success("Successful", hotelCustomers, 200);
+            
             
 
         }

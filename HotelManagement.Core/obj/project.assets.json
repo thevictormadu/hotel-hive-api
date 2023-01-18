@@ -2499,7 +2499,7 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Doris Dunu\\Videos\\HotelManagementSystemSQ012\\HotelManagement.Core\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+      "message": "Problem reading the cache file C:\\Users\\Doris Dunu\\Videos\\HotelManagementSystemSQ012\\HotelManagement.Core\\obj\\project.nuget.cache : After parsing a value an unexpected character was encountered: \". Path 'expectedPackageFiles[56]', line 66, position 4."
     },
     {
       "code": "NU1701",
