@@ -17,6 +17,24 @@ namespace HotelManagement.Api.Controllers
             _reviewService = reviewService;
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> AddReview(AddReviewsDTO model, string id)
+        {
+            var _review = await _reviewService.AddReviewAsync(model, id);
+
+            if (!_review.Succeeded) return BadRequest();
+            return Ok(_review);
+
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetHotelReviews(string id)
+        {
+            var reviews = await _reviewService.GetHotelReviews(id);
+            return Ok(reviews);
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateReview(string Id , UpdateReviewDto updateReview)
         {

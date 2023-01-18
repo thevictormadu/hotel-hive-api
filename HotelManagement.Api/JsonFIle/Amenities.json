@@ -1,0 +1,302 @@
+[
+  {
+    "Id": "978b5a4a-3171-334a-42c1-94479d28a59a",
+    "Name": "empower",
+    "Price": 85221.982471899052000,
+    "Discount": 11794.14123911355000,
+    "HotelId": "5ddbee2d-a5ee-5a72-81ae-d2bef21b45ae",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0468044+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "ee20ffe0-312b-676b-d915-a72bdd945eb5",
+    "Name": "Enhanced",
+    "Price": 2705.0184825202738000,
+    "Discount": 8618.57302105182000,
+    "HotelId": "5ddbee2d-a5ee-5a72-81ae-d2bef21b45ae",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0738092+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "fd24f8c8-89f7-6944-d1af-85a34f26d02d",
+    "Name": "motivating",
+    "Price": 84301.968572981488000,
+    "Discount": 4029.910591202232000,
+    "HotelId": "0d8b88e4-3b00-db04-b608-65064c298de3",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0740406+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "9ae92dc3-4155-3a4c-4a17-7d3c726e5c06",
+    "Name": "Home Loan Account",
+    "Price": 97670.871340741225000,
+    "Discount": 11231.689136863744000,
+    "HotelId": "0d8b88e4-3b00-db04-b608-65064c298de3",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0742306+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "3b6db200-ce80-d82c-fc4f-d63eee169dde",
+    "Name": "Forest",
+    "Price": 97021.757724899743000,
+    "Discount": 17305.415196995966000,
+    "HotelId": "2e35f771-8810-14c3-0f63-6ff65b6be0e9",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0744404+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "6c0e6004-002b-c44e-d960-936bdf66c423",
+    "Name": "Executive",
+    "Price": 53230.320296527087000,
+    "Discount": 19710.284522133904000,
+    "HotelId": "2e35f771-8810-14c3-0f63-6ff65b6be0e9",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0746287+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "d51ae0b3-e8e4-a9ac-9da3-5b31b0b6fe8a",
+    "Name": "concept",
+    "Price": 25844.998504592728000,
+    "Discount": 7935.295592088213000,
+    "HotelId": "7e2a29ca-f7a8-ce90-6745-c0b3f241823a",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0748026+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "57941761-33b3-9e41-104b-8560447e1372",
+    "Name": "Multi-layered",
+    "Price": 82306.134067684141000,
+    "Discount": 9479.583020240127000,
+    "HotelId": "7e2a29ca-f7a8-ce90-6745-c0b3f241823a",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0749916+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "4faff757-5c98-6939-4da0-6afe840ea70a",
+    "Name": "aggregate",
+    "Price": 98499.391644144457000,
+    "Discount": 12313.955473377406000,
+    "HotelId": "ca5079c0-4732-86c1-1012-de777ba82d03",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0749952+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "8e035d83-e039-2b01-272b-c04b4f413cd6",
+    "Name": "fresh-thinking",
+    "Price": 43379.074957220848000,
+    "Discount": 16994.130368741024000,
+    "HotelId": "ca5079c0-4732-86c1-1012-de777ba82d03",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0749973+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "f8a38451-2a6e-ad2c-9aae-7592815923b5",
+    "Name": "transmitter",
+    "Price": 34778.75947433614000,
+    "Discount": 4043.767868051637000,
+    "HotelId": "bfa9a616-eb0e-987a-7337-03436f5e9c85",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.074999+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "a7bbcc58-d699-8e9d-97db-1a848d0969ed",
+    "Name": "system",
+    "Price": 48706.829203928554000,
+    "Discount": 4720.290052058741000,
+    "HotelId": "bfa9a616-eb0e-987a-7337-03436f5e9c85",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0751687+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "3b76092b-c8de-1f26-9870-6838fc5f1702",
+    "Name": "International",
+    "Price": 55058.076940947904000,
+    "Discount": 9910.696573926521000,
+    "HotelId": "6ba646b1-b9db-e467-dab6-9d2f0efb9d98",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0751721+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "b7e934b9-414a-7447-3e75-597c2aea2644",
+    "Name": "Suriname",
+    "Price": 36714.879824633119000,
+    "Discount": 11495.625556998781000,
+    "HotelId": "6ba646b1-b9db-e467-dab6-9d2f0efb9d98",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0753369+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "7c65f2d5-713b-6cc0-d8e7-babfc735aa6c",
+    "Name": "copying",
+    "Price": 63370.656378285211000,
+    "Discount": 13256.949000011126000,
+    "HotelId": "0d44454b-4be2-20a4-59bc-1833affbd2f2",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0755192+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "5562953c-3fa6-385b-ec38-40b5692f12bd",
+    "Name": "Forges",
+    "Price": 23456.805939687691000,
+    "Discount": 4878.227112207164000,
+    "HotelId": "0d44454b-4be2-20a4-59bc-1833affbd2f2",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0757018+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "9df59a2c-4097-0dce-39f0-26ac6c7dbbe9",
+    "Name": "Lead",
+    "Price": 75181.971710634436000,
+    "Discount": 18680.560351685417000,
+    "HotelId": "bec1039b-7c1a-a2c5-96a1-f25fe45ca674",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0757055+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "ca3b36c0-034c-d34d-17d8-743315f7d959",
+    "Name": "withdrawal",
+    "Price": 14962.967593862815000,
+    "Discount": 14618.816179261633000,
+    "HotelId": "bec1039b-7c1a-a2c5-96a1-f25fe45ca674",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0757125+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "7e93c61a-f672-83ce-e559-bbf97e5d2746",
+    "Name": "program",
+    "Price": 76231.526290405012000,
+    "Discount": 9700.696711710842000,
+    "HotelId": "0166e3bb-1740-fa1a-ecfc-206ffdd334b4",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0758807+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "f98e27e2-79d6-ad7f-d395-7da5a08c3149",
+    "Name": "Frozen",
+    "Price": 76348.889134498342000,
+    "Discount": 7093.144240295542000,
+    "HotelId": "0166e3bb-1740-fa1a-ecfc-206ffdd334b4",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0758831+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "9d7f72eb-dc16-996b-3350-7699b77a2ad0",
+    "Name": "Shores",
+    "Price": 4412.6326303897168000,
+    "Discount": 14904.787097847547000,
+    "HotelId": "bb6a9dc2-6ac6-57cc-6c7b-e57022146cbd",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0760542+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "156ec046-0820-8ef5-f56f-bb4515b090ad",
+    "Name": "Ergonomic",
+    "Price": 70364.337638467366000,
+    "Discount": 6109.153212850023000,
+    "HotelId": "bb6a9dc2-6ac6-57cc-6c7b-e57022146cbd",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0761173+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "0667b460-2e35-a731-9f8c-635c94ad2954",
+    "Name": "Arkansas",
+    "Price": 48542.624197024231000,
+    "Discount": 7750.244111697789000,
+    "HotelId": "84d26cdc-030d-4230-41e0-6d3f6ed59a43",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0762739+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "94750af8-ee12-a68d-20fb-959bed898b9b",
+    "Name": "Compatible",
+    "Price": 81569.729804650471000,
+    "Discount": 5885.119546033429000,
+    "HotelId": "84d26cdc-030d-4230-41e0-6d3f6ed59a43",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0764338+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "51f11837-a42a-98da-fb28-9d94c3a1c220",
+    "Name": "Handcrafted Soft Fish",
+    "Price": 17157.209141871721000,
+    "Discount": 8311.556632846827000,
+    "HotelId": "3c0c31cf-dbae-eff8-ba4f-ade7077d04a1",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0764362+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "5c2143a1-6021-985f-f6f6-db87546dc80c",
+    "Name": "applications",
+    "Price": 63753.104499405859000,
+    "Discount": 19374.343001731844000,
+    "HotelId": "3c0c31cf-dbae-eff8-ba4f-ade7077d04a1",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0785359+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "ed4b9d43-2f40-919c-918f-2801f0eceb72",
+    "Name": "next-generation",
+    "Price": 5382.7337809989811000,
+    "Discount": 8943.499296882256000,
+    "HotelId": "8c9aa0b0-ad59-1fac-cb60-641e46d97266",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0788392+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "dd2046ea-f4e3-93ba-11a3-f57ef8899f91",
+    "Name": "Buckinghamshire",
+    "Price": 28001.568478883284000,
+    "Discount": 11421.126879285502000,
+    "HotelId": "8c9aa0b0-ad59-1fac-cb60-641e46d97266",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0790856+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "abe525dd-6be6-1993-ff57-c8849ece870d",
+    "Name": "Investment Account",
+    "Price": 80018.550853160149000,
+    "Discount": 18395.784685459287000,
+    "HotelId": "07beb87c-9550-506c-0ae2-49560a59e9c6",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0793021+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "f2dfc132-118f-a601-ae5e-cb8b2a048d66",
+    "Name": "Granite",
+    "Price": 45819.817958824876000,
+    "Discount": 4190.292372438762000,
+    "HotelId": "07beb87c-9550-506c-0ae2-49560a59e9c6",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T02:02:42.0793069+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  }
+]

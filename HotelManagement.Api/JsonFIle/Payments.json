@@ -1,0 +1,92 @@
+[
+  {
+    "BookingId": "062f6948-6a96-f1a0-9baf-6d55c86c96d2",
+    "TransactionReference": "bz2uui3hgtw0z4ta6",
+    "Amount": 33878.189001641950000,
+    "Status": "Voluptates voluptatem occaecati quod suscipit.",
+    "MethodOfPayment": "Gorgeous",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "BookingId": "77468965-75cd-c0cf-e1f2-a9af3e1c8ecd",
+    "TransactionReference": "gitgm3wf7fh2lb5s7",
+    "Amount": 98612.088789399760000,
+    "Status": "Aspernatur laudantium tempora.",
+    "MethodOfPayment": "Dominica",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "BookingId": "90c1c622-e09f-d736-9636-3c9ec2b9286c",
+    "TransactionReference": "j4j9lxx3pq22kvqjh",
+    "Amount": 39606.127797697210000,
+    "Status": "Perspiciatis sit voluptatem modi.",
+    "MethodOfPayment": "Refined",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "BookingId": "f1468e64-531f-070d-848c-50c9f0cadc66",
+    "TransactionReference": "0qrw4zhxwa4w1gi04",
+    "Amount": 47482.148038027060000,
+    "Status": "Dolorum quia adipisci accusantium.",
+    "MethodOfPayment": "e-business",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "BookingId": "f8320744-8b1f-decc-928c-0f71cb31d809",
+    "TransactionReference": "yy4t6ccyanbl0jyp0",
+    "Amount": 64642.503980612350000,
+    "Status": "Ipsam et quisquam repellendus ea.",
+    "MethodOfPayment": "Berkshire",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "BookingId": "3bdb37ff-f330-80d1-deef-ca46be2dafa3",
+    "TransactionReference": "o9xcbxv4kvgaq9jhr",
+    "Amount": 43637.36016104920000,
+    "Status": "Occaecati ipsa molestias odit doloremque molestias quibusdam aut.",
+    "MethodOfPayment": "Unbranded Concrete Salad",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "BookingId": "1094b20b-9d60-869a-5587-852a85ea8b95",
+    "TransactionReference": "nn7on62sjh3lmf8uh",
+    "Amount": 99668.604209738320000,
+    "Status": "Ipsam consequuntur nihil ut iste porro.",
+    "MethodOfPayment": "Accountability",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "BookingId": "2e9fb28a-cd99-d2f6-b6d4-487d92c0a2e3",
+    "TransactionReference": "xcc1jdrp0pdj49h4x",
+    "Amount": 29213.779874348440000,
+    "Status": "Reprehenderit asperiores voluptates.",
+    "MethodOfPayment": "Suriname",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "BookingId": "9f429f0c-b75f-21b5-feec-e7efddf8e9c2",
+    "TransactionReference": "ac804nn01jk7vp8cb",
+    "Amount": 30560.791931149510000,
+    "Status": "Quia quod culpa.",
+    "MethodOfPayment": "middleware",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "BookingId": "e3ab6239-b9c5-cdca-8213-6559f661e197",
+    "TransactionReference": "r28psfzec56p8i856",
+    "Amount": 99486.552426772060000,
+    "Status": "Qui consequatur odit optio.",
+    "MethodOfPayment": "bandwidth",
+    "CreatedAt": "0001-01-01T00:00:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  }
+]

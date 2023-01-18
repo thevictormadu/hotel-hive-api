@@ -15,9 +15,9 @@ namespace HotelManagement.Api.Controllers
     {
         private ITransactionService _transactionService;
 
-        public TransactionController(ITransactionService transactionService) 
+        public TransactionController(ITransactionService transactionService)
         {
-            _transactionService = transactionService; 
+            _transactionService = transactionService;
         }
         //Display all transaction for admin controller
         [HttpGet("DisplayAllTransactionforAdmin")]
@@ -42,7 +42,7 @@ namespace HotelManagement.Api.Controllers
 
 
         [HttpGet("GetAllRoomTransactionForManager")]
-        public async Task<ActionResult<Response<RoomTransactionDTO>>>GetAllRoomTransactionForManager(string mangerId)
+        public async Task<ActionResult<Response<RoomTransactionDTO>>> GetAllRoomTransactionForManager(string mangerId)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace HotelManagement.Api.Controllers
                 //log error
                 return StatusCode(500, ex.Message);
             }
-        
+
         }
 
         [HttpGet("GetAllRoomTransaction")]
@@ -83,7 +83,7 @@ namespace HotelManagement.Api.Controllers
 
         }
 
-        [HttpGet("customerId/hotel/hotelId/transactions"), Authorize(Roles = "Admin,Manager")]
+        [HttpGet("{customerId}/hotel/{hotelId}/transactions"), Authorize(Roles = "Admin,Manager")]
         public async Task<IActionResult> Get(string customerId, string hotelId, int pageNumber, int pageSize)
         {
             try
@@ -101,5 +101,14 @@ namespace HotelManagement.Api.Controllers
             }
 
         }
+
+        [HttpGet("GetAllUsersTransaction")]
+        public async Task<ActionResult<Response<RoomTransactionDTO>>> GetAllUserTransactions(int pageNumber, int pageSize)
+        {        
+            var result = await _transactionService.GetAllUsersTransactionAsync(pageNumber, pageSize);
+            return Ok(result);
+        }
     }
 }
+
+

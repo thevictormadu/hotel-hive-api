@@ -40,6 +40,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
 
+
         public IWishlistRepository wishlist =>
           _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
 
@@ -53,6 +54,14 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
+
+
+        //IReviewRepository IUnitOfWork.ReviewRepository => 
+        //    _reviewRepository ??= new ReviewRepository(_hotelDbContext);
+       
+
+
+
         public IBookingRepository bookingRepository =>
             _bookingRepository ??= new BookingRepository(_hotelDbContext);
 
@@ -66,36 +75,41 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		}
 
        
-    public void SaveChanges()
+    public async void SaveChanges()
     {
-       _hotelDbContext.SaveChangesAsync();
+     await   _hotelDbContext.SaveChangesAsync();
     }
 
-		public void Rollback()
-		{
-			_hotelDbContext.Database.RollbackTransaction();
-		}
+
+        public void Rollback()
+        {
+            _hotelDbContext.Database.RollbackTransaction();
+        }
 
 
-		protected virtual void Dispose(bool disposing)
-		{
+        protected virtual void Dispose(bool disposing)
+        {
 
-			if (!_disposed)
-			{
-				if (disposing)
-				{
-					_hotelDbContext.Dispose();
-				}
-			}
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _hotelDbContext.Dispose();
+                }
+            }
 
-			_disposed = true;
-		}
+            _disposed = true;
+        }
 
-		public void Dispose()
-		{
-			//Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+		
+
 
         public Task SaveChangesAsync()
         {
@@ -103,4 +117,3 @@ namespace HotelManagement.Infrastructure.UnitOfWork
         }
     }
 }
-  

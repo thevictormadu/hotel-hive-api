@@ -1,10 +1,11 @@
 ﻿
 using AutoMapper;
 using HotelManagement.Core.Domains;
-using HotelManagement.Core.DTOs;
 using System.Linq;
 using HotelManagement.Core.DTOs.BookingDtos;
 using HotelManagement.Core.DTOs.ReviewDTOs;
+using HotelManagement.Core.DTOs;
+
 
 namespace HotelManagement.Application.Utilities
 {
@@ -18,6 +19,7 @@ namespace HotelManagement.Application.Utilities
             var regConfig = new MapperConfiguration(conf => conf.CreateMap<RegisterDTO, AppUser>());
             regMapper = new Mapper(regConfig);
             // Amenity Maps
+
 
             CreateMap<Amenity, AmenityDTO>().ReverseMap();
             CreateMap<Amenity, CreateAmenitiesDTO>().ReverseMap();
@@ -38,10 +40,11 @@ namespace HotelManagement.Application.Utilities
             CreateMap<Booking, BookingResponseDto>().ReverseMap();
 
             // Hotel Maps
+
             CreateMap<Hotel, UpdateHotelDto>().ReverseMap();
             CreateMap<Hotel, GetHotelByStateDto>().ReverseMap();
-           // CreateMap<Hotel, GetHotelsDto>().ReverseMap();
-           CreateMap<Rating,GetHotelByRatingsDto>().ReverseMap();
+            CreateMap<Hotel, GetHotelsDto>().ReverseMap();
+            CreateMap<Rating,GetHotelByRatingsDto>().ReverseMap();
             CreateMap<Hotel,AddHotelDto>().ReverseMap();
             
 
@@ -55,9 +58,11 @@ namespace HotelManagement.Application.Utilities
 
 
 
-            // Room Maps
-            CreateMap<Room, AddRoomDto>().ReverseMap();
 
+
+            // Room Maps
+
+            CreateMap<Room,AddRoomDto>().ReverseMap();
 
             CreateMap<Room, GetRoomDto>().ReverseMap();
             // RoomType Maps
@@ -80,7 +85,7 @@ namespace HotelManagement.Application.Utilities
 
 
             //TransactionResponse Mapper
-
+            CreateMap<Customer, GetCustomerDto>().ReverseMap();
             //Transaction Maps
 
 
@@ -89,6 +94,8 @@ namespace HotelManagement.Application.Utilities
 
             // reviewdto
 
+            CreateMap<Review, AddReviewsDTO>().ReverseMap();
+            CreateMap<GetReviewsDTO, GetReviewsDTO>().ReverseMap();
 
             //Review Maps
             CreateMap<Review, UpdateReviewDto>().ReverseMap();
