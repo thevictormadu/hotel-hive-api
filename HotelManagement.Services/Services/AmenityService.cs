@@ -81,7 +81,7 @@ namespace HotelManagement.Services.Services
                 Amenity amenity = _mapper.Map<Amenity>(createDto);
                 await _unitOfWork.AmenityRepository.AddAsync(amenity);
                 await _unitOfWork.AmenityRepository.SaveChangesAsync();
-                var result = _mapper.Map<Amenity>(amenity);
+                var result = _mapper.Map<AmenityDTO>(amenity);
                 response.Data = result;
                 response.StatusCode = (int)HttpStatusCode.OK;
                 response.Succeeded = true;
