@@ -40,8 +40,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
-		public IRatingRepository RatingRepository =>
-			_ratingRepository ??= new RatingRepository(_hotelDbContext);
+		
 
 
         public IWishlistRepository wishlist =>
