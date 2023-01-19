@@ -45,7 +45,8 @@ namespace HotelManagement.Services.Services
             var response = new Response<IEnumerable<GetCustomerDto>>();
             try
             {
-                var customers = await _unitOfWork.customerRepository.GetAllAsync();
+                //var customers = await _unitOfWork.customerRepository.GetAllAsync();
+                var customers = await _customerRepository.GetCustomers(pageNo);
                 var result = _mapper.Map<IEnumerable<GetCustomerDto>>(customers);
                 var paginatedItem = result.Skip((pageNo - 1) * 5).Take(5);
                 response.Data = paginatedItem;
