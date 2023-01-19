@@ -19,6 +19,8 @@
         IBookingRepository bookingRepository { get; }
         ITransactionsRepository transactionRepository { get; }
 
+        public IUpdateUserAppRepository UpdateAppUserRepository { get; }
+
         void SaveChanges();
 
         void BeginTransaction();
