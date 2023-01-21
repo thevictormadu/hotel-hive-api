@@ -28,5 +28,10 @@ namespace HotelManagement.Core.Domains
         public ICollection<Gallery> Galleries { get; set; }
         public string Location { get; set; }
         public string Rating { get; set; }
+
+        public static implicit operator Hotel(Rating v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
