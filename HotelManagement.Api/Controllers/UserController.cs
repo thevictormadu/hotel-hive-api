@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.IServices;
+﻿using HotelManagement.Core;
+using HotelManagement.Core.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,6 @@ namespace HotelManagement.Api.Controllers
         {
             //Added the cloudinary service
             _cloudinaryService = cloudinaryService;
-            
         }
 
         //[Authorize]
