@@ -18,6 +18,7 @@
 
         IBookingRepository bookingRepository { get; }
         ITransactionsRepository transactionRepository { get; }
+        IRateHotelRepository rateHotelRepository { get; }
 
         public IUpdateUserAppRepository UpdateAppUserRepository { get; }
 
