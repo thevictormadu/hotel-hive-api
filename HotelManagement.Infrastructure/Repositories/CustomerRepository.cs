@@ -20,6 +20,16 @@ namespace HotelManagement.Infrastructure.Repositories
             _hotelDbContext = hotelDbContext;
         }
 
+        public async Task<IQueryable<Customer>> GetCustomers(int pageNo)
+        {
+            var customers = await _hotelDbContext.Customers
+                .Include(a => a.AppUser)
+                .ToListAsync();
+
+            var listOfCustomers = customers.AsQueryable();
+            return listOfCustomers;
+        }
+
         public async Task<Response<List<Customer>>> GetTopHotelCustomers(string hotelId)
         {
             var topCustomers = _hotelDbContext.Customers

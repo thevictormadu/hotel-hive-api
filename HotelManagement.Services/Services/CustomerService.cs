@@ -40,37 +40,29 @@ namespace HotelManagement.Services.Services
             _customerRepository = customerRepository;
         }
 
-        public async Task<Response<List<GetCustomerDto>>> GetCustomers(int pageNo)
+        public async Task<Response<IEnumerable<GetCustomerDto>>> GetCustomers(int pageNo)
         {
-            
-                    var response = new Response<List<GetCustomerDto>>();
-
-                try
-                {
-                    //IQueryable Item = await _context.Customers.Where();
-                    //var gp = new GenericPagination<Datatype>();
-                    //var paginatedItem = GenericPagination.ToPagedList(item,3,5)
-
-                    //IEnumerable<Customer> customers = await _unitOfWork.customerRepository.GetAllAsync();
-                    var customers = await _unitOfWork.customerRepository.GetAllAsync();
-                    //var gp = new GenericPagination<GetCustomerDto>();
-                    //var paginatedItem = GenericPagination<GetCustomerDto>.ToPagedList((IQueryable<GetCustomerDto>)customers, pageNo, 5);
-                    var result = _mapper.Map<List<GetCustomerDto>>(customers);
-                    response.Data = result;
-                    response.StatusCode = (int)HttpStatusCode.OK;
-                    response.Succeeded = true;
-                    response.Message = $"Successful";
-                    return response;
-                }
-                catch (Exception)
-                {
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    response.Succeeded = false;
-                    response.Message = $"Failed";
-                    response.Data = default;
-                    return response;
-                }
-            
+            var response = new Response<IEnumerable<GetCustomerDto>>();
+            try
+            {
+                //var customers = await _unitOfWork.customerRepository.GetAllAsync();
+                var customers = await _customerRepository.GetCustomers(pageNo);
+                var result = _mapper.Map<IEnumerable<GetCustomerDto>>(customers);
+                var paginatedItem = result.Skip((pageNo - 1) * 5).Take(5);
+                response.Data = paginatedItem;
+                response.StatusCode = (int)HttpStatusCode.OK;
+                response.Succeeded = true;
+                response.Message = $"Successful";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                response.Succeeded = false;
+                response.Message = $"Failed: {ex.Message}";
+                response.Data = default;
+                return response;
+            }
         }
 
         public async Task<Response<string>> AddCustomerAddress(AddCustomerAddressDto address)
@@ -112,5 +104,6 @@ namespace HotelManagement.Services.Services
             var customer = await _customerRepository.GetTopHotelCustomers(hotelId);
             return customer;
         }
+
     }
 }

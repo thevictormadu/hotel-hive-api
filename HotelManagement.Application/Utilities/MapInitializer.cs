@@ -79,7 +79,13 @@ namespace HotelManagement.Application.Utilities
 
 
             //Customer
-            CreateMap<Customer, GetCustomerDto>().ReverseMap();
+            CreateMap<GetCustomerDto, Customer>().ReverseMap()
+                .ForPath(opt => opt.LastName, dest => dest.MapFrom(src => src.AppUser.LastName))
+                .ForPath(opt => opt.FirstName, dest => dest.MapFrom(src => src.AppUser.FirstName))
+                .ForPath(opt => opt.Gender, dest => dest.MapFrom(src => src.AppUser.Gender))
+                .ForPath(opt => opt.Age, dest => dest.MapFrom(src => src.AppUser.Age))
+                .ForPath(opt => opt.Avatar, dest => dest.MapFrom(src => src.AppUser.Avatar))
+                .ForPath(opt => opt.IsActive, dest => dest.MapFrom(src => src.AppUser.IsActive));
 
 
             CreateMap<Customer,AddCustomerAddressDto>().ReverseMap();
