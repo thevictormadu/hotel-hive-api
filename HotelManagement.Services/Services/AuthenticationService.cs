@@ -69,5 +69,10 @@ namespace HotelManagement.Services.Services
             var response = await repository.ForgottenPassword(model);
             return response;
         }
+
+        public async Task Signout()
+        {
+            await repository.Signout();
+        }
     }
 }

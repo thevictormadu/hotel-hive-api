@@ -20,6 +20,8 @@
         ITransactionsRepository transactionRepository { get; }
         IRateHotelRepository rateHotelRepository { get; }
 
+        public IUpdateUserAppRepository UpdateAppUserRepository { get; }
+
         void SaveChanges();
 
         void BeginTransaction();

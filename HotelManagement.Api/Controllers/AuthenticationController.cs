@@ -65,5 +65,12 @@ namespace HotelManagement.Api.Controllers
             var result = await _authenticationService.ResetPasswordAsync(model);
             return Ok(result);
         }
+
+        [HttpPut("signout")]
+        public async Task<IActionResult> Signout()
+        {
+            await _authenticationService.Signout();
+            return Ok();
+        }
     }
 }
