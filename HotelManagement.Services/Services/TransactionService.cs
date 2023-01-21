@@ -72,21 +72,24 @@ namespace HotelManagement.Services.Services
                 // Loop through each hotel associated with the manager
                 foreach (var hotel in manager.Hotels)
                 {
+                //
                     // Loop through each room in the hotel
                     foreach (var roomtypes in hotel.RoomTypes)
                     {
-                        // Find the booking for the current room (if it exists)
-                        var booking = hotel.Bookings.FirstOrDefault(b => b.RoomTypeId == roomtypes.Id);
 
-                        // Create a new room transaction DTO for the current room
-                        var roomTransactionDto = new RoomTransactionDTO
-                        {
-                            HotelName = hotel.Name,
-                            RoomType = roomtypes.Name,
-                            Price = roomtypes.Price,
-                            Discount = roomtypes.Discount,
-                           
+
+                    // Create a new room transaction DTO for the current room
+                    var roomTransactionDto = new RoomTransactionDTO
+                    {
+                        HotelName = hotel.Name,
+                        RoomType = roomtypes.Name,
+                        Price = roomtypes.Price,
+                        Discount = roomtypes.Discount,
+                            
                         };
+                    // Find the booking for the current room (if it exists)
+                    var booking = hotel.Bookings.FirstOrDefault(b => b.RoomTypeId == roomtypes.Id);
+                    
 
                         // If there is a booking for the current room, add the booking details to the room transaction DTO
                         if (booking != null)
@@ -95,6 +98,7 @@ namespace HotelManagement.Services.Services
                             roomTransactionDto.BookingReference = booking.BookingReference;
                             roomTransactionDto.PaymentStatus = booking.PaymentStatus;
                         }
+                    
 
                         // Add the room transaction DTO to the list
                         roomTransactionDtos.Add(roomTransactionDto);
