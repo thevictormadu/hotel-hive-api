@@ -175,7 +175,7 @@ namespace HotelManagement.Services.Services
         }
 
 
-        public async Task<Response<List<GetCustomerDto>>> GetAllUsersTransactionAsync(int pageNumber, int pageSize)
+        public async Task<Response<List<TransactionCustomerDto>>> GetAllUsersTransactionAsync(int pageNumber, int pageSize)
         {
             try
             {
@@ -183,18 +183,18 @@ namespace HotelManagement.Services.Services
 
                 if (paidCustomers == null)
                 {
-                    return Response<List<GetCustomerDto>>.Fail("Hotel not found.", 404);
+                    return Response<List<TransactionCustomerDto>>.Fail("Hotel not found.", 404);
                 }
                 var paginatedTran = GenericPagination<Customer>.ToPagedList(paidCustomers, pageNumber, pageSize);
 
-                var paidCustomersDTO = _mapper.Map<List<GetCustomerDto>>(paginatedTran);
+                var paidCustomersDTO = _mapper.Map<List<TransactionCustomerDto>>(paginatedTran);
 
-                return Response<List<GetCustomerDto>>.Success("List of all paid customers", paidCustomersDTO, 200);
+                return Response<List<TransactionCustomerDto>>.Success("List of all paid customers", paidCustomersDTO, 200);
             }
             catch (Exception ex)
             {
                 //_logger.LogError("An Exception occurred");
-                return Response<List<GetCustomerDto>>.Fail(ex.Message, 500);
+                return Response<List<TransactionCustomerDto>>.Fail(ex.Message, 500);
             }
 
         }

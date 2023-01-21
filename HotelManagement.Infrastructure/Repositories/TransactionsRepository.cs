@@ -56,6 +56,7 @@ namespace HotelManagement.Infrastructure.Repositories
             var allBookings = new List<Booking>();
 
             var customers = _db.Customers
+                            .Include(x => x.AppUser)
                             .Include(x => x.Bookings)
                               .ThenInclude(x => x.Payment)
                             .Where(x => x.Bookings != null);
