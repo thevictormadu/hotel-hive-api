@@ -1,5 +1,4 @@
 ﻿using HotelManagement.Core.Domains;
-using HotelManagement.Core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IRepositories
 {
-    public interface IRatingRepository : IGenericRepository<Rating>
+    public interface IRateHotelRepository : IGenericRepository<Rating>
     {
-        void RateHotelAsync(Rating rating);
+        Task RateHotel(Rating Rating);
     }
 }
