@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ivict\\OneDrive\\Documents\\decagon\\HMS\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj": {}
+    "C:\\Users\\Decagon\\Downloads\\Work\\liveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ivict\\OneDrive\\Documents\\decagon\\HMS\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj": {
+    "C:\\Users\\Decagon\\Downloads\\Work\\liveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivict\\OneDrive\\Documents\\decagon\\HMS\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Decagon\\Downloads\\Work\\liveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
         "projectName": "HotelManagement.Core",
-        "projectPath": "C:\\Users\\ivict\\OneDrive\\Documents\\decagon\\HMS\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
-        "packagesPath": "C:\\Users\\ivict\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivict\\OneDrive\\Documents\\decagon\\HMS\\HotelManagementSystemSQ012\\HotelManagement.Core\\obj\\",
+        "projectPath": "C:\\Users\\Decagon\\Downloads\\Work\\liveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
+        "packagesPath": "C:\\Users\\Decagon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Decagon\\Downloads\\Work\\liveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ivict\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Decagon\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
