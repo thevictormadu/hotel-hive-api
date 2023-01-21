@@ -174,5 +174,11 @@ namespace HotelManagement.Infrastructure.Repositories
             }
             return "Password Reset Successfully";
         }
+
+        public async Task Signout()
+        {
+            var headers = _httpContext.HttpContext.Request.Headers;
+            headers.Remove("Authorisation");
+        }
     }
 }
