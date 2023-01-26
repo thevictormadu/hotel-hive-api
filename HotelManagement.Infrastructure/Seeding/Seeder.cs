@@ -79,7 +79,7 @@ namespace HotelManagement.Infrastructure.Seeding
                 var paymentPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Payments.json"));
                 var reviewPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Reviews.json"));
                 var ratingPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Ratings.json"));
-                var wishListPath = File.ReadAllText(FilePath(baseDir, "JsonFile/WishLists.json"));
+               // var wishListPath = File.ReadAllText(FilePath(baseDir, "JsonFile/WishLists.json"));
 
                 var hbaUsers = JsonConvert.DeserializeObject<List<AppUser>>(path);
                 var hbaCustomers = JsonConvert.DeserializeObject<List<Customer>>(customerPath);
@@ -92,7 +92,7 @@ namespace HotelManagement.Infrastructure.Seeding
                 var hbaPayments = JsonConvert.DeserializeObject<List<Payment>>(paymentPath);
                 var hbaReviews = JsonConvert.DeserializeObject<List<Review>>(reviewPath);
                 var hbaRatings = JsonConvert.DeserializeObject<List<Rating>>(ratingPath);
-                var hbaWishLists = JsonConvert.DeserializeObject<List<WishList>>(wishListPath);
+                //var hbaWishLists = JsonConvert.DeserializeObject<List<WishList>>(wishListPath);
 
                 for (int i = 0; i < hbaUsers.Count; i++)
                 {
