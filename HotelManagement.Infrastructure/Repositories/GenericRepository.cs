@@ -31,7 +31,7 @@ namespace HotelManagement.Infrastructure.Repositories
             entityEntry.State = EntityState.Deleted;
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
+        public virtual async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
 
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null)
         {
