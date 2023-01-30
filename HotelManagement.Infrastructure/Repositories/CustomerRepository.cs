@@ -1,5 +1,6 @@
 ﻿using HotelManagement.Core;
 using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 using HotelManagement.Core.IRepositories;
 using HotelManagement.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Infrastructure.Repositories
 {
@@ -15,10 +17,32 @@ namespace HotelManagement.Infrastructure.Repositories
     {
         private readonly HotelDbContext _hotelDbContext;
 
+       
         public CustomerRepository(HotelDbContext hotelDbContext) : base(hotelDbContext)
         {
             _hotelDbContext = hotelDbContext;
+         
         }
+            
+    
+
+    public async Task<List<Customer>> GetCustomersByHotel(string hotelId)
+    {
+        try
+        {
+            var customers = await _hotelDbContext.Customers
+           .Where(c => c.Bookings.Any(b => b.HotelId == hotelId))
+           .Include(c=>c.AppUser)
+           .ToListAsync();
+            return customers;
+        }
+        catch (Exception)
+        {
+
+
+            throw;
+        }
+    }
 
         public async Task<IQueryable<Customer>> GetCustomers(int pageNo)
         {
@@ -47,3 +71,4 @@ namespace HotelManagement.Infrastructure.Repositories
         }
     }
 }
+

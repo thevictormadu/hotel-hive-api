@@ -14,5 +14,6 @@ namespace HotelManagement.Core.IRepositories
 
         Task<IQueryable<Customer>> GetCustomers(int pageNo);
 
+        Task<List<Customer>>GetCustomersByHotel(string hotelId);
     }
 }
