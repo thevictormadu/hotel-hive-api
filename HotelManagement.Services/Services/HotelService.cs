@@ -162,11 +162,16 @@ namespace HotelManagement.Services.Services
         {
             try
             {
-                var hotelTodelete = _unitOfWork.hotelRepository.DeleteAsync<string>(id);
+                if (string.IsNullOrEmpty(id))
+                {
+                    return Response<string>.Fail("Please enter HotelID");
+                }
+                var hotelTodelete = await _unitOfWork.hotelRepository.GetByIdAsync (x=>x.Id == id);
                 if (hotelTodelete == null)
                     return Response<string>.Fail($"Hotel with {id} doesnot exist");
-                _unitOfWork.SaveChanges();
-                return Response<string>.Success($"Hotel with {id} Sucessful Deleted", id);
+                await _unitOfWork.hotelRepository.DeleteAsync<string>(id);
+                   _unitOfWork.SaveChanges();
+                return Response<string>.Success($"Hotel with {id} Sucessful Deleted", hotelTodelete.Name );
  
     }
             catch (Exception ex)

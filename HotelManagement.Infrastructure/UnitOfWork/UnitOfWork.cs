@@ -23,7 +23,9 @@ namespace HotelManagement.Infrastructure.UnitOfWork
         private ICustomerRepository _customerRepository;
         private IBookingRepository _bookingRepository;
         private IWishlistRepository _wishlistRepository;
-		public UnitOfWork(HotelDbContext hotelDbContext)
+        private IRateHotelRepository _rateHotelRepository;
+        private IUpdateUserAppRepository _updateAppUserRepository;
+        public UnitOfWork(HotelDbContext hotelDbContext)
 		{
             _hotelDbContext = hotelDbContext;
         }
@@ -39,6 +41,8 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
+		
+
 
         public IWishlistRepository wishlist =>
           _wishlistRepository ??= new WishlistRepository(_hotelDbContext);
@@ -53,49 +57,67 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
+        public IUpdateUserAppRepository UpdateAppUserRepository =>
+         _updateAppUserRepository ??= new UpdateAppUserRepository(_hotelDbContext);
+
+
+        //IReviewRepository IUnitOfWork.ReviewRepository => 
+        //    _reviewRepository ??= new ReviewRepository(_hotelDbContext);
+
+
+
+
         public IBookingRepository bookingRepository =>
             _bookingRepository ??= new BookingRepository(_hotelDbContext);
 
         public ITransactionsRepository transactionRepository =>
 		 _transactionRepository ??= new TransactionsRepository(_hotelDbContext);
 
-		public void BeginTransaction()
+        public IRateHotelRepository rateHotelRepository =>
+         _rateHotelRepository ??= new RateHotelRepository(_hotelDbContext);
+
+        public void BeginTransaction()
 
 		{
 			_disposed = false;
 		}
 
        
-    public void SaveChanges()
+    public async void SaveChanges()
     {
-       _hotelDbContext.SaveChangesAsync();
+     await   _hotelDbContext.SaveChangesAsync();
     }
 
-		public void Rollback()
-		{
-			_hotelDbContext.Database.RollbackTransaction();
-		}
+
+        public void Rollback()
+        {
+            _hotelDbContext.Database.RollbackTransaction();
+        }
 
 
-		protected virtual void Dispose(bool disposing)
-		{
+        protected virtual void Dispose(bool disposing)
+        {
 
-			if (!_disposed)
-			{
-				if (disposing)
-				{
-					_hotelDbContext.Dispose();
-				}
-			}
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    _hotelDbContext.Dispose();
+                }
+            }
 
-			_disposed = true;
-		}
+            _disposed = true;
+        }
 
-		public void Dispose()
-		{
-			//Dispose(true);
-			GC.SuppressFinalize(this);
-		}
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+		
+
 
         public Task SaveChangesAsync()
         {
@@ -103,4 +125,3 @@ namespace HotelManagement.Infrastructure.UnitOfWork
         }
     }
 }
-  

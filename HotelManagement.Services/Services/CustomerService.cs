@@ -40,37 +40,29 @@ namespace HotelManagement.Services.Services
             _customerRepository = customerRepository;
         }
 
-        public async Task<Response<List<GetCustomerDto>>> GetCustomers(int pageNo)
+        public async Task<Response<IEnumerable<GetCustomerDto>>> GetCustomers(int pageNo)
         {
-            
-                    var response = new Response<List<GetCustomerDto>>();
-
-                try
-                {
-                    //IQueryable Item = await _context.Customers.Where();
-                    //var gp = new GenericPagination<Datatype>();
-                    //var paginatedItem = GenericPagination.ToPagedList(item,3,5)
-
-                    //<Customer> customers = await _unitOfWork.customerRepository.GetAllAsync();
-                    IQueryable customers = (IQueryable)await _unitOfWork.customerRepository.GetAllAsync();
-                    //var gp = new GenericPagination<GetCustomerDto>();
-                    var paginatedItem = GenericPagination<GetCustomerDto>.ToPagedList((IQueryable<GetCustomerDto>)customers, pageNo, 5);
-                    var result = _mapper.Map<List<GetCustomerDto>>(customers);
-                    response.Data = result;
-                    response.StatusCode = (int)HttpStatusCode.OK;
-                    response.Succeeded = true;
-                    response.Message = $"Successful";
-                    return response;
-                }
-                catch (Exception)
-                {
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    response.Succeeded = false;
-                    response.Message = $"Failed";
-                    response.Data = default;
-                    return response;
-                }
-            
+            var response = new Response<IEnumerable<GetCustomerDto>>();
+            try
+            {
+                //var customers = await _unitOfWork.customerRepository.GetAllAsync();
+                var customers = await _customerRepository.GetCustomers(pageNo);
+                var result = _mapper.Map<IEnumerable<GetCustomerDto>>(customers);
+                var paginatedItem = result.Skip((pageNo - 1) * 5).Take(5);
+                response.Data = paginatedItem;
+                response.StatusCode = (int)HttpStatusCode.OK;
+                response.Succeeded = true;
+                response.Message = $"Successful";
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                response.Succeeded = false;
+                response.Message = $"Failed: {ex.Message}";
+                response.Data = default;
+                return response;
+            }
         }
 
         public async Task<Response<string>> AddCustomerAddress(AddCustomerAddressDto address)
@@ -113,37 +105,5 @@ namespace HotelManagement.Services.Services
             return customer;
         }
 
-        public async Task<Response<List<GetCustomersByHotelDto>>> GetCustomersByHotelId(string hotelId)
-        {
-            var customers = await _unitOfWork.customerRepository.GetCustomersByHotel(hotelId);
-            if(customers.Count == 0)
-            {
-                return Response<List<GetCustomersByHotelDto>>.Fail("Customers not found");
-            }
-            //Create a list to store the GetCustomerByHotelDTO
-            var hotelCustomers = new List<GetCustomersByHotelDto>();
-
-            //loop through each customer associated with the a hotel
-            foreach (var customer in customers)
-            {
-                ////find the booking for the current hotel
-                //var booking = customers.Select(x => x.Bookings);
-
-                //create a new 
-                var hotelCustDtos = new GetCustomersByHotelDto
-                {
-                    CustomerFirstName = customer.AppUser.FirstName,
-                    CustomerLastName = customer.AppUser.LastName,
-                    EmailAddress = customer.AppUser.Email,
-                    State = customer.State,
-                    Gender = customer.AppUser.Gender,
-                };
-                hotelCustomers.Add(hotelCustDtos);
-            }
-             return Response<List<GetCustomersByHotelDto>>.Success("Successful", hotelCustomers, 200);
-            
-            
-
-        }
     }
 }

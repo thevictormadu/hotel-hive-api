@@ -1,10 +1,11 @@
 ﻿
 using AutoMapper;
 using HotelManagement.Core.Domains;
-using HotelManagement.Core.DTOs;
 using System.Linq;
 using HotelManagement.Core.DTOs.BookingDtos;
 using HotelManagement.Core.DTOs.ReviewDTOs;
+using HotelManagement.Core.DTOs;
+
 
 namespace HotelManagement.Application.Utilities
 {
@@ -18,6 +19,7 @@ namespace HotelManagement.Application.Utilities
             var regConfig = new MapperConfiguration(conf => conf.CreateMap<RegisterDTO, AppUser>());
             regMapper = new Mapper(regConfig);
             // Amenity Maps
+
 
             CreateMap<Amenity, AmenityDTO>().ReverseMap();
             CreateMap<Amenity, CreateAmenitiesDTO>().ReverseMap();
@@ -38,11 +40,15 @@ namespace HotelManagement.Application.Utilities
             CreateMap<Booking, BookingResponseDto>().ReverseMap();
 
             // Hotel Maps
+
             CreateMap<Hotel, UpdateHotelDto>().ReverseMap();
             CreateMap<Hotel, GetHotelByStateDto>().ReverseMap();
-           // CreateMap<Hotel, GetHotelsDto>().ReverseMap();
-           CreateMap<Rating,GetHotelByRatingsDto>().ReverseMap();
+            CreateMap<Hotel, GetHotelsDto>().ReverseMap();
+            CreateMap<Rating,GetHotelByRatingsDto>().ReverseMap();
             CreateMap<Hotel,AddHotelDto>().ReverseMap();
+            
+
+            
             
 
 
@@ -54,10 +60,9 @@ namespace HotelManagement.Application.Utilities
 
 
 
-
             // Room Maps
-            CreateMap<Room, AddRoomDto>().ReverseMap();
 
+            CreateMap<Room,AddRoomDto>().ReverseMap();
 
             CreateMap<Room, GetRoomDto>().ReverseMap();
             // RoomType Maps
@@ -74,13 +79,25 @@ namespace HotelManagement.Application.Utilities
 
 
             //Customer
-            CreateMap<Customer, GetCustomerDto>().ReverseMap();
+            CreateMap<GetCustomerDto, Customer>().ReverseMap()
+                .ForPath(opt => opt.LastName, dest => dest.MapFrom(src => src.AppUser.LastName))
+                .ForPath(opt => opt.FirstName, dest => dest.MapFrom(src => src.AppUser.FirstName))
+                .ForPath(opt => opt.Gender, dest => dest.MapFrom(src => src.AppUser.Gender))
+                .ForPath(opt => opt.Age, dest => dest.MapFrom(src => src.AppUser.Age))
+                .ForPath(opt => opt.Avatar, dest => dest.MapFrom(src => src.AppUser.Avatar))
+                .ForPath(opt => opt.IsActive, dest => dest.MapFrom(src => src.AppUser.IsActive));
+
 
             CreateMap<Customer,AddCustomerAddressDto>().ReverseMap();
 
 
             //TransactionResponse Mapper
-
+            CreateMap<TransactionCustomerDto, Customer>().ReverseMap()
+            .ForPath(dest => dest.FirstName, opt => opt.MapFrom(src => src.AppUser.FirstName))
+            .ForPath(dest => dest.LastName, opt => opt.MapFrom(src => src.AppUser.LastName))
+            .ForPath(dest => dest.Gender, opt => opt.MapFrom(src => src.AppUser.Gender))
+            .ForPath(dest => dest.Age, opt => opt.MapFrom(src => src.AppUser.Age))
+            .ForPath(dest => dest.Avatar, opt => opt.MapFrom(src => src.AppUser.Avatar)); ;
             //Transaction Maps
 
 
@@ -89,6 +106,8 @@ namespace HotelManagement.Application.Utilities
 
             // reviewdto
 
+            CreateMap<Review, AddReviewsDTO>().ReverseMap();
+            CreateMap<GetReviewsDTO, GetReviewsDTO>().ReverseMap();
 
             //Review Maps
             CreateMap<Review, UpdateReviewDto>().ReverseMap();

@@ -1,0 +1,137 @@
+[
+  {
+    "Id": "bd1b4485-a4aa-f378-6a56-e1c890fa3e6",
+    "Ratings": 2,
+    "CustomerId": "8fd24320-3f79-6765-26b2-ad0c6df5ea09",
+    "HotelId": "5ddbee2d-a5ee-5a72-81ae-d2bef21b45ae",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2136968+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "d0229cd8-9cec-0172-76e9-0c8893d33002",
+    "Ratings": 3,
+    "CustomerId": "586b4865-a995-e467-6762-c2e5c36507e7",
+    "HotelId": "0d8b88e4-3b00-db04-b608-65064c298de3",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263478+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "bc83d93c-1308-9d20-c993-8cd7c6c41221",
+    "Ratings": 2,
+    "CustomerId": "cd134faf-f625-4885-337d-bc67bfa7c948",
+    "HotelId": "2e35f771-8810-14c3-0f63-6ff65b6be0e9",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263647+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "1f732a5b-3aac-0fe6-b589-8d55461efd8f",
+    "Ratings": 1,
+    "CustomerId": "dbca97c9-07a2-ef09-cf75-ed54680dd9db",
+    "HotelId": "7e2a29ca-f7a8-ce90-6745-c0b3f241823a",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.226366+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "e17e1c35-bb29-769b-4596-7ba10f22ebf5",
+    "Ratings": 3,
+    "CustomerId": "70c851a5-39ab-f335-d33d-da3258ac5263",
+    "HotelId": "ca5079c0-4732-86c1-1012-de777ba82d03",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263669+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "7cf3eb7b-56ec-b846-9d7a-8101e900cbbb",
+    "Ratings": 1,
+    "CustomerId": "8481a583-de99-d419-d7c1-51919be11da9",
+    "HotelId": "bfa9a616-eb0e-987a-7337-03436f5e9c85",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263677+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "b31fe78f-7c3c-aa76-238e-76b898d1b9a7",
+    "Ratings": 2,
+    "CustomerId": "574d6ed3-8178-e7f7-808d-867b39b6bcac",
+    "HotelId": "6ba646b1-b9db-e467-dab6-9d2f0efb9d98",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263685+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "b8d8d737-7aa5-0a96-5979-76147f1bcb18",
+    "Ratings": 2,
+    "CustomerId": "6b5d75a2-5a79-0c5b-8502-41e1b9da1552",
+    "HotelId": "0d44454b-4be2-20a4-59bc-1833affbd2f2",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263693+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "3ea4058d-bf93-d4d2-afbc-d886508b1813",
+    "Ratings": 1,
+    "CustomerId": "48e2a27a-d4dc-70da-cdfc-cf5728d7a0c4",
+    "HotelId": "bec1039b-7c1a-a2c5-96a1-f25fe45ca674",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.22637+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "83134821-883a-8ebe-710a-01d3568c0549",
+    "Ratings": 3,
+    "CustomerId": "81cc184b-df68-818a-ec9a-6cbe6959ddb0",
+    "HotelId": "0166e3bb-1740-fa1a-ecfc-206ffdd334b4",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263709+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "342f6aff-1d5e-1f46-e9c7-49bcb53c937d",
+    "Ratings": 3,
+    "CustomerId": "c8aa2e99-8f18-7397-8938-b62b374c57ec",
+    "HotelId": "bb6a9dc2-6ac6-57cc-6c7b-e57022146cbd",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263717+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "192315b1-8d6d-7b81-f4da-825b0cf208b1",
+    "Ratings": 1,
+    "CustomerId": "65dd06f1-9256-4379-ab7a-16367a2e4bee",
+    "HotelId": "84d26cdc-030d-4230-41e0-6d3f6ed59a43",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263725+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "51a52c6b-b365-957f-0dac-a053ae59baae",
+    "Ratings": 4,
+    "CustomerId": "2da1b50a-628c-4c13-b4a5-377f984c97c0",
+    "HotelId": "3c0c31cf-dbae-eff8-ba4f-ade7077d04a1",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.226379+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "d5d40d78-40cf-3be4-96a1-e9d57180d554",
+    "Ratings": 2,
+    "CustomerId": "6b84487c-290a-22cc-40d5-e548fdb826e2",
+    "HotelId": "8c9aa0b0-ad59-1fac-cb60-641e46d97266",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263798+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  },
+  {
+    "Id": "c58291c6-3e41-dc7e-6dd1-ef17a4ff2e2f",
+    "Ratings": 3,
+    "CustomerId": "2d16c229-9d00-ce9b-5a0d-d7f47513a9f3",
+    "HotelId": "07beb87c-9550-506c-0ae2-49560a59e9c6",
+    "IsDeleted": false,
+    "CreatedAt": "2023-01-17T17:00:56.2263806+01:00",
+    "UpdatedAt": "0001-01-01T00:00:00"
+  }
+]

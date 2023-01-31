@@ -10,7 +10,8 @@ namespace HotelManagement.Core.IServices
 {
     public interface ICustomerService
     {
-        Task<Response<List<GetCustomerDto>>> GetCustomers(int pageNo);
+        //Task<IQueryable<List<GetCustomerDto>>> GetCustomers(int pageNo);
+        Task<Response<IEnumerable<GetCustomerDto>>> GetCustomers(int pageNo);
         Task<Response<string>> AddCustomerAddress(AddCustomerAddressDto address);
         Task<Response<List<Customer>>> GetTopHotelCustomers(string hotelId);
         Task<Response<List<GetCustomersByHotelDto>>>GetCustomersByHotelId(string hotelId);

@@ -21,7 +21,9 @@ namespace HotelManagement.Infrastructure.Repositories
             // Find the manager with the specified ID and include the hotels, rooms, room types, and bookings associated with the manager
             var manager = await _db.Managers
                 .Include(m => m.Hotels)
-                    .ThenInclude(h => h.Bookings).ThenInclude(rt => rt.RoomType)
+                .Include(m => m.Hotels).ThenInclude(b => b.Bookings)
+                .Include(m => m.Hotels).ThenInclude(rt => rt.RoomTypes)
+                    //.ThenInclude(h => h.Bookings).ThenInclude(rt => rt.RoomType)
                 .FirstOrDefaultAsync(m => m.Id == managerId);
 
             return manager; 
@@ -45,10 +47,39 @@ namespace HotelManagement.Infrastructure.Repositories
                             .Where(b => b.Hotel.Id == hotelId && b.Customer.Id == customerId)
                             .ToListAsync();
                                 
-                                
-            
+                                            
             var payment = bookings.Select(b => b.Payment).AsQueryable();
             return payment;
+        }
+        public async Task<IQueryable<Customer>> GetAllUsersTransaction()
+        {
+            var paidCustomers =new List<Customer>();
+
+            var allBookings = new List<Booking>();
+
+            var customers = _db.Customers
+                            .Include(x => x.AppUser)
+                            .Include(x => x.Bookings)
+                              .ThenInclude(x => x.Payment)
+                            .Where(x => x.Bookings != null);
+
+            foreach (var customer in customers)
+            {
+                if (customer.Bookings != null)
+                {
+                    allBookings.AddRange(customer.Bookings);
+                }             
+            }
+
+            foreach (var booking in allBookings)
+            {
+                if (booking.Payment != null)
+                {
+                    paidCustomers.Add(booking.Customer);
+                }
+            }
+
+            return paidCustomers.AsQueryable();
         }
     }
 }
