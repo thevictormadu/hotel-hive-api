@@ -44,7 +44,8 @@ namespace HotelManagement.Services.Services
             var roomtype = _hotelDbContext.RoomTypes.Where(x => x.HotelId == hotel.Id);
             var newroom = _mapper.Map<Room>(addRoomDto);
             if (newroom == null) return Response<string>.Fail("Operation Not Successful");
-                await _unitOfWork.roomRepository.AddAsync(newroom);
+                _unitOfWork.roomRepository.Add(RoomType_ID, newroom);
+                _unitOfWork.SaveChanges();
             return Response<string>.Success("Room Created Successfully", newroom.RoomNo);
             
         }

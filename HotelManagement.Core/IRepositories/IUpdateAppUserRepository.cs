@@ -1,4 +1,5 @@
 ﻿using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IRepositories
 {
-    public interface IRoomRepository: IGenericRepository<Room>
+    public interface IUpdateUserAppRepository : IGenericRepository<AppUser>
     {
-        void Add(string Roomtype_ID, Room room);
-        Task<Room> DeleteAsync(string Id);
-
+        Task UpdateAsync(AppUser user);
     }
 }

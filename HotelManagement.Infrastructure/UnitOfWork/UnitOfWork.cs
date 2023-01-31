@@ -24,7 +24,8 @@ namespace HotelManagement.Infrastructure.UnitOfWork
         private IBookingRepository _bookingRepository;
         private IWishlistRepository _wishlistRepository;
         private IManagerRequestRepository _managerRequestRepository;
-
+        private IRateHotelRepository _rateHotelRepository;
+        private IUpdateUserAppRepository _updateAppUserRepository;
         public UnitOfWork(HotelDbContext hotelDbContext)
 		{
             _hotelDbContext = hotelDbContext;
@@ -41,6 +42,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 			_hotelRepository ??= new HotelRepository(_hotelDbContext );
 		public IRoomRepository roomRepository =>
 			_roomRepository ??= new RoomRespository(_hotelDbContext);
+		
 
 
         public IWishlistRepository wishlist =>
@@ -59,11 +61,13 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
         public IAmenityRepository AmenityRepository =>
          _amenityRepository ??= new AmenityRepository(_hotelDbContext);
+        public IUpdateUserAppRepository UpdateAppUserRepository =>
+         _updateAppUserRepository ??= new UpdateAppUserRepository(_hotelDbContext);
 
 
         //IReviewRepository IUnitOfWork.ReviewRepository => 
         //    _reviewRepository ??= new ReviewRepository(_hotelDbContext);
-       
+
 
 
 
@@ -73,7 +77,10 @@ namespace HotelManagement.Infrastructure.UnitOfWork
         public ITransactionsRepository transactionRepository =>
 		 _transactionRepository ??= new TransactionsRepository(_hotelDbContext);
 
-		public void BeginTransaction()
+        public IRateHotelRepository rateHotelRepository =>
+         _rateHotelRepository ??= new RateHotelRepository(_hotelDbContext);
+
+        public void BeginTransaction()
 
 		{
 			_disposed = false;

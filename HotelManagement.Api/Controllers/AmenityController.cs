@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using HotelManagement.Core;
-using HotelManagement.Core.Domains;
 using HotelManagement.Core.DTOs;
-using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
-using HotelManagement.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -64,7 +61,7 @@ namespace HotelManagement.Api.Controllers
 
                 //Check if this  amenity has been created for the hotel
                 if (await _amenityService.GetAsync(x => x.Name.ToLower() ==
-                createDto.Name.ToLower()) != null)
+                createDto.Name.ToLower() && x.HotelId == createDto.HotelId) != null)
                 {
                     //log error
                     ModelState.AddModelError("ErrorMessage", "This Amenity has been created for this hotel!");
@@ -96,7 +93,7 @@ namespace HotelManagement.Api.Controllers
 
 
         //[Authorize(Roles = "Admin")]
-        [HttpPut("UpdateAmenity")]
+        [HttpPut("UpdateAmenity/{id}")]
         public async Task<ActionResult<Response<UpdateAmenityDTO>>> UpdateAmenity(string id,  UpdateAmenityDTO updateDto)
         {
          

@@ -27,6 +27,10 @@ namespace HotelManagement.Infrastructure.Context
 
         }
 
+        public HotelDbContext()
+        {
+        }
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var item in ChangeTracker.Entries<BaseEntity>())

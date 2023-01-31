@@ -72,21 +72,24 @@ namespace HotelManagement.Services.Services
                 // Loop through each hotel associated with the manager
                 foreach (var hotel in manager.Hotels)
                 {
+                //
                     // Loop through each room in the hotel
                     foreach (var roomtypes in hotel.RoomTypes)
                     {
-                        // Find the booking for the current room (if it exists)
-                        var booking = hotel.Bookings.FirstOrDefault(b => b.RoomTypeId == roomtypes.Id);
 
-                        // Create a new room transaction DTO for the current room
-                        var roomTransactionDto = new RoomTransactionDTO
-                        {
-                            HotelName = hotel.Name,
-                            RoomType = roomtypes.Name,
-                            Price = roomtypes.Price,
-                            Discount = roomtypes.Discount,
-                           
+
+                    // Create a new room transaction DTO for the current room
+                    var roomTransactionDto = new RoomTransactionDTO
+                    {
+                        HotelName = hotel.Name,
+                        RoomType = roomtypes.Name,
+                        Price = roomtypes.Price,
+                        Discount = roomtypes.Discount,
+                            
                         };
+                    // Find the booking for the current room (if it exists)
+                    var booking = hotel.Bookings.FirstOrDefault(b => b.RoomTypeId == roomtypes.Id);
+                    
 
                         // If there is a booking for the current room, add the booking details to the room transaction DTO
                         if (booking != null)
@@ -95,6 +98,7 @@ namespace HotelManagement.Services.Services
                             roomTransactionDto.BookingReference = booking.BookingReference;
                             roomTransactionDto.PaymentStatus = booking.PaymentStatus;
                         }
+                    
 
                         // Add the room transaction DTO to the list
                         roomTransactionDtos.Add(roomTransactionDto);
@@ -175,7 +179,7 @@ namespace HotelManagement.Services.Services
         }
 
 
-        public async Task<Response<List<GetCustomerDto>>> GetAllUsersTransactionAsync(int pageNumber, int pageSize)
+        public async Task<Response<List<TransactionCustomerDto>>> GetAllUsersTransactionAsync(int pageNumber, int pageSize)
         {
             try
             {
@@ -183,18 +187,18 @@ namespace HotelManagement.Services.Services
 
                 if (paidCustomers == null)
                 {
-                    return Response<List<GetCustomerDto>>.Fail("Hotel not found.", 404);
+                    return Response<List<TransactionCustomerDto>>.Fail("Hotel not found.", 404);
                 }
                 var paginatedTran = GenericPagination<Customer>.ToPagedList(paidCustomers, pageNumber, pageSize);
 
-                var paidCustomersDTO = _mapper.Map<List<GetCustomerDto>>(paginatedTran);
+                var paidCustomersDTO = _mapper.Map<List<TransactionCustomerDto>>(paginatedTran);
 
-                return Response<List<GetCustomerDto>>.Success("List of all paid customers", paidCustomersDTO, 200);
+                return Response<List<TransactionCustomerDto>>.Success("List of all paid customers", paidCustomersDTO, 200);
             }
             catch (Exception ex)
             {
                 //_logger.LogError("An Exception occurred");
-                return Response<List<GetCustomerDto>>.Fail(ex.Message, 500);
+                return Response<List<TransactionCustomerDto>>.Fail(ex.Message, 500);
             }
 
         }

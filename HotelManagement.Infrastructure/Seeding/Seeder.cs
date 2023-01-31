@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -74,7 +75,11 @@ namespace HotelManagement.Infrastructure.Seeding
                 var roomTypePath = File.ReadAllText(FilePath(baseDir, "JsonFile/RoomTypes.json"));
                 var bookingPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Bookings.json"));
                 var roomPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Rooms.json"));
-                var AmenityPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Amenities.json"));
+                var amenityPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Amenities.json"));
+                var paymentPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Payments.json"));
+                var reviewPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Reviews.json"));
+                var ratingPath = File.ReadAllText(FilePath(baseDir, "JsonFile/Ratings.json"));
+               // var wishListPath = File.ReadAllText(FilePath(baseDir, "JsonFile/WishLists.json"));
 
                 var hbaUsers = JsonConvert.DeserializeObject<List<AppUser>>(path);
                 var hbaCustomers = JsonConvert.DeserializeObject<List<Customer>>(customerPath);
@@ -83,7 +88,11 @@ namespace HotelManagement.Infrastructure.Seeding
                 var hbaRoomType = JsonConvert.DeserializeObject<List<RoomType>>(roomTypePath);
                 var hbaBooking = JsonConvert.DeserializeObject<List<Booking>>(bookingPath);
                 var hbaRooms = JsonConvert.DeserializeObject<List<Room>>(roomPath);
-                var hbaAmenities = JsonConvert.DeserializeObject<List<Amenity>>(AmenityPath);
+                var hbaAmenities = JsonConvert.DeserializeObject<List<Amenity>>(amenityPath);
+                var hbaPayments = JsonConvert.DeserializeObject<List<Payment>>(paymentPath);
+                var hbaReviews = JsonConvert.DeserializeObject<List<Review>>(reviewPath);
+                var hbaRatings = JsonConvert.DeserializeObject<List<Rating>>(ratingPath);
+                //var hbaWishLists = JsonConvert.DeserializeObject<List<WishList>>(wishListPath);
 
                 for (int i = 0; i < hbaUsers.Count; i++)
                 {
@@ -148,7 +157,8 @@ namespace HotelManagement.Infrastructure.Seeding
                     };
                     await dbContext.Hotels.AddAsync(hotel);
 
-                }
+                }               
+
 
                 for (int i = 0; i < hbaRoomType.Count; i++)
                 {
@@ -212,8 +222,62 @@ namespace HotelManagement.Infrastructure.Seeding
                     await dbContext.Amenities.AddAsync(amenity);
                 }
 
+
+                 for (var i = 0; i < hbaPayments.Count; i++)
+                {
+                    var payment = new Payment()
+                    {
+                       BookingId= hbaPayments[i].BookingId,
+                       TransactionReference= hbaPayments[i].TransactionReference,
+                       Amount= hbaPayments[i].Amount,
+                       Status= hbaPayments[i].Status,
+                       MethodOfPayment= hbaPayments[i].MethodOfPayment,
+
+                    };
+                    await dbContext.Payments.AddAsync(payment);
+                }
+
+                for (var i = 0; i < hbaReviews.Count; i++)
+                {
+                    var review = new Review()
+                    {
+                       Id= hbaReviews[i].Id,
+                       Comment= hbaReviews[i].Comment,
+                       HotelId= hbaReviews[i].HotelId,
+                       CustomerId= hbaReviews[i].CustomerId,
+                    };
+                 
+                    await dbContext.Reviews.AddAsync(review);
+                }
+
+                for (var i = 0; i < hbaRatings.Count; i++)
+                {
+                    var rating = new Rating()
+                    {
+                       Id= hbaRatings[i].Id,
+                       Ratings= hbaRatings[i].Ratings,
+                       CustomerId= hbaRatings[i].CustomerId,
+                       HotelId = hbaRatings[i].HotelId,
+
+                    };
+                    await dbContext.Ratings.AddAsync(rating);
+                }
+
+                //for (var i = 0; i < hbaWishLists.Count; i++)
+                //{
+                //    var wishList = new WishList()
+                //    {
+                //        Id = hbaWishLists[i].Id,
+                //        CustomerId = hbaWishLists[i].CustomerId,
+                //        HotelId = hbaWishLists[i].HotelId,
+                //    };
+                //    await dbContext.WishLists.AddAsync(wishList);
+
+                //}
+
+
             }
-           
+
             await dbContext.SaveChangesAsync();
         }
 

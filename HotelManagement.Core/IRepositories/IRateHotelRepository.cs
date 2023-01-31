@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace HotelManagement.Core.IRepositories
 {
-    public interface IRoomRepository: IGenericRepository<Room>
+    public interface IRateHotelRepository : IGenericRepository<Rating>
     {
-        void Add(string Roomtype_ID, Room room);
-        Task<Room> DeleteAsync(string Id);
-
+        Task RateHotel(Rating Rating);
     }
 }

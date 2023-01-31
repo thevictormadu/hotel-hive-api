@@ -48,8 +48,8 @@ namespace HotelManagement.Application.Utilities
             CreateMap<Hotel,AddHotelDto>().ReverseMap();
             
 
-
-
+            
+            
 
 
 
@@ -79,13 +79,25 @@ namespace HotelManagement.Application.Utilities
 
 
             //Customer
-            CreateMap<Customer, GetCustomerDto>().ReverseMap();
+            CreateMap<GetCustomerDto, Customer>().ReverseMap()
+                .ForPath(opt => opt.LastName, dest => dest.MapFrom(src => src.AppUser.LastName))
+                .ForPath(opt => opt.FirstName, dest => dest.MapFrom(src => src.AppUser.FirstName))
+                .ForPath(opt => opt.Gender, dest => dest.MapFrom(src => src.AppUser.Gender))
+                .ForPath(opt => opt.Age, dest => dest.MapFrom(src => src.AppUser.Age))
+                .ForPath(opt => opt.Avatar, dest => dest.MapFrom(src => src.AppUser.Avatar))
+                .ForPath(opt => opt.IsActive, dest => dest.MapFrom(src => src.AppUser.IsActive));
+
 
             CreateMap<Customer,AddCustomerAddressDto>().ReverseMap();
 
 
             //TransactionResponse Mapper
-            CreateMap<Customer, GetCustomerDto>().ReverseMap();
+            CreateMap<TransactionCustomerDto, Customer>().ReverseMap()
+            .ForPath(dest => dest.FirstName, opt => opt.MapFrom(src => src.AppUser.FirstName))
+            .ForPath(dest => dest.LastName, opt => opt.MapFrom(src => src.AppUser.LastName))
+            .ForPath(dest => dest.Gender, opt => opt.MapFrom(src => src.AppUser.Gender))
+            .ForPath(dest => dest.Age, opt => opt.MapFrom(src => src.AppUser.Age))
+            .ForPath(dest => dest.Avatar, opt => opt.MapFrom(src => src.AppUser.Avatar)); ;
             //Transaction Maps
 
 

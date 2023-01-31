@@ -33,6 +33,7 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IHotelStatisticsService, HotelStatisticsService>();
             services.AddScoped<IWishlistService, WishlistService>();
+            services.AddScoped<IRateHotelService, RateHotelService>();
 
 
             // Add Repository Injections Here
@@ -42,7 +43,7 @@ namespace HotelManagement.Api.Extensions
 
             services.AddScoped<IWishlistRepository, WishlistRepository>();
 
-            //services.AddScoped<IHotelRepository, HotelRepository>();
+            
             services.AddScoped<IAmenityRepository, AmenityRepository>();
             services.AddScoped<IAmenityService, AmenityService>();
             services.AddScoped<ITransactionsRepository, TransactionsRepository>();
@@ -54,6 +55,7 @@ namespace HotelManagement.Api.Extensions
             services.AddScoped<ICustomerService, CustomerService>();
 
             services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IRateHotelRepository, RateHotelRepository>();
             services.AddScoped<IReviewService, ReviewService>();    
             // Add Model Services Injection Here
             services.AddScoped<IUnitOfWork, UnitOfWork>();

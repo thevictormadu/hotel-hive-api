@@ -19,7 +19,7 @@ namespace HotelManagement.Infrastructure.Repositories
             _hotelDbContext = hotelDbContext;
         }
 
-        public async void Add(string Roomtype_ID, string Hotel_Name, Room room)
+        public async void Add(string Roomtype_ID, Room room)
         {
             room.RoomTypeId = Roomtype_ID;
             await AddAsync(room);
