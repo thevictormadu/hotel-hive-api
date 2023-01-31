@@ -32,6 +32,7 @@ namespace HotelManagement.Infrastructure.Repositories
         {
             var customers = await _hotelDbContext.Customers
            .Where(c => c.Bookings.Any(b => b.HotelId == hotelId))
+           .Include(c=>c.AppUser)
            .ToListAsync();
             return customers;
         }

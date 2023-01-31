@@ -105,9 +105,36 @@ namespace HotelManagement.Services.Services
             return customer;
         }
 
-        public Task<Response<List<GetCustomersByHotelDto>>> GetCustomersByHotelId(string hotelId)
+        public async Task<Response<List<GetCustomersByHotelDto>>> GetCustomersByHotelId(string hotelId)
         {
-            throw new NotImplementedException();
+            var customers = await _unitOfWork.customerRepository.GetCustomersByHotel(hotelId);
+            if (customers.Count == 0)
+            {
+                return Response<List<GetCustomersByHotelDto>>.Fail("Customers not found");
+            }
+            //Create a list to store the GetCustomerByHotelDTO
+            var hotelCustomers = new List<GetCustomersByHotelDto>();
+
+            //loop through each customer associated with the a hotel
+            foreach (var customer in customers)
+            {
+                ////find the booking for the current hotel
+                //var booking = customers.Select(x => x.Bookings);
+
+                //create a new 
+                var hotelCustDtos = new GetCustomersByHotelDto
+                {
+                    CustomerFirstName = customer.AppUser.FirstName,
+                    CustomerLastName = customer.AppUser.LastName,
+                    EmailAddress = customer.AppUser.Email,
+                    State = customer.State,
+                    Gender = customer.AppUser.Gender,
+                };
+                hotelCustomers.Add(hotelCustDtos);
+            }
+            return Response<List<GetCustomersByHotelDto>>.Success("Successful", hotelCustomers, 200);
+
+
         }
     }
 }
