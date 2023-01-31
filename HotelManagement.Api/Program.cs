@@ -56,6 +56,18 @@ namespace HotelManagement.Api
             // Add Jwt Authentication and Authorization
             services.ConfigureAuthentication(config);
 
+            //Add cors
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("https://localhost:44351", "http://localhost:4200", "http://localhost:3000")
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                    });
+            });
+
             // Configure AutoMapper
             services.ConfigureAutoMappers();
 
@@ -97,6 +109,8 @@ namespace HotelManagement.Api
             }
 
             Seeder.SeedData(app).Wait();
+
+            app.UseCors();
              
             app.UseHttpsRedirection();
 

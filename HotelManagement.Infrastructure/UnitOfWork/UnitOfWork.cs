@@ -23,7 +23,9 @@ namespace HotelManagement.Infrastructure.UnitOfWork
         private ICustomerRepository _customerRepository;
         private IBookingRepository _bookingRepository;
         private IWishlistRepository _wishlistRepository;
-		public UnitOfWork(HotelDbContext hotelDbContext)
+        private IManagerRequestRepository _managerRequestRepository;
+
+        public UnitOfWork(HotelDbContext hotelDbContext)
 		{
             _hotelDbContext = hotelDbContext;
         }
@@ -46,7 +48,10 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 
         public ICustomerRepository customerRepository =>
          _customerRepository ??= new CustomerRepository(_hotelDbContext);
-		public IManagerRepository managerRepository =>
+
+        public IManagerRequestRepository managerRequestRepository =>
+         _managerRequestRepository ??= new ManagerRequestRepository(_hotelDbContext);
+        public IManagerRepository managerRepository =>
 			_managerRepository ??= new ManagerRepository( _hotelDbContext );
 
 		public IReviewRepository reviewRepository =>
