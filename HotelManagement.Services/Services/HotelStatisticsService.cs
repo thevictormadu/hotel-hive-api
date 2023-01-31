@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.IRepositories;
+﻿using HotelManagement.Core;
+using HotelManagement.Core.IRepositories;
 using HotelManagement.Core.IServices;
 using System;
 using System.Collections.Generic;
@@ -41,11 +42,12 @@ namespace HotelManagement.Services.Services
             var getHotel = await _unitOfWork.hotelRepository.GetByIdAsync(x => x.Id == Id);
             if (getHotel == null)
             {
+              
                 return -1;
             }
             var noOfRoomsInTheHotelOccupied = getHotel.RoomTypes.Where(x => x.Available != 0).Count();
             return noOfRoomsInTheHotelOccupied;
-
+            
 
         }
 
