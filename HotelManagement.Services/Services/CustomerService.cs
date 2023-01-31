@@ -105,5 +105,9 @@ namespace HotelManagement.Services.Services
             return customer;
         }
 
+        public Task<Response<List<GetCustomersByHotelDto>>> GetCustomersByHotelId(string hotelId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
