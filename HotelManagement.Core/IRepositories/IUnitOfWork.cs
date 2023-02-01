@@ -12,7 +12,7 @@
         IAmenityRepository AmenityRepository { get; }
         IWishlistRepository wishlist { get; }
         ICustomerRepository customerRepository { get; }
-        
+        IManagerRequestRepository managerRequestRepository { get; }
         IManagerRepository managerRepository { get; }
         IReviewRepository reviewRepository { get; }
 

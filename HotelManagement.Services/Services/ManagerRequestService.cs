@@ -67,7 +67,8 @@ namespace HotelManagement.Services.Services
 
         public async Task<Response<string>> AdminSendInvite(string requestId)
         {
-            var manager = await _managerRequestRepository.GetManagerRequestById(requestId);
+            //var manager = await _managerRequestRepository.GetManagerRequestById(requestId);
+            var manager = await _managerRequestRepository.GetByIdAsync((item) => item.Id == requestId);
             if(manager == null)
             {
                 return new Response<string>
@@ -82,8 +83,8 @@ namespace HotelManagement.Services.Services
             //await _managerRequestRepository.UpdateAsync(manager,manager);
             var subject = "Manager request Approval for Hotel listing platform";
             //https://localhost:7255/api/Authentication/Login
-            var content = $"Click on this link to register as a manager <a href='https://localhost:7255/api/ManagerRequest/Register/' target='_blank'>Register</a> " +
-                $"You can also copy and paste to another tab: https://localhost:7255/api/ManagerRequest/" +
+            var content = $"Click on this link to register as a manager <a href='https://localhost:7255/api/ManagerRequest/ManagerAcceptInvite/{manager.Token}' target='_blank'>Register</a> " +
+                $"You can also copy and paste to another tab: https://localhost:7255/api/ManagerRequest/ManagerAcceptInvite/{manager.Token}" +
                 $"\n\r Link expires in 5-days";
             var message = new EmailMessage(new List<string> { manager.Email }, subject, content);
             await _emailService.SendEmailAsync(message);
