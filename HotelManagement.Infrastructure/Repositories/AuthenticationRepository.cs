@@ -153,7 +153,7 @@ namespace HotelManagement.Infrastructure.Repositories
             }
 
             var resetPasswordToken = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var emailMsg = new EmailMessage(new string[] { user.Email }, "Reset your password", $"Please Follow the Link to reset your Password: https://localhost:7255/api/Auth/Reset-Update-Password?token={resetPasswordToken}");
+            var emailMsg = new EmailMessage(new string[] { user.Email }, "Reset your password", $"Please Follow the Link to reset your Password: http://localhost:3000/reset-update-password?token={resetPasswordToken}&email={user.Email}");
             await _emailService.SendEmailAsync(emailMsg);
             return "A password reset Link has been sent to your email address";
         }
