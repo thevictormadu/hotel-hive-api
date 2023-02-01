@@ -29,7 +29,7 @@ namespace HotelManagement.Api.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
             var login = await _authenticationService.Login(model);
-            if (login.Succeeded == false) return Unauthorized(login);
+            //if (login.Succeeded == false) return BadRequest(login);
             return Ok(login);
         }
 
@@ -60,7 +60,7 @@ namespace HotelManagement.Api.Controllers
         }
 
         [HttpPost("Reset-Update-Password")]
-        public async Task<IActionResult> ResetUpdatePassword([FromBody] UpdatePasswordDTO model, string Token)
+        public async Task<IActionResult> ResetUpdatePassword([FromBody] UpdatePasswordDTO model)
         {
             var result = await _authenticationService.ResetPasswordAsync(model);
             return Ok(result);
