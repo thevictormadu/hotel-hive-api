@@ -24,5 +24,7 @@ namespace HotelManagement.Infrastructure.Repositories
             var managerRequest = await _context.ManagerRequests.Where(manager => manager.Id == managerId).FirstOrDefaultAsync();
             return managerRequest;
         }
+
+       
     }
 }

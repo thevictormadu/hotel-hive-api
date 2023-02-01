@@ -133,8 +133,14 @@ namespace HotelManagement.Services.Services
                 hotelCustomers.Add(hotelCustDtos);
             }
             return Response<List<GetCustomersByHotelDto>>.Success("Successful", hotelCustomers, 200);
-
-
         }
+
+        public async Task<Response<Customer>> GetCustomer(string Id)
+        {
+            var result = await _unitOfWork.customerRepository.GetCustomer(Id);
+
+            return Response<Customer>.Success("Successfull", result, 200);
+        }
+
     }
 }

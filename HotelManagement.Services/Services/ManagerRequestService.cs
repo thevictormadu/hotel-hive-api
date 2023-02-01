@@ -124,6 +124,14 @@ namespace HotelManagement.Services.Services
             };
         }
 
-        
+
+        public async Task<Response<Manager>> GetManager(string Id)
+        {
+            //var result = await _unitOfWork.customerRepository.GetByIdAsync(x => x.Id == Id);
+            var result = await _unitOfWork.managerRepository.GetManager(Id);
+
+            return Response<Manager>.Success("Successfull", result, 200);
+        }
+
     }
 }

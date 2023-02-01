@@ -26,7 +26,7 @@ namespace HotelManagement.Api.Controllers
         public async Task<IActionResult> BookingPerManager(string managerId)
         {
             var result = await _bookingService.GetBookingPerManager(managerId);
-            if (!result.Succeeded) return BadRequest(result);
+            //if (!result.Succeeded) return BadRequest(result);
             return Ok(result);
         }
     }
