@@ -1,4 +1,5 @@
-﻿using HotelManagement.Core.DTOs;
+﻿using HotelManagement.Core.Domains;
+using HotelManagement.Core.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace HotelManagement.Core.IServices
         Task<Response<string>> ManagerRequest(ManagerRequestDTO managerRequest);
         Task<Response<string>> AdminSendInvite(string requestId);
         Task<Response<string>> ManagerAcceptInvite(string token);
+        Task<Response<Manager>> GetManager(string Id);
     }
 }

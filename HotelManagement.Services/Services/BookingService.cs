@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HotelManagement.Core.DTOs.BookingDtos;
 using System.Net.NetworkInformation;
+using System.ComponentModel;
 
 namespace HotelManagement.Services.Services
 {
@@ -51,21 +52,44 @@ namespace HotelManagement.Services.Services
            
         }
         public async Task<Response<List<BookingResponseDto>>> GetBookingPerManager(string managerId)
+        //public async Task<List<Booking>> GetBookingPerManager(string managerId)
         {
+            var listOfHotel = new List<Hotel>();
+            var listOfBooking = new List<List<Booking>>();
+            var booking = new List<Booking>();
+           
+
             
            try
             {
-               var bookings =   _unitOfWork.managerRepository.GetByIdAsync(x=>x.Id==managerId).Result.Hotels.SelectMany(x=>x.Bookings);
-                var mappedBookings = _mapper.Map<List<BookingResponseDto>>(bookings);
-                if(mappedBookings == null) return Response<List<BookingResponseDto>>.Fail("No Booking Found");
+                //var bookings =   _unitOfWork.managerRepository.GetByIdAsync(x=>x.Id==managerId).Result.Hotels.SelectMany(x=>x.Bookings);
+                var manager = _unitOfWork.managerRepository.GetBookingPerManager(managerId);
+                foreach (var hotel in manager.Hotels)
+                {
+                    listOfHotel.Add(hotel);
+                }
+
+                foreach(var b in listOfHotel)
+                {
+                    foreach (var c in b.Bookings)
+                    {
+                        booking.Add(c);
+                    }
+                }
+
+
+                var mappedBookings = _mapper.Map<List<BookingResponseDto>>(booking);
+                if (mappedBookings == null) return Response<List<BookingResponseDto>>.Fail("No Booking Found");
                 return Response<List<BookingResponseDto>>.Success("Booking Successfully Loaded", mappedBookings);
+             
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while creating the booking");
 
-                // Return a failure response
+               // Return a failure response
                 return Response<List<BookingResponseDto>>.Fail("An error occurred while Loading the booking");
+
             }
 
         }
