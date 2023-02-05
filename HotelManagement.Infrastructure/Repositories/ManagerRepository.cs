@@ -37,7 +37,7 @@ namespace HotelManagement.Infrastructure.Repositories
                             .Include(c => c.Hotels)
                                 .ThenInclude(x=> x.Bookings)
                             .Where(c => c.Id == Id)
-                            .SingleOrDefault();
+                            .FirstOrDefault();
             return result;
         }
     }
