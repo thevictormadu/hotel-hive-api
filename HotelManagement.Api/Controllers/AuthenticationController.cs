@@ -23,7 +23,7 @@ namespace HotelManagement.Api.Controllers
         {
             var register = await _authenticationService.Register(user);
             if(register.Succeeded == true) return Ok(register);
-            return BadRequest(register);
+            return Ok(register);
         }
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO model)
