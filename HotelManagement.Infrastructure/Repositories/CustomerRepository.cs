@@ -69,6 +69,19 @@ namespace HotelManagement.Infrastructure.Repositories
                                 .ToList();
             return new Response<List<Customer>> { Data = topCustomers };
         }
+
+        public async Task<Customer> GetCustomer(string Id)
+        {
+            var result =await _hotelDbContext.Customers
+                                .Include(b => b.AppUser)
+                                .Include(c=>c.Bookings)
+                                .Where(x=> x.Id == Id)
+                                .SingleOrDefaultAsync();                                
+    
+            return result;
+        }
+
+
     }
 }
 
