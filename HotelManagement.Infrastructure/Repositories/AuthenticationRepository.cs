@@ -48,10 +48,10 @@ namespace HotelManagement.Infrastructure.Repositories
 
         public string GetId() => _httpContext.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        public async Task<Response<string>> Login(LoginDTO model)
+        public async Task<Response<LoginUserDTO>> Login(LoginDTO model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
-            var response = new Response<string>();
+            var response = new Response<LoginUserDTO>();
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userRoles = await _userManager.GetRolesAsync(user);
@@ -67,7 +67,14 @@ namespace HotelManagement.Infrastructure.Repositories
                 //var refreshToken = SetRefreshToken();
                 await SaveRefreshToken(user, refreshToken);
                 response.Succeeded = true;
-                response.Data = _token.CreateToken(UserModel);
+                response.Data = new LoginUserDTO
+                {
+                    firstname = user.FirstName,
+                    lastname = user.LastName,
+                    username = user.UserName,
+                    roles = userRoles,
+                    token = _token.CreateToken(UserModel)
+                };
                 response.StatusCode = (int)HttpStatusCode.Accepted;
                 response.Message = "Logged in successfully";
             }

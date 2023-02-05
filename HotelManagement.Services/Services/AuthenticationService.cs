@@ -21,7 +21,7 @@ namespace HotelManagement.Services.Services
         {
             this.repository = repository;
         }
-        public async Task<Response<string>> Login(LoginDTO model)
+        public async Task<Response<LoginUserDTO>> Login(LoginDTO model)
         {
             return await repository.Login(model);
         }
