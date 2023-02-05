@@ -39,16 +39,14 @@ namespace HotelManagement.Api.Controllers
         public async Task<IActionResult> RefreshToken()
         {
             var token = await _authenticationService.RefreshToken();
-            if(token.Succeeded == false) return BadRequest(token);
             return Ok(token);
         }
 
+        [Authorize]
         [HttpPost("Change-Password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDTO model)
         {
             var result = await _authenticationService.ChangePassword(model);
-            if (result.ToString().Contains("login")) return Unauthorized(result);
-            if (result.ToString().Contains("character")) return BadRequest(result);
             return Ok(result);
         }
 

@@ -142,27 +142,49 @@ namespace HotelManagement.Infrastructure.Repositories
             return result.Succeeded;
         }
 
-        public async Task<object> ChangePassword(ChangePasswordDTO changePasswordDTO)
+        public async Task<Response<string>> ChangePassword(ChangePasswordDTO changePasswordDTO)
         {
             var user = await _userManager.FindByIdAsync(GetId());
-            if (user == null) return "Please login to change password";
+            var response = new Response<string>
+            {
+                Succeeded = false,
+                Data = String.Empty,
+                StatusCode = (int)HttpStatusCode.OK,
+            };
+            if (user == null) { 
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                response.Message = "Please login to change password";
+                return response;
+            }
             var result = await _userManager.ChangePasswordAsync(user, changePasswordDTO.CurrentPassword, changePasswordDTO.NewPassword);
-            if (!result.Succeeded) return "Unable to change password: password should contain a Capital, number, character and minimum length of 8";
-            return "Password changed succesffully";
+            if (!result.Succeeded) { 
+                response.StatusCode= (int)HttpStatusCode.ExpectationFailed;
+                response.Message = "Unable to change password: password should contain a Capital, number, character and minimum length of 8. Confirm if old password is correct.";
+                return response;
+            }
+            response.Message = "Password changed succesffully";
+            response.Succeeded = true;
+            return response;
         }
 
-        public async Task<object> ForgottenPassword(ResetPasswordDTO model)
+        public async Task<Response<string>> ForgottenPassword(ResetPasswordDTO model)
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
+            var response = new Response<string> { Succeeded = false };
             if (user == null)
             {
-                return ("The Email Provided is not associated with a user account");
+                response.StatusCode = (int)HttpStatusCode.BadRequest;
+                response.Message = "The Email Provided is not associated with a user account";
+                return response;
             }
 
             var resetPasswordToken = await _userManager.GeneratePasswordResetTokenAsync(user);
             var emailMsg = new EmailMessage(new string[] { user.Email }, "Reset your password", $"Please Follow the Link to reset your Password: http://localhost:3000/reset-update-password?token={resetPasswordToken}&email={user.Email}");
             await _emailService.SendEmailAsync(emailMsg);
-            return "A password reset Link has been sent to your email address";
+            response.Succeeded = true;
+            response.Message = "A password reset Link has been sent to your email address";
+            response.StatusCode = (int)HttpStatusCode.OK;
+            return response;
         }
 
         public async Task<object> ResetPassword(UpdatePasswordDTO model)
