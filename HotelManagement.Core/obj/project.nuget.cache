@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GF045/Lyi1TT25M/vwlksZ6lLwYBmt/K5LiWPmQdIb77XLnJf91FQOYqAGzsCnbKL3nUWHuzoo1INBSLeO9ZjA==",
+  "dgSpecHash": "IlWlEpXkgoCBEG6OKsT49bRXbWzmKBOhTVJqOQv9LNhXe0GzaEmgz9Lci5fKrvYrcMOipa0gUgHy1A29fX27WA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Decagon001\\Desktop\\LiveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\HotelManagement.Core.csproj",
   "expectedPackageFiles": [
@@ -63,12 +63,6 @@
     "C:\\Users\\Decagon001\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Decagon001\\Desktop\\LiveProject\\HotelManagementSystemSQ012\\HotelManagement.Core\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",
