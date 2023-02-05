@@ -64,24 +64,29 @@ namespace HotelManagement.Services.Services
             {
                 //var bookings =   _unitOfWork.managerRepository.GetByIdAsync(x=>x.Id==managerId).Result.Hotels.SelectMany(x=>x.Bookings);
                 var manager = _unitOfWork.managerRepository.GetBookingPerManager(managerId);
-                foreach (var hotel in manager.Hotels)
+                if(manager != null)
                 {
-                    listOfHotel.Add(hotel);
-                }
-
-                foreach(var b in listOfHotel)
-                {
-                    foreach (var c in b.Bookings)
+                    foreach (var hotel in manager.Hotels)
                     {
-                        booking.Add(c);
+                        listOfHotel.Add(hotel);
                     }
+
+                    foreach (var b in listOfHotel)
+                    {
+                        foreach (var c in b.Bookings)
+                        {
+                            booking.Add(c);
+                        }
+                    }
+
+
+                    var mappedBookings = _mapper.Map<List<BookingResponseDto>>(booking);
+                    if (mappedBookings == null) return Response<List<BookingResponseDto>>.Fail("No Booking Found");
+                    return Response<List<BookingResponseDto>>.Success("Booking Successfully Loaded", mappedBookings);
+
                 }
+                return Response<List<BookingResponseDto>>.Success("Not Found", null);
 
-
-                var mappedBookings = _mapper.Map<List<BookingResponseDto>>(booking);
-                if (mappedBookings == null) return Response<List<BookingResponseDto>>.Fail("No Booking Found");
-                return Response<List<BookingResponseDto>>.Success("Booking Successfully Loaded", mappedBookings);
-             
             }
             catch (Exception ex)
             {
