@@ -12,9 +12,9 @@ namespace HotelManagement.Core.IServices
         Task<Response<LoginUserDTO>> Login(LoginDTO model);
         Task<Response<string>> Register(RegisterDTO user);
         Task<Response<string>> RefreshToken();
-        public Task<object> ChangePassword(ChangePasswordDTO changePasswordDTO);
+        public Task<Response<string>> ChangePassword(ChangePasswordDTO changePasswordDTO);
         public Task<object> ResetPasswordAsync(UpdatePasswordDTO resetPasswordDTO);
-        public Task<object> ForgottenPassword(ResetPasswordDTO model);
+        public Task<Response<string>> ForgottenPassword(ResetPasswordDTO model);
         Task Signout();
     }
 }
