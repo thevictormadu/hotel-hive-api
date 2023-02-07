@@ -202,9 +202,62 @@ namespace HotelManagement.Services.Services
             }
 
         }
+
+
+        public async Task<Response<List<PaymentDTO>>> GetAllTransactionForManager(string managerId, int pageNumber, int pageSize)
+        {
+            try
+            {
+                var payment = await _transRepo.GetAllTransactionForManager(managerId);
+
+                if (payment == null)
+                {
+                    return Response<List<PaymentDTO>>.Fail("Hotel not found.", 404);
+                }
+                var paginatedPayment = GenericPagination<Payment>.ToPagedList(payment, pageNumber, pageSize);
+
+                var paidCustomersDTO = _mapper.Map<List<PaymentDTO>>(paginatedPayment);
+
+                return Response<List<PaymentDTO>>.Success("List of all paid customers", paidCustomersDTO, 200);
+            }
+            catch (Exception ex)
+            {
+
+                //_logger.LogError("An Exception occurred");
+                return Response<List<PaymentDTO>>.Fail(ex.Message, 500);
+            }
+        }
+
+
+            public async Task<Response<List<PaymentDTO>>> AllUserTransaction(string customerId, int pageNumber, int pageSize)
+            {
+                try
+                {
+                    var payment = await _transRepo.AllUserTransactions(customerId);
+
+                    if (payment == null)
+                    {
+                        return Response<List<PaymentDTO>>.Fail("Hotel not found.", 404);
+                    }
+                    var paginatedPayment = GenericPagination<Payment>.ToPagedList(payment, pageNumber, pageSize);
+
+                    var paidCustomersDTO = _mapper.Map<List<PaymentDTO>>(paginatedPayment);
+
+                    return Response<List<PaymentDTO>>.Success("List of all paid customers", paidCustomersDTO, 200);
+                }
+                catch (Exception ex)
+                {
+
+                    //_logger.LogError("An Exception occurred");
+                    return Response<List<PaymentDTO>>.Fail(ex.Message, 500);
+                }
+            }
+
+
     }
 
 }
+
 
 
     

@@ -81,6 +81,80 @@ namespace HotelManagement.Infrastructure.Repositories
 
             return paidCustomers.AsQueryable();
         }
+
+        public async Task<IQueryable<Payment>> GetAllTransactionForManager(string managerId)
+        {
+            var payments = new List<Payment>();
+
+            var allBookings = new List<Booking>();
+
+            var customers =await _db.Managers
+                            .Include(x => x.Hotels)
+                                .ThenInclude(x => x.Bookings)
+                                    .ThenInclude(x => x.Payment)
+                             .Where(b => b.Id == managerId)
+                            .FirstOrDefaultAsync();
+
+            if ( customers != null)
+            {
+                foreach (var hotels in customers.Hotels)
+                {
+                    if (hotels.Bookings != null)
+                    {
+                        allBookings.AddRange(hotels.Bookings);
+                    }
+                }
+
+                foreach (var booking in allBookings)
+                {
+                    if (booking.Payment != null)
+                    {
+                        payments.Add(booking.Payment);
+                    }
+                }
+            }
+           
+
+            return payments.AsQueryable();
+        }
+
+
+        public async Task<IQueryable<Payment>> AllUserTransactions(string customerId)
+        {
+            var payments = new List<Payment>();
+
+            var allBookings = new List<Booking>();
+
+            var customers = await _db.Customers
+                                .Include(x => x.Bookings)
+                                    .ThenInclude(x => x.Payment)
+                             .Where(b => b.Id == customerId)
+                            .FirstOrDefaultAsync();
+
+            if (customers != null)
+            {
+                foreach (var booking in customers.Bookings)
+                {
+                    if (booking != null)
+                    {
+                        allBookings.Add(booking);
+                    }
+                }
+
+                foreach (var booking in allBookings)
+                {
+                    if (booking.Payment != null)
+                    {
+                        payments.Add(booking.Payment);
+                    }
+                }
+            }
+            
+
+            return payments.AsQueryable();
+        }
+
+
     }
 }
 
