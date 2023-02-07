@@ -99,5 +99,34 @@ namespace HotelManagement.Services.Services
 
         }
 
+
+        public async Task<Response<List<BookingResponseDto>>> AllBookings()
+        {
+            var resultList = new List<Booking>();
+
+            try
+            {
+                var result =await _unitOfWork.bookingRepository.GetAllAsync();
+                if (result != null)
+                {
+                    foreach (var booking in result)
+                    {
+                        resultList.Add(booking);
+                    }
+
+                    var mappedBookings = _mapper.Map<List<BookingResponseDto>>(resultList);
+                    return Response<List<BookingResponseDto>>.Success("Booking Successfully Loaded", mappedBookings);
+                }
+
+                return Response<List<BookingResponseDto>>.Success("No Result", null);
+
+            }
+            catch (Exception ex)
+            {
+
+                _logger.LogError(ex, "An error occured while creating the booking");
+                return Response<List<BookingResponseDto>>.Fail("An error occured while loading the booking");
+            }
+        }
     }
 }

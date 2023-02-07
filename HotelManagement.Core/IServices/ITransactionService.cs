@@ -19,7 +19,8 @@ namespace HotelManagement.Core.IServices
 
         Task<Response<List<TransactionCustomerDto>>> GetAllUsersTransactionAsync(int pageNumber, int pageSize);
 
-
+        Task<Response<List<PaymentDTO>>> GetAllTransactionForManager(string managerId, int pageNumber, int pageSize);
+        Task<Response<List<PaymentDTO>>> AllUserTransaction(string customerId, int pageNumber, int pageSize);
     }
 }
 

@@ -29,5 +29,12 @@ namespace HotelManagement.Api.Controllers
             //if (!result.Succeeded) return BadRequest(result);
             return Ok(result);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AllBookings()
+        {
+            var result = await _bookingService.AllBookings();
+            return Ok(result);
+        }
     }
 }

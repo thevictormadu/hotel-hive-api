@@ -4,6 +4,7 @@ namespace HotelManagement.Core.DTOs
 {
     public class GetHotelsDto
     {
+        public string Id { get; set; }
         public string Name { get; set; }
 
         [DataType(DataType.Text)]

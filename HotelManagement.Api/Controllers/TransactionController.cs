@@ -21,7 +21,7 @@ namespace HotelManagement.Api.Controllers
         }
         //Display all transaction for admin controller
         [HttpGet("DisplayAllTransactionforAdmin")]
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin")]
         public async Task<IActionResult> DisplayAllTransactionToAdmin()
         {
             try
@@ -99,7 +99,6 @@ namespace HotelManagement.Api.Controllers
                 //_logger.LogError("Unable to retrieve users transactions for hotel");
                 return BadRequest(ex.Message);
             }
-
         }
 
         [HttpGet("GetAllUsersTransaction")]
@@ -108,6 +107,22 @@ namespace HotelManagement.Api.Controllers
             var result = await _transactionService.GetAllUsersTransactionAsync(pageNumber, pageSize);
             return Ok(result);
         }
+
+
+        [HttpGet("GetAllTransactionByManager/{managerId}")]
+        public async Task<ActionResult<Response<PaymentDTO>>> GetAllTransactionForManager(string managerId, int pageNumber, int pageSize)
+        {
+            var result = await _transactionService.GetAllTransactionForManager(managerId, pageNumber, pageSize);
+            return Ok(result);
+        }
+
+        [HttpGet("GetUserTransaction/{customerId}")]
+        public async Task<ActionResult<Response<PaymentDTO>>> AllUserTransaction(string customerId, int pageNumber, int pageSize)
+        {
+            var result = await _transactionService.AllUserTransaction(customerId, pageNumber, pageSize);
+            return Ok(result);
+        }
+
     }
 }
 

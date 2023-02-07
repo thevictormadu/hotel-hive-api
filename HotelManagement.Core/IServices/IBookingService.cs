@@ -12,6 +12,7 @@ namespace HotelManagement.Core.IServices
     {
         Task<Response<string>> CreateHotelBooking(BookingRequestDto bookingRequestDto);
         Task<Response<List<BookingResponseDto>>> GetBookingPerManager(string managerId);
+        Task<Response<List<BookingResponseDto>>> AllBookings();
 
     }
 }
