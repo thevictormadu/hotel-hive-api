@@ -29,6 +29,7 @@ namespace HotelManagement.Infrastructure.Context
 
         public HotelDbContext()
         {
+
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
