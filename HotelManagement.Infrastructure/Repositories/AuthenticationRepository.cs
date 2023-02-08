@@ -51,6 +51,7 @@ namespace HotelManagement.Infrastructure.Repositories
         public async Task<Response<LoginUserDTO>> Login(LoginDTO model)
         {
             var user = await _userManager.FindByNameAsync(model.Username);
+
             var response = new Response<LoginUserDTO>();
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
