@@ -45,7 +45,7 @@ namespace HotelManagement.Services.Services
             var newroom = _mapper.Map<Room>(addRoomDto);
             if (newroom == null) return Response<string>.Fail("Operation Not Successful");
                 _unitOfWork.roomRepository.Add(RoomType_ID, newroom);
-                _unitOfWork.SaveChanges();
+                await _unitOfWork.SaveChanges();
             return Response<string>.Success("Room Created Successfully", newroom.RoomNo);
             
         }
