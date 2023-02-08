@@ -39,7 +39,7 @@ namespace HotelManagement.Services.Services
             try
             {
                 await _unitOfWork.bookingRepository.AddAsync(bookingRequest);
-                _unitOfWork.SaveChanges();
+                await _unitOfWork.SaveChanges();
                 return Response<string>.Success("Created Successfully", bookingRequest.Id, statusCode: 200);
             }
             catch(Exception ex)
