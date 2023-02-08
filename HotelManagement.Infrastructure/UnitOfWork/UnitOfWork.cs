@@ -87,7 +87,7 @@ namespace HotelManagement.Infrastructure.UnitOfWork
 		}
 
        
-    public async void SaveChanges()
+    public async Task SaveChanges()
     {
      await   _hotelDbContext.SaveChangesAsync();
     }
@@ -120,12 +120,12 @@ namespace HotelManagement.Infrastructure.UnitOfWork
             GC.SuppressFinalize(this);
         }
 
-		
 
 
-        public Task SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
+
+        //public Task SaveChangesAsync()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

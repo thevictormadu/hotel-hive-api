@@ -22,11 +22,11 @@
 
         public IUpdateUserAppRepository UpdateAppUserRepository { get; }
 
-        void SaveChanges();
+        Task SaveChanges();
 
         void BeginTransaction();
 
         void Rollback();
-        Task SaveChangesAsync();
+        //Task SaveChangesAsync();
     }
 }
