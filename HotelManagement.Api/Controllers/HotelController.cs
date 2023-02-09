@@ -58,7 +58,7 @@ namespace HotelManagement.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost("add-hotel")]
+        [HttpPost("add-hotel/{Manager_Id}")]
         public async Task<IActionResult> AddHotel (string Manager_Id, [FromBody] AddHotelDto addHotelDto)
         {
             if (addHotelDto== null)
