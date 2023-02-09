@@ -64,7 +64,7 @@ namespace HotelManagement.Services.Services
                 Hotel = hotel
             };
 
-            _unitOfWork.rateHotelRepository.RateHotel(newRating);
+            await _unitOfWork.rateHotelRepository.RateHotel(newRating);
             //_unitOfWork.SaveChangesAsync();
 
             return Response<string>.Success("Rated Successfully", hotel.Name);

@@ -84,7 +84,7 @@ namespace HotelManagement.Services.Services
                     Message = "Hotel not found"
                 };
             }
-            _unitOfWork.SaveChanges();
+          await  _unitOfWork.SaveChanges();
             return Response<UpdateHotelDto>.Success("Updated Successfully", update);
         }
         public async Task<Response<List<GetHotelByRatingsDto>>> GetHotelRating(string HotelName)
@@ -153,7 +153,7 @@ namespace HotelManagement.Services.Services
                 };
             var newhotel = _mapper.Map<Hotel>(addHotelDto);
             _unitOfWork.hotelRepository.AddHotel(Manager_ID, newhotel);
-            _unitOfWork.SaveChanges();
+            await _unitOfWork.SaveChanges();
 
             return Response<string>.Success("Created Sucessfuly", addHotelDto.Name);
         }
@@ -170,7 +170,7 @@ namespace HotelManagement.Services.Services
                 if (hotelTodelete == null)
                     return Response<string>.Fail($"Hotel with {id} doesnot exist");
                 await _unitOfWork.hotelRepository.DeleteAsync<string>(id);
-                   _unitOfWork.SaveChanges();
+                  await _unitOfWork.SaveChanges();
                 return Response<string>.Success($"Hotel with {id} Sucessful Deleted", hotelTodelete.Name );
  
     }
@@ -206,7 +206,7 @@ namespace HotelManagement.Services.Services
                 if (update.Email != null) patchHotel.Email = update.Email;
                 if (update.Description != null) patchHotel.Description = update.Description;
 
-                _unitOfWork.SaveChanges();
+                await _unitOfWork.SaveChanges();
 
                 return Response<UpdateHotelDto>.Success("Hotel updated successfully", update);
             }

@@ -66,7 +66,7 @@ namespace HotelManagement.Services.Services
             else
             {
                 _hotelDbContext.Update(updateReview);
-                _unitOfWork.SaveChanges();
+               await _unitOfWork.SaveChanges();
                 return Response<Review>.Success("Updated Successfully", updateReview);
             }
 

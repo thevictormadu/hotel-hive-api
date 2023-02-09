@@ -55,7 +55,7 @@ namespace HotelManagement.Services.Services
             managerMap.Id = Guid.NewGuid().ToString();
             managerMap.Token = _tokenService.CreateToken(managerMap);
             await _managerRequestRepository.AddAsync(managerMap);
-            _unitOfWork.SaveChanges();
+            await _unitOfWork.SaveChanges();
             return new Response<string>
             {
                 Data = "Our team will review you application and get back to you via mail between 25 working days",
