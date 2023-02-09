@@ -48,7 +48,7 @@ namespace HotelManagement.Services.Services
                         Message = "User not found"
                     };
                 }
-                _unitOfWork.SaveChanges();
+                await _unitOfWork.SaveChanges();
                 return Response<UpdateAppUserDto>.Success("Updated Successfully", update);
             }
     }

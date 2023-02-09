@@ -75,7 +75,7 @@ namespace HotelManagement.Services.Services
                 if (room == null)
                     return Response<string>.Fail($"Room with {id} does not exist");
                 await _roomRepository.DeleteAsync(room);
-                _unitOfWork.SaveChanges();
+                await _unitOfWork.SaveChanges();
                 return Response<string>.Success($"Room with {id} Sucessful Deleted",id);
                 
             }
